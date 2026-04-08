@@ -272,6 +272,91 @@
     });
   });
 
+  // ── TIER SELECTION: show/hide Foundation stream notice ──
+  const tierRadios = document.querySelectorAll('input[name="tier"]');
+  const foundationNotice = document.getElementById('foundationNotice');
+
+  tierRadios.forEach(radio => {
+    radio.addEventListener('change', () => {
+      if (foundationNotice) {
+        foundationNotice.style.display = radio.value === 'foundation' ? 'block' : 'none';
+      }
+    });
+  });
+
+  // ── FOUNDATION STREAM MINIMUM VALIDATION ──
+  // Validate on step 4 that Foundation applicants have 10K+ monthly listeners
+  const originalValidateStep = validateStep;
+  function validateStepWithTierCheck(n) {
+    if (n === 4) {
+      const tier = document.querySelector('input[name="tier"]:checked');
+      if (tier && tier.value === 'foundation') {
+        const listenersField = document.getElementById('monthlyListeners');
+        if (listenersField) {
+          const val = parseInt(listenersField.value.replace(/,/g, ''), 10);
+          if (!isNaN(val) && val < 10000) {
+            if (foundationNotice) foundationNotice.style.display = 'block';
+            listenersField.classList.add('error');
+            const errEl = listenersField.parentElement.querySelector('.field-error');
+            if (errEl) {
+              errEl.textContent = 'Foundation tier requires 10,000+ monthly streams. Consider applying for Accelerate instead.';
+              errEl.classList.add('visible');
+            }
+            listenersField.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            return false;
+          }
+        }
+      }
+    }
+    return originalValidateStep(n);
+  }
+
+  // Override form submit to use tier-aware validation
+  form.removeEventListener('submit', form._submitHandler);
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!validateStepWithTierCheck(4)) return;
+
+    const submitBtn  = document.getElementById('submitBtn');
+    const submitText = submitBtn.querySelector('.submit-text');
+    const submitLoad = submitBtn.querySelector('.submit-loading');
+    submitText.hidden = true;
+    submitLoad.hidden = false;
+    submitBtn.disabled = true;
+
+    const data = Object.fromEntries(new FormData(form).entries());
+    data.submittedAt = new Date().toISOString();
+    const API_BASE = window.MPI_API_BASE || 'https://dashboard.mpiartist.com';
+
+    try {
+      const res = await fetch(`${API_BASE}/api/apply`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({}));
+        throw new Error(err.error || `Server error ${res.status}`);
+      }
+      form.hidden = true;
+      successView.hidden = false;
+      successView.removeAttribute('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      submitText.hidden = false;
+      submitLoad.hidden = true;
+      submitBtn.disabled = false;
+      let errorEl = document.getElementById('submitError');
+      if (!errorEl) {
+        errorEl = document.createElement('p');
+        errorEl.id = 'submitError';
+        errorEl.style.cssText = 'color:#dc2626;font-size:14px;margin-top:12px;text-align:center;';
+        submitBtn.parentElement.appendChild(errorEl);
+      }
+      errorEl.textContent = 'Something went wrong. Please try again or email joshua@mpiartist.com';
+    }
+  });
+
   // ── INIT ──
   showStep(1);
 

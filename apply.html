@@ -439,9 +439,9 @@
                     <div class="tier-option-content">
                       <div class="tier-option-header">
                         <span class="tier-option-name">Foundation</span>
-                        <span class="tier-option-price">$29/mo</span>
+                        <span class="tier-option-price">Free</span>
                       </div>
-                      <p class="tier-option-desc text-faint">Self-serve distribution + release tools. 85% royalty.</p>
+                      <p class="tier-option-desc text-faint">Distribution + MPI Score + release tools. 85% royalty. Requires 10,000+ monthly streams.</p>
                     </div>
                   </label>
 
@@ -450,16 +450,33 @@
                     <div class="tier-option-content">
                       <div class="tier-option-header">
                         <span class="tier-option-name">Accelerate</span>
+                        <span class="tier-option-price">$29/mo</span>
+                      </div>
+                      <p class="tier-option-desc text-faint">Everything in Foundation + 100% royalties + campaign tools. No stream minimum.</p>
+                    </div>
+                  </label>
+
+                  <label class="tier-option" for="tierPremier">
+                    <input type="radio" id="tierPremier" name="tier" value="premier" />
+                    <div class="tier-option-content">
+                      <div class="tier-option-header">
+                        <span class="tier-option-name">Premier</span>
                         <span class="tier-option-price">$149/mo</span>
                       </div>
-                      <p class="tier-option-desc text-faint">Full system + campaign automation + quarterly strategy review. 80% royalty. Requires demonstrated growth.</p>
+                      <p class="tier-option-desc text-faint">Full MPI support + dedicated release management + playlist pitching. 100% royalties. No stream minimum.</p>
                     </div>
                   </label>
 
                 </div>
                 <span class="field-error tier-error" role="alert"></span>
+
+                <!-- Stream minimum notice for Foundation tier -->
+                <div id="foundationNotice" style="display:none; margin-top:12px; padding:12px 16px; background:rgba(198,146,20,0.08); border:1px solid rgba(198,146,20,0.25); border-radius:8px;">
+                  <p style="font-size:13px; color:#C69214; margin:0;"><strong>Foundation requires 10,000+ monthly Spotify streams.</strong> Under that threshold? Apply for Accelerate — no stream minimum on paid tiers.</p>
+                </div>
+
                 <p class="field-help" style="margin-top: var(--space-3);">
-                  Partner tier is invitation-only and not available on application. If you apply for Accelerate but your metrics are Foundation-level, we may recommend Foundation during review.
+                  Partner tier is invitation-only. Not available on application.
                 </p>
               </div>
 

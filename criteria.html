@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What We Look For — MPI Artist Services</title>
+  <meta name="description" content="MPI accepts 30% of applicants. Learn exactly what we look for — the music, the metrics, the mindset, and the work ethic that gets artists in." />
+  <meta property="og:title" content="What We Look For — MPI Artist Services" />
+  <meta property="og:description" content="MPI is selective. Here's exactly what we look for when reviewing applications — and what disqualifies you immediately." />
+  <meta property="og:url" content="https://www.mpiartist.com/criteria.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://www.mpiartist.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="What We Look For — MPI Artist Services" />
+  <meta name="twitter:description" content="MPI accepts 30% of applicants. Here's exactly what we evaluate." />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/page.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230D1B2A'/><text x='16' y='23' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='18' fill='%23C69214'>M</text></svg>" />
+
+  <style>
+    /* ── CRITERIA PAGE SUPPLEMENTAL STYLES ── */
+
+    /* Page hero — shorter than homepage hero */
+    .criteria-hero {
+      position: relative;
+      padding-top: calc(var(--nav-height) + clamp(var(--space-16), 8vw, var(--space-32)));
+      padding-bottom: clamp(var(--space-16), 8vw, var(--space-32));
+      overflow: hidden;
+    }
+
+    .criteria-hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .criteria-hero-gradient {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% -10%, rgba(198,146,20,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 50% at 100% 50%, rgba(1,105,111,0.06) 0%, transparent 50%),
+        linear-gradient(180deg, var(--navy-deep) 0%, var(--navy) 60%, var(--navy-deep) 100%);
+    }
+
+    .criteria-hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(198,146,20,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(198,146,20,0.04) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 0%, transparent 70%);
+    }
+
+    .criteria-hero-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .criteria-hero-eyebrow {
+      margin-bottom: var(--space-6);
+    }
+
+    .criteria-hero-heading {
+      font-size: var(--text-3xl);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      max-width: 18ch;
+      margin-bottom: var(--space-6);
+    }
+
+    .criteria-hero-heading em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .criteria-hero-sub {
+      max-width: 54ch;
+      color: var(--color-text-muted);
+      font-size: var(--text-lg);
+      line-height: 1.6;
+      margin-bottom: var(--space-8);
+    }
+
+    .criteria-stat-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-5);
+      background: rgba(198,146,20,0.08);
+      border: 1px solid rgba(198,146,20,0.2);
+      border-radius: var(--radius-full);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--gold-light);
+      letter-spacing: 0.04em;
+    }
+
+    .criteria-stat-pill::before {
+      content: '';
+      display: block;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    /* Intro block */
+    .intro-block {
+      max-width: 72ch;
+    }
+
+    /* Criteria sections — alternating layout */
+    .criteria-section-inner {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: var(--space-12);
+      align-items: start;
+    }
+
+    .criteria-section-label {
+      position: sticky;
+      top: calc(var(--nav-height) + var(--space-8));
+    }
+
+    .criteria-section-num {
+      display: block;
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 8vw, 6rem);
+      font-weight: 700;
+      letter-spacing: -0.05em;
+      line-height: 1;
+      color: rgba(198,146,20,0.12);
+      margin-bottom: var(--space-2);
+    }
+
+    .criteria-section-title {
+      font-size: var(--text-sm);
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .criteria-section-body {
+      padding-top: var(--space-2);
+    }
+
+    .criteria-section-body h2 {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--off-white);
+      margin-bottom: var(--space-5);
+    }
+
+    .criteria-section-body p {
+      color: var(--color-text-muted);
+      line-height: 1.75;
+      margin-bottom: var(--space-4);
+      max-width: 62ch;
+    }
+
+    .criteria-section-body p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* Signal box — highlighted sub-info */
+    .signal-box {
+      margin-top: var(--space-6);
+      padding: var(--space-5) var(--space-6);
+      background: rgba(198,146,20,0.05);
+      border: 1px solid rgba(198,146,20,0.2);
+      border-left: 3px solid var(--gold);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    }
+
+    .signal-box p {
+      color: rgba(245,241,232,0.75) !important;
+      font-size: var(--text-sm) !important;
+      margin-bottom: 0 !important;
+    }
+
+    .signal-box strong {
+      color: var(--gold-light);
+      font-weight: 600;
+    }
+
+    /* Tier note chips */
+    .tier-chips {
+      display: flex;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+      margin-top: var(--space-5);
+    }
+
+    .tier-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-2) var(--space-4);
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .tier-chip-free {
+      background: rgba(13, 27, 42, 0.8);
+      border: 1px solid var(--color-border-strong);
+      color: var(--color-text-muted);
+    }
+
+    .tier-chip-paid {
+      background: rgba(198,146,20,0.1);
+      border: 1px solid rgba(198,146,20,0.25);
+      color: var(--gold-light);
+    }
+
+    .tier-chip-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: currentColor;
+      flex-shrink: 0;
+    }
+
+    /* Divider between criteria sections */
+    .criteria-divider {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+      margin-block: clamp(var(--space-12), 5vw, var(--space-20));
+    }
+
+    /* "What we don't look for" — red-tinted list */
+    .disqualifiers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-4);
+      margin-top: var(--space-6);
+    }
+
+    .disqualifier-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-4);
+      padding: var(--space-5) var(--space-6);
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(245,241,232,0.07);
+      border-radius: var(--radius-lg);
+      transition: border-color var(--transition);
+    }
+
+    .disqualifier-item:hover {
+      border-color: rgba(245,241,232,0.12);
+    }
+
+    .disqualifier-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: var(--radius-full);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(245,241,232,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-text-faint);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .disqualifier-text {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.55;
+    }
+
+    .disqualifier-text strong {
+      display: block;
+      color: rgba(245,241,232,0.6);
+      font-weight: 600;
+      margin-bottom: var(--space-1);
+    }
+
+    /* CTA section */
+    .criteria-cta {
+      background: linear-gradient(
+        135deg,
+        var(--navy-deep) 0%,
+        var(--navy-mid) 50%,
+        var(--navy-deep) 100%
+      );
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .criteria-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 100% at 50% 50%, rgba(198,146,20,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .criteria-cta-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .criteria-cta h2 {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: var(--space-5);
+    }
+
+    .criteria-cta-note {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-top: var(--space-6);
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      letter-spacing: 0.04em;
+    }
+
+    /* Summary bar */
+    .summary-bar {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      margin-top: var(--space-16);
+      background: rgba(255,255,255,0.01);
+    }
+
+    .summary-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-2);
+      padding: var(--space-6) var(--space-4);
+      text-align: center;
+      border-right: 1px solid var(--color-border);
+      transition: background var(--transition);
+    }
+
+    .summary-item:last-child {
+      border-right: none;
+    }
+
+    .summary-item:hover {
+      background: rgba(198,146,20,0.04);
+    }
+
+    .summary-num {
+      font-family: var(--font-display);
+      font-size: var(--text-xl);
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .summary-label {
+      font-size: var(--text-xs);
+      color: var(--color-text-faint);
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .criteria-section-inner {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+      }
+
+      .criteria-section-label {
+        position: static;
+        display: flex;
+        align-items: baseline;
+        gap: var(--space-4);
+      }
+
+      .criteria-section-num {
+        font-size: 3rem;
+        margin-bottom: 0;
+      }
+
+      .summary-bar {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .summary-item:nth-child(3) {
+        border-right: none;
+      }
+
+      .summary-item:nth-child(4) {
+        border-top: 1px solid var(--color-border);
+      }
+
+      .summary-item:nth-child(5) {
+        border-top: 1px solid var(--color-border);
+        border-right: none;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .criteria-hero-heading {
+        font-size: var(--text-2xl);
+      }
+
+      .disqualifiers-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .summary-bar {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .summary-item {
+        border-right: none;
+        border-bottom: 1px solid var(--color-border);
+      }
+
+      .summary-item:last-child {
+        border-bottom: none;
+        grid-column: 1 / -1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="MPI Artist Services home">
+        <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="6" fill="#C69214"/>
+          <path d="M8 23V10l8 9 8-9v13" stroke="#0D1B2A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span class="nav-logo-text">MPI<span> Artist</span></span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="/#what-we-are">What It Is</a></li>
+        <li><a href="/#tiers">Tiers</a></li>
+        <li><a href="criteria.html" aria-current="page" style="color: var(--gold);">Standards</a></li>
+        <li><a href="/#how-it-works">How It Works</a></li>
+        <li><a href="/#founder">The Founder</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <a href="https://dashboard.mpiartist.com" class="btn btn-ghost" data-testid="nav-artist-login">Artist Login</a>
+        <a href="apply.html" class="btn btn-primary" data-testid="nav-apply-now">Apply Now</a>
+      </div>
+
+      <button class="nav-mobile-toggle" aria-label="Open menu" id="mobileToggle" data-testid="mobile-menu-toggle">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul role="list">
+      <li><a href="/#what-we-are" class="mobile-link">What It Is</a></li>
+      <li><a href="/#tiers" class="mobile-link">Tiers</a></li>
+      <li><a href="criteria.html" class="mobile-link" style="color: var(--gold);">Standards</a></li>
+      <li><a href="/#how-it-works" class="mobile-link">How It Works</a></li>
+      <li><a href="/#founder" class="mobile-link">The Founder</a></li>
+    </ul>
+    <a href="https://dashboard.mpiartist.com" class="btn btn-ghost btn-lg" style="width: 100%; justify-content: center;">Artist Login</a>
+    <a href="apply.html" class="btn btn-primary btn-lg" style="width: 100%; justify-content: center; margin-top: var(--space-4);" data-testid="mobile-apply-now">Apply Now</a>
+  </div>
+
+  <main>
+
+    <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+    <section class="criteria-hero noise" id="hero" aria-labelledby="hero-heading">
+      <div class="criteria-hero-bg" aria-hidden="true">
+        <div class="criteria-hero-gradient"></div>
+        <div class="criteria-hero-grid"></div>
+      </div>
+
+      <div class="container criteria-hero-content">
+        <div class="criteria-hero-eyebrow">
+          <span class="criteria-stat-pill" data-testid="acceptance-rate-badge">30% acceptance rate</span>
+        </div>
+
+        <h1 class="criteria-hero-heading" id="hero-heading">
+          We don't pick artists.<br/>
+          We pick <em>trajectories.</em>
+        </h1>
+
+        <p class="criteria-hero-sub">
+          MPI is a selective platform — not a label, not a distributor anyone can sign up for. 
+          Every application is reviewed by a human against specific criteria. 
+          Genre fit, music quality, release discipline, and professional mindset all matter. 
+          Follower count alone does not get you in.
+        </p>
+
+        <a href="apply.html" class="btn btn-primary btn-lg" data-testid="hero-apply-cta">Apply for Access</a>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════ INTRO ═══════════════════════════════ -->
+    <section class="section" id="intro" aria-labelledby="intro-heading">
+      <div class="container">
+        <div class="rule-gold" aria-hidden="true" style="margin-bottom: var(--space-16);"></div>
+
+        <div class="intro-block reveal">
+          <p class="label text-gold" style="margin-bottom: var(--space-4);">Who This Is Built For</p>
+          <h2 class="heading-xl" id="intro-heading" style="margin-bottom: var(--space-6);">
+            Built for country, Americana,<br/>Southern Rock, and faith-driven artists.
+          </h2>
+          <p class="body-lg" style="color: var(--color-text-muted); margin-bottom: var(--space-5);">
+            MPI was not built to be a platform for everyone. It was built to solve a very specific problem for a very specific kind of artist — one who creates in a particular lane, treats releasing as a discipline, and wants a structured system behind every record they put out.
+          </p>
+          <p style="color: var(--color-text-muted);">
+            That means we turn artists away — regularly. Not because they lack talent, but because the fit isn't right. The criteria below reflect what actually matters inside this system. Read them carefully before you apply.
+          </p>
+        </div>
+
+        <!-- Summary bar -->
+        <div class="summary-bar" aria-label="Selection criteria at a glance">
+          <div class="summary-item reveal reveal-delay-1">
+            <span class="summary-num">01</span>
+            <span class="summary-label">The Music</span>
+          </div>
+          <div class="summary-item reveal reveal-delay-2">
+            <span class="summary-num">02</span>
+            <span class="summary-label">Real Traction</span>
+          </div>
+          <div class="summary-item reveal reveal-delay-3">
+            <span class="summary-num">03</span>
+            <span class="summary-label">Release System</span>
+          </div>
+          <div class="summary-item reveal reveal-delay-4">
+            <span class="summary-num">04</span>
+            <span class="summary-label">Brand & Identity</span>
+          </div>
+          <div class="summary-item reveal" style="transition-delay: 0.5s;">
+            <span class="summary-num">05</span>
+            <span class="summary-label">The Intangibles</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════ CRITERION 01 — THE MUSIC ═══════════════════════════════ -->
+    <section class="section section-sm" id="criterion-music" aria-labelledby="criterion-music-heading">
+      <div class="container">
+        <div class="criteria-divider" aria-hidden="true"></div>
+
+        <div class="criteria-section-inner">
+          <div class="criteria-section-label" aria-hidden="true">
+            <span class="criteria-section-num">01</span>
+            <span class="criteria-section-title">The Music</span>
+          </div>
+
+          <div class="criteria-section-body reveal">
+            <h2 id="criterion-music-heading">The Music Comes First</h2>
+            <p>
+              Every application starts here. Before streaming numbers, before social media — we listen. The question isn't whether the music is technically competent. It's whether it's <em>authentic to its genre</em> and whether the production is ready for commercial distribution.
+            </p>
+            <p>
+              MPI looks for artists who have a distinct sound. Not a copy of what's charting. Something with real roots — a perspective that's identifiably theirs. Country that sounds like it was lived, not written to a formula. Americana that has grit. Faith music that has weight. Southern Rock that earns the name.
+            </p>
+            <p>
+              If the music doesn't have a clear identity, no amount of traction changes the outcome of your application. We're building a catalog worth taking seriously. That starts with the music.
+            </p>
+
+            <div class="signal-box">
+              <p><strong>What we're listening for:</strong> Genre authenticity · Distribution-ready production · A distinct, recognizable identity · Something that sounds like it couldn't have been made by anyone else.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════ CRITERION 02 — TRACTION ═══════════════════════════════ -->
+    <section class="section section-sm" id="criterion-traction" aria-labelledby="criterion-traction-heading">
+      <div class="container">
+        <div class="criteria-divider" aria-hidden="true"></div>
+
+        <div class="criteria-section-inner">
+          <div class="criteria-section-label" aria-hidden="true">
+            <span class="criteria-section-num">02</span>
+            <span class="criteria-section-title">Real Traction</span>
+          </div>
+
+          <div class="criteria-section-body reveal">
+            <h2 id="criterion-traction-heading">Real Traction, Not Just Potential</h2>
+            <p>
+              Talent in a vacuum doesn't move a catalog forward. MPI looks for evidence that an artist is already in motion — that releasing is already a habit, and that listeners are responding with genuine engagement, not passive streams.
+            </p>
+            <p>
+              We evaluate: release cadence over the past 12 months, month-over-month listener growth, save rate as a percentage of streams, and whether engagement reflects real fans or algorithm-driven exposure that doesn't stick.
+            </p>
+
+            <div class="tier-chips" aria-label="Tier-specific streaming requirements">
+              <div class="tier-chip tier-chip-free">
+                <span class="tier-chip-dot"></span>
+                Foundation (Free) — 10,000+ monthly streams minimum
+              </div>
+              <div class="tier-chip tier-chip-paid">
+                <span class="tier-chip-dot"></span>
+                Accelerate &amp; Premier — No stream minimum. Open to serious artists at any stage.
+              </div>
+            </div>
+
+            <div class="signal-box" style="margin-top: var(--space-6);">
+              <p><strong>What this means:</strong> Paid tiers exist because serious artists don't always have the numbers yet — but they have the discipline, the catalog, and the intent. If you're willing to invest in your career, we're willing to invest the system behind it, regardless of where your stream count sits.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════ CRITERION 03 — RELEASE SYSTEM ═══════════════════════════════ -->
+    <section class="section section-sm" id="criterion-release" aria-labelledby="criterion-release-heading">
+      <div class="container">
+        <div class="criteria-divider" aria-hidden="true"></div>
+
+        <div class="criteria-section-inner">
+          <div class="criteria-section-label" aria-hidden="true">
+            <span class="criteria-section-num">03</span>
+            <span class="criteria-section-title">Release System</span>
+          </div>
+
+          <div class="criteria-section-body reveal">
+            <h2 id="criterion-release-heading">The Release System</h2>
+            <p>
+              MPI is built around the release as a campaign — not as an upload. Artists who do well here understand that a release is a 6-week window: pre-save campaign, smart link setup, playlist pitching, social rollout, engagement strategy. Not a Friday morning Spotify submission with a text post.
+            </p>
+            <p>
+              We look for evidence — prior or current — that you've treated a release with intention. Did you run a pre-save? Did you use a smart link? Did you plan the rollout in advance? You don't have to be perfect at it. But you have to understand that a release is a system, not a moment.
+            </p>
+            <p>
+              Artists who release once and move on without a follow-up plan are not operating inside the MPI framework. We want artists who treat every release like an event — because it is.
+            </p>
+
+            <div class="signal-box">
+              <p><strong>Strong signal:</strong> Prior pre-save campaigns · Smart link usage · Evidence of structured rollout planning · Release cadence of 4+ times per year.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════ CRITERION 04 — BRAND ═══════════════════════════════ -->
+    <section class="section section-sm" id="criterion-brand" aria-labelledby="criterion-brand-heading">
+      <div class="container">
+        <div class="criteria-divider" aria-hidden="true"></div>
+
+        <div class="criteria-section-inner">
+          <div class="criteria-section-label" aria-hidden="true">
+            <span class="criteria-section-num">04</span>
+            <span class="criteria-section-title">Brand &amp; Identity</span>
+          </div>
+
+          <div class="criteria-section-body reveal">
+            <h2 id="criterion-brand-heading">Brand &amp; Identity</h2>
+            <p>
+              We're not looking for a major-label budget. We're looking for intentionality. An artist who takes their artwork seriously takes everything seriously. An artist whose Spotify header, Instagram grid, and press photo all point to the same identity has made a decision about who they are — and that carries into how they handle every other part of their career.
+            </p>
+            <p>
+              Consistent presence across platforms is a signal of discipline. It tells us this artist thinks about perception, not just music. That they understand their music is a product, and products require a visual identity that matches what's inside them.
+            </p>
+            <p>
+              We're evaluating: Spotify profile completeness and visual cohesion, Instagram or primary social presence, artwork quality across releases, and whether the overall brand communicates a clear identity. Inconsistency isn't disqualifying on its own — but intentionality is required.
+            </p>
+
+            <div class="signal-box">
+              <p><strong>What intentionality looks like:</strong> Artwork that's consistent release to release · A Spotify bio that actually says something · Social content that reflects the music, not random noise · A visual lane the artist owns.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════ CRITERION 05 — INTANGIBLES ═══════════════════════════════ -->
+    <section class="section section-sm" id="criterion-intangibles" aria-labelledby="criterion-intangibles-heading">
+      <div class="container">
+        <div class="criteria-divider" aria-hidden="true"></div>
+
+        <div class="criteria-section-inner">
+          <div class="criteria-section-label" aria-hidden="true">
+            <span class="criteria-section-num">05</span>
+            <span class="criteria-section-title">The Intangibles</span>
+          </div>
+
+          <div class="criteria-section-body reveal">
+            <h2 id="criterion-intangibles-heading">The Intangibles</h2>
+            <p>
+              MPI works closely with accepted artists. That relationship only functions if the artist shows up — on time, prepared, and communicating clearly. We look for work ethic, responsiveness, and professionalism in the application process itself. How you apply tells us a lot about how you'll operate inside the platform.
+            </p>
+            <p>
+              Release cadence is part of this. Consistency isn't just a metric we evaluate — it's a value we select for. An artist who releases twice a year and goes quiet in between is not operating inside this system, no matter how good the records are. MPI was built for artists who release consistently, plan in advance, and treat their music career like a business.
+            </p>
+            <p>
+              We're also looking for coachability. Not blind compliance — but the openness to implement a system, adjust based on data, and execute a plan even when it requires discipline they haven't had before. Artists who want someone else to do everything are a bad fit. Artists who want a framework to execute inside are exactly right.
+            </p>
+
+            <div class="signal-box">
+              <p><strong>The standard:</strong> Releases consistently · Communicates clearly and promptly · Treats the music career as a business · Shows up to the process — not just the result.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════ WHAT WE DON'T LOOK FOR ═══════════════════════════════ -->
+    <section class="section" id="disqualifiers" aria-labelledby="disqualifiers-heading">
+      <div class="container">
+        <div class="criteria-divider" aria-hidden="true"></div>
+
+        <div style="max-width: 64ch; margin-bottom: var(--space-10);">
+          <p class="label text-gold" style="margin-bottom: var(--space-4);">Also Worth Knowing</p>
+          <h2 class="heading-xl" id="disqualifiers-heading" style="margin-bottom: var(--space-5);">
+            What We Don't Look For
+          </h2>
+          <p class="text-muted">
+            This is not a platform for everyone, and that's intentional. If any of the below describes you accurately, a different service will serve you better — and there's no shame in that.
+          </p>
+        </div>
+
+        <div class="disqualifiers-grid" aria-label="Disqualifying factors">
+
+          <div class="disqualifier-item reveal">
+            <div class="disqualifier-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            <div class="disqualifier-text">
+              <strong>Artists who only want a distributor</strong>
+              If you just need to get music on Spotify, DistroKid costs $23 a year and does the job. MPI is not a cheaper version of that — it's a different product entirely.
+            </div>
+          </div>
+
+          <div class="disqualifier-item reveal reveal-delay-1">
+            <div class="disqualifier-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            <div class="disqualifier-text">
+              <strong>Artists who release once a year and expect results</strong>
+              This system is built on volume, consistency, and compounding momentum. One release per year does not build a catalog — it starts one. We can't work with that cadence.
+            </div>
+          </div>
+
+          <div class="disqualifier-item reveal reveal-delay-2">
+            <div class="disqualifier-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            <div class="disqualifier-text">
+              <strong>Artists unwilling to invest in their own campaigns</strong>
+              If you're not willing to put resources — time, money, or both — behind a release, the system breaks at the point of execution. We provide the tools and structure. The artist has to show up with intent.
+            </div>
+          </div>
+
+          <div class="disqualifier-item reveal reveal-delay-3">
+            <div class="disqualifier-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            <div class="disqualifier-text">
+              <strong>Artists outside MPI's genre lanes</strong>
+              Country, Americana, Southern Rock, and faith-driven music. That's the lane. Pop, hip-hop, EDM, and other genres are not wrong — they're just not what MPI was built for, and applying outside these genres is a mismatch we won't be able to serve.
+            </div>
+          </div>
+
+          <div class="disqualifier-item reveal" style="transition-delay: 0.4s;">
+            <div class="disqualifier-icon" aria-hidden="true">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </div>
+            <div class="disqualifier-text">
+              <strong>Artists who want someone else to do everything</strong>
+              MPI provides the system. The artist executes inside it. There is no scenario where MPI does the work while the artist watches. This is a collaborative operating system, not a management deal.
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════ CTA ═══════════════════════════════ -->
+    <section class="section criteria-cta" id="apply-cta" aria-labelledby="cta-heading">
+      <div class="container criteria-cta-inner">
+        <p class="label text-gold" style="margin-bottom: var(--space-4);" aria-hidden="true">What Comes Next</p>
+        <h2 id="cta-heading">Ready to Apply?</h2>
+        <p class="text-muted" style="margin-top: var(--space-5); margin-inline: auto; max-width: 50ch;">
+          If you read through this page and recognized yourself in what we're looking for — not just in the stats, but in the mindset — then you're exactly who we want to hear from.
+        </p>
+
+        <div style="margin-top: var(--space-8); display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
+          <a href="apply.html" class="btn btn-primary btn-lg" data-testid="cta-apply-now">Apply Now</a>
+          <a href="mailto:joshua@mpiartist.com" class="btn btn-outline btn-lg" data-testid="cta-email">Questions? Email us</a>
+        </div>
+
+        <div class="criteria-cta-note">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Applications reviewed within 14 days · All applicants receive a response
+        </div>
+
+        <p class="text-faint" style="margin-top: var(--space-4); font-size: var(--text-xs);">
+          Declined applications receive a full scorecard — not a form rejection. You'll know exactly what to work on.
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo" aria-label="MPI Artist Services">
+            <svg aria-hidden="true" width="28" height="28" viewBox="0 0 32 32" fill="none">
+              <rect width="32" height="32" rx="6" fill="#C69214"/>
+              <path d="M8 23V10l8 9 8-9v13" stroke="#0D1B2A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+            <span class="nav-logo-text">MPI<span> Artist</span></span>
+          </a>
+          <p class="text-faint" style="margin-top: var(--space-3); font-size: var(--text-sm); max-width: 32ch;">
+            A selective release platform for artists who want structure and discipline.
+          </p>
+        </div>
+
+        <div class="footer-links-group">
+          <p class="label text-faint" style="margin-bottom: var(--space-4);">Platform</p>
+          <ul role="list" class="footer-links">
+            <li><a href="/#what-we-are">What It Is</a></li>
+            <li><a href="/#tiers">Pricing</a></li>
+            <li><a href="criteria.html" style="color: var(--gold);">Standards</a></li>
+            <li><a href="/#how-it-works">How to Apply</a></li>
+            <li><a href="apply.html">Apply Now</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-group">
+          <p class="label text-faint" style="margin-bottom: var(--space-4);">Contact</p>
+          <ul role="list" class="footer-links">
+            <li><a href="mailto:joshua@mpiartist.com">Email MPI</a></li>
+            <li><a href="/#founder">The Founder</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="divider" style="margin-block: var(--space-8);"></div>
+
+      <div class="footer-bottom">
+        <p class="text-faint" style="font-size: var(--text-xs);">
+          &copy; 2026 Mollohan Production Inc. · MPI Artist Services · All rights reserved.
+        </p>
+        <p class="text-faint" style="font-size: var(--text-xs);">
+          <a href="mailto:joshua@mpiartist.com" style="color: inherit;">joshua@mpiartist.com</a>
+        </p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script src="js/main.js"></script>
+</body>
+</html>
