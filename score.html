@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analyze My Spotify — MPI Artist Score</title>
+  <meta name="description" content="Get your free MPI Artist Score. See how your Spotify performance stacks up and where your biggest growth opportunities are." />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/page.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230D1B2A'/><text x='16' y='23' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='18' fill='%23C69214'>M</text></svg>" />
+  <style>
+    .score-hero {
+      padding: 80px 24px 60px;
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .score-hero h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .score-hero h1 span { color: #C69214; }
+    .score-hero p {
+      color: rgba(255,255,255,0.6);
+      font-size: 1.1rem;
+      margin-bottom: 40px;
+      line-height: 1.6;
+    }
+    .score-input-wrap {
+      display: flex;
+      gap: 10px;
+      max-width: 560px;
+      margin: 0 auto;
+    }
+    .score-input {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(198,146,20,0.3);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-size: 0.95rem;
+      color: #fff;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .score-input:focus { border-color: #C69214; }
+    .score-input::placeholder { color: rgba(255,255,255,0.3); }
+    .score-btn {
+      background: #C69214;
+      color: #0D1B2A;
+      border: none;
+      border-radius: 10px;
+      padding: 14px 28px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .score-btn:hover { opacity: 0.85; }
+    .score-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .score-trust {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-top: 16px;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+    }
+    /* Result card */
+    .result-section {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+      display: none;
+    }
+    .result-card {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(198,146,20,0.2);
+      border-radius: 16px;
+      padding: 32px;
+    }
+    .artist-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+    .artist-img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: rgba(255,255,255,0.1);
+    }
+    .artist-img-placeholder {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: rgba(198,146,20,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    .artist-info h2 { font-size: 1.3rem; font-weight: 700; color: #fff; margin: 0 0 4px; }
+    .artist-genres { font-size: 0.78rem; color: rgba(255,255,255,0.45); }
+    /* Score dial */
+    .score-dial-wrap {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .score-number {
+      font-size: 5rem;
+      font-weight: 900;
+      color: #C69214;
+      line-height: 1;
+      letter-spacing: -2px;
+    }
+    .score-label {
+      font-size: 1rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      margin-top: 4px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+    .score-bar-wrap {
+      background: rgba(255,255,255,0.08);
+      border-radius: 100px;
+      height: 8px;
+      margin: 12px 0 4px;
+      overflow: hidden;
+    }
+    .score-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #C69214, #f0c040);
+      border-radius: 100px;
+      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+    }
+    /* Insights */
+    .insights-section {
+      margin-bottom: 28px;
+    }
+    .insights-section h3 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 12px;
+    }
+    .insight-item {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.5;
+    }
+    .insight-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #C69214;
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+    /* Locked section */
+    .locked-section {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px;
+      margin-top: 4px;
+    }
+    .locked-section h3 {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 16px;
+    }
+    .locked-bars {
+      display: grid;
+      gap: 12px;
+      filter: blur(4px);
+      user-select: none;
+      pointer-events: none;
+    }
+    .locked-bar-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .locked-bar-label {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.5);
+      width: 100px;
+      flex-shrink: 0;
+    }
+    .locked-bar-track {
+      flex: 1;
+      height: 6px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .locked-bar-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: rgba(198,146,20,0.5);
+    }
+    .locked-bar-val {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.4);
+      width: 28px;
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .unlock-cta {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .unlock-cta p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 14px;
+    }
+    /* Email gate */
+    .email-gate {
+      background: rgba(198,146,20,0.08);
+      border: 1px solid rgba(198,146,20,0.25);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .email-gate h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 6px;
+    }
+    .email-gate p {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 14px;
+    }
+    .email-gate-row {
+      display: flex;
+      gap: 8px;
+    }
+    .email-input {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 0.88rem;
+      color: #fff;
+      outline: none;
+    }
+    .email-input:focus { border-color: #C69214; }
+    .email-submit {
+      background: #C69214;
+      color: #0D1B2A;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .email-submit:hover { opacity: 0.85; }
+    /* Error */
+    .score-error {
+      background: rgba(239,68,68,0.1);
+      border: 1px solid rgba(239,68,68,0.3);
+      border-radius: 10px;
+      padding: 14px 18px;
+      color: #fca5a5;
+      font-size: 0.88rem;
+      margin-top: 12px;
+      display: none;
+    }
+    .loading-spinner {
+      display: none;
+      text-align: center;
+      padding: 40px;
+      color: rgba(255,255,255,0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav" role="navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="MPI Artist Services home">
+        <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="6" fill="#C69214"/>
+          <path d="M8 23V10l8 9 8-9v13" stroke="#0D1B2A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span class="nav-logo-text">MPI<span> Artist</span></span>
+      </a>
+      <ul class="nav-links" role="list">
+        <li><a href="/#how-it-works">How It Works</a></li>
+        <li><a href="/#pricing">Pricing</a></li>
+        <li><a href="/apply.html" class="nav-cta">Apply Now</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="score-hero">
+    <h1>Get Your Free<br><span>MPI Artist Score</span></h1>
+    <p>Enter your Spotify artist URL and see exactly how your music performance stacks up — and where your biggest growth opportunity is hiding.</p>
+    <div class="score-input-wrap">
+      <input
+        type="text"
+        id="spotify-url-input"
+        class="score-input"
+        placeholder="https://open.spotify.com/artist/..."
+        autocomplete="off"
+        spellcheck="false"
+      />
+      <button class="score-btn" id="analyze-btn" onclick="analyzeArtist()">
+        Analyze
+      </button>
+    </div>
+    <div class="score-trust">
+      <span>✓ No login required</span>
+      <span>✓ Free forever</span>
+      <span>✓ Results in seconds</span>
+    </div>
+    <div class="score-error" id="score-error"></div>
+  </section>
+
+  <!-- LOADING -->
+  <div class="loading-spinner" id="loading">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#C69214" stroke-width="2" stroke-linecap="round" style="animation: spin 1s linear infinite;">
+      <path d="M21 12a9 9 0 1 1-6.219-8.56"/>
+    </svg>
+    <p style="margin-top: 12px; font-size: 0.88rem;">Analyzing your Spotify data…</p>
+    <style>@keyframes spin { to { transform: rotate(360deg); } }</style>
+  </div>
+
+  <!-- RESULT -->
+  <section class="result-section" id="result-section">
+    <div class="result-card">
+
+      <!-- Artist header -->
+      <div class="artist-header">
+        <div id="artist-img-wrap"></div>
+        <div class="artist-info">
+          <h2 id="artist-name"></h2>
+          <div class="artist-genres" id="artist-genres"></div>
+          <div style="font-size:0.78rem; color:rgba(255,255,255,0.35); margin-top:2px;" id="artist-followers"></div>
+        </div>
+      </div>
+
+      <!-- Score -->
+      <div class="score-dial-wrap">
+        <div class="score-number" id="score-number">0</div>
+        <div class="score-label" id="score-label"></div>
+        <div class="score-bar-wrap">
+          <div class="score-bar" id="score-bar" style="width:0%"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:0.7rem;color:rgba(255,255,255,0.25);margin-top:4px;">
+          <span>0</span><span>MPI Score</span><span>100</span>
+        </div>
+      </div>
+
+      <!-- Insights -->
+      <div class="insights-section">
+        <h3>Key Findings</h3>
+        <div id="insights-list"></div>
+      </div>
+
+      <!-- Locked breakdown -->
+      <div class="locked-section">
+        <h3>Full Score Breakdown</h3>
+        <div class="locked-bars" id="locked-bars"></div>
+        <div class="unlock-cta">
+          <p>Your full breakdown — SPL score, save rate analysis, growth velocity, and playlist momentum — is locked.</p>
+          <div class="email-gate" id="email-gate">
+            <h4>🔓 Unlock Your Full Report</h4>
+            <p>Enter your email to see the complete breakdown and get your personalized growth roadmap.</p>
+            <div class="email-gate-row">
+              <input type="email" class="email-input" id="email-input" placeholder="your@email.com" />
+              <button class="email-submit" onclick="submitEmail()">Unlock Free</button>
+            </div>
+          </div>
+          <div id="email-success" style="display:none; padding:16px; background:rgba(34,197,94,0.1); border:1px solid rgba(34,197,94,0.3); border-radius:10px; font-size:0.88rem; color:#86efac;">
+            ✓ Check your email — your full report is on its way. <a href="https://dashboard.mpiartist.com" style="color:#C69214; font-weight:600;">Access your dashboard →</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    const API = 'https://mpi-dashboard-production-0433.up.railway.app';
+
+    async function analyzeArtist() {
+      const input = document.getElementById('spotify-url-input').value.trim();
+      const btn = document.getElementById('analyze-btn');
+      const errorEl = document.getElementById('score-error');
+      const loading = document.getElementById('loading');
+      const resultSection = document.getElementById('result-section');
+
+      if (!input) {
+        showError('Please enter your Spotify artist URL');
+        return;
+      }
+
+      errorEl.style.display = 'none';
+      btn.disabled = true;
+      btn.textContent = 'Analyzing…';
+      loading.style.display = 'block';
+      resultSection.style.display = 'none';
+
+      try {
+        const res = await fetch(`${API}/api/public/mpi-score?spotifyUrl=${encodeURIComponent(input)}`);
+        const data = await res.json();
+
+        if (!res.ok) throw new Error(data.error || 'Failed to analyze');
+
+        loading.style.display = 'none';
+        renderResult(data);
+        resultSection.style.display = 'block';
+        resultSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      } catch (e) {
+        loading.style.display = 'none';
+        showError(e.message || 'Something went wrong. Check the URL and try again.');
+        btn.disabled = false;
+        btn.textContent = 'Analyze';
+      }
+    }
+
+    function renderResult(data) {
+      // Artist header
+      const imgWrap = document.getElementById('artist-img-wrap');
+      if (data.imageUrl) {
+        imgWrap.innerHTML = `<img src="${data.imageUrl}" class="artist-img" alt="${data.artistName}" />`;
+      } else {
+        imgWrap.innerHTML = `<div class="artist-img-placeholder">🎵</div>`;
+      }
+      document.getElementById('artist-name').textContent = data.artistName;
+      document.getElementById('artist-genres').textContent = data.genres?.join(' · ') || '';
+      document.getElementById('artist-followers').textContent = `${data.followers?.toLocaleString()} Spotify followers`;
+
+      // Score animation
+      const scoreEl = document.getElementById('score-number');
+      const barEl = document.getElementById('score-bar');
+      const labelEl = document.getElementById('score-label');
+      labelEl.textContent = data.label;
+
+      let current = 0;
+      const target = data.mpiScore;
+      const step = Math.max(1, Math.floor(target / 40));
+      const timer = setInterval(() => {
+        current = Math.min(current + step, target);
+        scoreEl.textContent = current;
+        if (current >= target) clearInterval(timer);
+      }, 30);
+      setTimeout(() => { barEl.style.width = `${target}%`; }, 100);
+
+      // Insights
+      const insightsList = document.getElementById('insights-list');
+      insightsList.innerHTML = data.insights.map(i => `
+        <div class="insight-item">
+          <div class="insight-dot"></div>
+          <span>${i}</span>
+        </div>
+      `).join('');
+
+      // Locked breakdown bars
+      const locked = data.locked;
+      const bars = [
+        { label: 'SPL Score', key: 'splScore', weight: '30%' },
+        { label: 'Save Rate', key: 'saveRateScore', weight: '25%' },
+        { label: 'Growth', key: 'growthScore', weight: '15%' },
+        { label: 'Playlists', key: 'playlistScore', weight: '10%' },
+        { label: 'Consistency', key: 'consistencyScore', weight: '10%' },
+        { label: 'Momentum', key: 'momentumScore', weight: '10%' },
+      ];
+      document.getElementById('locked-bars').innerHTML = bars.map(b => `
+        <div class="locked-bar-row">
+          <div class="locked-bar-label">${b.label} <span style="color:rgba(255,255,255,0.25);font-size:0.7rem;">${b.weight}</span></div>
+          <div class="locked-bar-track"><div class="locked-bar-fill" style="width:${locked[b.key]}%"></div></div>
+          <div class="locked-bar-val">${locked[b.key]}</div>
+        </div>
+      `).join('');
+
+      document.getElementById('analyze-btn').disabled = false;
+      document.getElementById('analyze-btn').textContent = 'Analyze';
+    }
+
+    async function submitEmail() {
+      const email = document.getElementById('email-input').value.trim();
+      if (!email || !email.includes('@')) {
+        alert('Please enter a valid email address');
+        return;
+      }
+      // Store lead
+      try {
+        await fetch(`${API}/api/public/score-lead`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, spotifyUrl: document.getElementById('spotify-url-input').value }),
+        });
+      } catch(e) { /* silent fail — show success anyway */ }
+
+      document.getElementById('email-gate').style.display = 'none';
+      document.getElementById('email-success').style.display = 'block';
+      document.getElementById('locked-bars').style.filter = 'none';
+    }
+
+    function showError(msg) {
+      const el = document.getElementById('score-error');
+      el.textContent = msg;
+      el.style.display = 'block';
+    }
+
+    // Allow Enter key
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('spotify-url-input').addEventListener('keydown', e => {
+        if (e.key === 'Enter') analyzeArtist();
+      });
+    });
+  </script>
+
+</body>
+</html>

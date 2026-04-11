@@ -312,20 +312,25 @@
 /* ── TIERS ── */
 .tiers-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: var(--space-6);
-  align-items: start;
+  align-items: stretch;
 }
 
 .tier-card {
   position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Push CTA button to bottom of every card */
+.tier-card .tier-cta {
+  margin-top: auto;
+  padding-top: var(--space-6);
 }
 
 .tier-featured-badge {
-  position: absolute;
-  top: -14px;
-  left: 50%;
-  transform: translateX(-50%);
+  display: none; /* removed — badge is now inline in the header */
 }
 
 .tier-header {
