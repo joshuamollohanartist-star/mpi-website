@@ -71,26 +71,40 @@
 
       <div class="container hero-content">
         <div class="hero-eyebrow">
-          <span class="badge badge-gold">Application-Based · 30% Acceptance Rate</span>
-
+          <span class="badge badge-gold">Free Score · No Login Required</span>
         </div>
 
         <h1 class="display hero-heading" id="hero-heading">
-          The system<br/>
-          <em class="hero-em">behind</em> the release.
+          Find out exactly<br/>
+          <em class="hero-em">where you stand.</em>
         </h1>
 
         <p class="body-lg hero-subtext">
-          Most artists have distribution. What they lack is structure, campaign discipline, and a system built for their lane — country, Americana, Southern Rock, faith-driven music.
+          Get your free MPI Artist Score in seconds. See how your Spotify performance stacks up — and where your biggest growth opportunity is hiding.
         </p>
 
-        <p class="hero-qualifier text-muted">
-          MPI is selective. Not everyone gets in. That's the point.
-        </p>
+        <div class="hero-score-input" style="display:flex;gap:10px;max-width:520px;margin-bottom:var(--space-4);">
+          <input
+            type="text"
+            id="hero-spotify-input"
+            placeholder="Paste your Spotify artist URL…"
+            style="flex:1;background:rgba(255,255,255,0.07);border:1.5px solid rgba(198,146,20,0.35);border-radius:10px;padding:14px 18px;font-size:0.95rem;color:#fff;outline:none;"
+            onkeydown="if(event.key==='Enter') window.location.href='/score.html?url='+encodeURIComponent(this.value)"
+          />
+          <a id="hero-analyze-btn" href="/score.html" class="btn btn-primary btn-lg" style="white-space:nowrap;padding:14px 24px;"
+            onclick="event.preventDefault(); window.location.href='/score.html?url='+encodeURIComponent(document.getElementById('hero-spotify-input').value||'')"
+          >Get My Score</a>
+        </div>
+
+        <div style="display:flex;gap:20px;font-size:0.78rem;color:rgba(255,255,255,0.35);margin-bottom:var(--space-8);">
+          <span>✓ Free forever</span>
+          <span>✓ No login needed</span>
+          <span>✓ Results in seconds</span>
+        </div>
 
         <div class="hero-actions">
-          <a href="apply.html" class="btn btn-primary btn-lg">Apply for Access</a>
-          <a href="#what-we-are" class="btn btn-ghost btn-lg">Learn more</a>
+          <a href="apply.html" class="btn btn-ghost btn-lg">Apply for Access</a>
+          <a href="#tiers" class="btn btn-ghost btn-lg">See pricing</a>
         </div>
 
 
@@ -231,83 +245,110 @@
       <div class="container">
         <div style="text-align: center; margin-bottom: var(--space-16);">
           <p class="label text-gold" style="margin-bottom: var(--space-3);">Pricing</p>
-          <h2 class="heading-xl" id="tiers-heading">Four tiers. One system.</h2>
+          <h2 class="heading-xl" id="tiers-heading">Five tiers. One system.</h2>
           <p class="text-muted" style="margin-top: var(--space-4); max-width: 56ch; margin-inline: auto;">
-            Every tier includes distribution. The higher you go, the more MPI invests in you.
+            Every tier includes distribution. Intelligence is what separates them.
           </p>
         </div>
 
-        <div class="tiers-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+        <div class="tiers-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
 
-          <!-- Foundation -->
-          <div class="tier-card card" data-tier="foundation">
+          <!-- FREE -->
+          <div class="tier-card card" data-tier="free">
             <div class="tier-header">
-              <span class="badge badge-navy" style="margin-bottom: var(--space-4);">Foundation</span>
+              <span class="badge badge-navy" style="margin-bottom: var(--space-4);">Free</span>
               <div class="tier-price">
-                <span class="tier-amount">Free</span>
+                <span class="tier-amount">$0</span>
               </div>
-              <p class="tier-royalty text-muted"><span class="text-gold">85%</span> royalty to artist</p>
+              <p class="tier-royalty text-muted">Get your MPI Score · see where you stand</p>
             </div>
-
             <div class="divider" style="margin-block: var(--space-6);"></div>
-
             <ul class="tier-features" role="list">
               <li class="tier-feature">
                 <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Distribution to all major DSPs
+                Distribution to all DSPs
               </li>
               <li class="tier-feature">
                 <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                MPI Score tracking
+                Basic MPI Score
               </li>
               <li class="tier-feature">
                 <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Release calendar &amp; playbook
+                Release calendar
               </li>
-              <li class="tier-feature">
-                <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Streaming analytics dashboard
-              </li>
-              <li class="tier-feature">
-                <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Royalty tracking &amp; statements
+              <li class="tier-feature tier-feature--absent">
+                <svg class="feature-x" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                Growth insights
               </li>
               <li class="tier-feature tier-feature--absent">
                 <svg class="feature-x" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
                 Campaign tools
               </li>
-              <li class="tier-feature tier-feature--absent">
-                <svg class="feature-x" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                Strategy guidance
-              </li>
             </ul>
-
-            <p class="tier-note text-faint">MPI earns when you earn. No upfront cost — we grow together.</p>
-
-            <div class="tier-cta"><a href="apply.html" class="btn btn-outline" style="width: 100%; justify-content: center;">Apply for Foundation</a></div>
+            <p class="tier-note text-faint">Start for free. See where you stand.</p>
+            <div class="tier-cta"><a href="score.html" class="btn btn-outline" style="width:100%;justify-content:center;">Get Free Score</a></div>
           </div>
 
-          <!-- Accelerate (Featured) -->
-          <div class="tier-card card-featured" data-tier="accelerate">
+          <!-- CORE -->
+          <div class="tier-card card" data-tier="core">
             <div class="tier-header">
-              <span class="badge badge-gold" style="margin-bottom: var(--space-4);">Most Selected · Accelerate</span>
+              <span class="badge badge-navy" style="margin-bottom: var(--space-4);">Core</span>
+              <div class="tier-price">
+                <span class="tier-amount">$4.99</span>
+                <span class="tier-period text-muted">/month</span>
+              </div>
+              <p class="tier-royalty text-muted"><span class="text-gold">100%</span> royalty to artist</p>
+            </div>
+            <div class="divider" style="margin-block: var(--space-6);"></div>
+            <ul class="tier-features" role="list">
+              <li class="tier-feature">
+                <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Unlimited distribution
+              </li>
+              <li class="tier-feature">
+                <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Basic analytics dashboard
+              </li>
+              <li class="tier-feature">
+                <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Royalty tracking
+              </li>
+              <li class="tier-feature tier-feature--absent">
+                <svg class="feature-x" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                Full MPI Score breakdown
+              </li>
+              <li class="tier-feature tier-feature--absent">
+                <svg class="feature-x" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                Growth insights
+              </li>
+            </ul>
+            <p class="tier-note text-faint">Upload your music. See basic performance. Keep everything you earn.</p>
+            <div class="tier-cta"><a href="apply.html" class="btn btn-outline" style="width:100%;justify-content:center;">Apply for Core</a></div>
+          </div>
+
+          <!-- GROWTH (FEATURED) -->
+          <div class="tier-card card-featured" data-tier="growth">
+            <div class="tier-header">
+              <span class="badge badge-gold" style="margin-bottom: var(--space-4);">Most Selected · Growth</span>
               <div class="tier-price">
                 <span class="tier-amount">$29</span>
                 <span class="tier-period text-muted">/month</span>
               </div>
               <p class="tier-royalty text-muted"><span class="text-gold">100%</span> royalty to artist</p>
             </div>
-
             <div class="divider" style="margin-block: var(--space-6);"></div>
-
             <ul class="tier-features" role="list">
               <li class="tier-feature">
                 <svg class="feature-check text-gold" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Everything in Foundation
+                Everything in Core
               </li>
               <li class="tier-feature">
                 <svg class="feature-check text-gold" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Keep 100% of royalties
+                Full MPI Score breakdown
+              </li>
+              <li class="tier-feature">
+                <svg class="feature-check text-gold" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Growth insights &amp; optimization
               </li>
               <li class="tier-feature">
                 <svg class="feature-check text-gold" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -319,32 +360,32 @@
               </li>
               <li class="tier-feature">
                 <svg class="feature-check text-gold" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Priority email support
+                Priority support
               </li>
             </ul>
-
-            <p class="tier-note text-muted" style="color: rgba(198,146,20,0.7);">Own your revenue. Pay a flat rate, keep everything you earn.</p>
-
-            <div class="tier-cta"><a href="apply.html" class="btn btn-primary" style="width: 100%; justify-content: center;">Apply for Accelerate</a></div>
+            <p class="tier-note text-muted" style="color:rgba(198,146,20,0.7);">Understand your performance. Scale what's working.</p>
+            <div class="tier-cta"><a href="apply.html" class="btn btn-primary" style="width:100%;justify-content:center;">Apply for Growth</a></div>
           </div>
 
-          <!-- Premier -->
-          <div class="tier-card card" data-tier="premier">
+          <!-- PRO -->
+          <div class="tier-card card" data-tier="pro">
             <div class="tier-header">
-              <span class="badge badge-teal" style="margin-bottom: var(--space-4);">Premier</span>
+              <span class="badge badge-teal" style="margin-bottom: var(--space-4);">Pro</span>
               <div class="tier-price">
                 <span class="tier-amount">$149</span>
                 <span class="tier-period text-muted">/month</span>
               </div>
               <p class="tier-royalty text-muted"><span class="text-gold">100%</span> royalty to artist</p>
             </div>
-
             <div class="divider" style="margin-block: var(--space-6);"></div>
-
             <ul class="tier-features" role="list">
               <li class="tier-feature">
                 <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Everything in Accelerate
+                Everything in Growth
+              </li>
+              <li class="tier-feature">
+                <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                AI-powered campaign tools
               </li>
               <li class="tier-feature">
                 <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -352,39 +393,31 @@
               </li>
               <li class="tier-feature">
                 <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Quarterly strategy reviews
+                Editorial playlist pitching
               </li>
               <li class="tier-feature">
                 <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Editorial playlist pitching
+                Quarterly strategy reviews
               </li>
               <li class="tier-feature">
                 <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
                 Sync licensing submissions
               </li>
-              <li class="tier-feature">
-                <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Custom campaign builds
-              </li>
             </ul>
-
-            <p class="tier-note text-faint">For artists ready to scale with full MPI support behind every release.</p>
-
-            <div class="tier-cta"><a href="apply.html" class="btn btn-outline" style="width: 100%; justify-content: center;">Apply for Premier</a></div>
+            <p class="tier-note text-faint">For artists ready to scale with the full MPI system behind every release.</p>
+            <div class="tier-cta"><a href="apply.html" class="btn btn-outline" style="width:100%;justify-content:center;">Apply for Pro</a></div>
           </div>
 
-          <!-- Partner -->
+          <!-- PARTNER -->
           <div class="tier-card card" data-tier="partner">
             <div class="tier-header">
-              <span class="badge" style="margin-bottom: var(--space-4); background: linear-gradient(135deg, #C69214, #01696F); color: white;">Partner</span>
+              <span class="badge" style="margin-bottom:var(--space-4);background:linear-gradient(135deg,#C69214,#01696F);color:white;">Partner</span>
               <div class="tier-price">
-                <span class="tier-amount" style="font-size: var(--text-xl);">Free</span>
+                <span class="tier-amount" style="font-size:var(--text-xl);">Invite Only</span>
               </div>
               <p class="tier-royalty text-muted">MPI-funded campaigns · negotiated split</p>
             </div>
-
             <div class="divider" style="margin-block: var(--space-6);"></div>
-
             <ul class="tier-features" role="list">
               <li class="tier-feature">
                 <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -392,7 +425,7 @@
               </li>
               <li class="tier-feature">
                 <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Up to $20K marketing budget per release
+                Up to $20K marketing budget
               </li>
               <li class="tier-feature">
                 <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -400,17 +433,11 @@
               </li>
               <li class="tier-feature">
                 <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Full MPI team behind every release
-              </li>
-              <li class="tier-feature">
-                <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Artist retains creative control
+                Full team support
               </li>
             </ul>
-
-            <p class="tier-note text-faint">Extremely selective. Artists are invited — not applied for. MPI identifies Partner artists based on MPI Score, trajectory, and fit.</p>
-
-            <div class="tier-cta"><a href="apply.html" class="btn btn-outline" style="width: 100%; justify-content: center; opacity: 0.6; pointer-events: none; cursor: default;">Invitation Only</a></div>
+            <p class="tier-note text-faint">MPI identifies Partner artists based on MPI Score, trajectory, and fit.</p>
+            <div class="tier-cta"><a href="apply.html" class="btn btn-outline" style="width:100%;justify-content:center;opacity:0.6;pointer-events:none;cursor:default;">Invitation Only</a></div>
           </div>
 
         </div>

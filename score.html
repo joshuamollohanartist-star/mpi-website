@@ -529,8 +529,14 @@
       el.style.display = 'block';
     }
 
-    // Allow Enter key
     document.addEventListener('DOMContentLoaded', () => {
+      // Auto-populate from URL param (when coming from homepage)
+      const params = new URLSearchParams(window.location.search);
+      const urlParam = params.get('url');
+      if (urlParam) {
+        document.getElementById('spotify-url-input').value = urlParam;
+        analyzeArtist();
+      }
       document.getElementById('spotify-url-input').addEventListener('keydown', e => {
         if (e.key === 'Enter') analyzeArtist();
       });
