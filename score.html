@@ -342,23 +342,24 @@
     }
     .selected-artist-remove:hover { color: var(--red); }
     .search-analyze-btn {
-      margin-top: 10px;
+      margin-top: 12px;
       width: 100%;
-      background: rgba(198,146,20,0.15);
-      border: 1.5px solid var(--border);
-      color: var(--gold);
+      background: var(--gold);
+      border: none;
+      color: #091520;
       border-radius: 10px;
-      padding: 12px 20px;
+      padding: 16px 20px;
       font-family: 'Inter', sans-serif;
-      font-size: 0.88rem;
+      font-size: 1rem;
       font-weight: 700;
       cursor: pointer;
-      transition: background 0.2s;
+      transition: background 0.2s, transform 0.15s;
       display: none;
+      letter-spacing: -0.01em;
     }
     .search-analyze-btn.show { display: block; }
-    .search-analyze-btn:hover { background: rgba(198,146,20,0.25); }
-    .search-analyze-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .search-analyze-btn:hover { background: #e8b53a; transform: translateY(-1px); }
+    .search-analyze-btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 
     .trust-row {
       display: flex;
@@ -711,50 +712,37 @@
           Connect Spotify
         </button>
 
-        <div class="divider-row">Or find your artist profile</div>
-
-        <div class="search-tabs">
-          <button class="search-tab active" onclick="switchTab('url')">Paste URL</button>
-          <button class="search-tab" onclick="switchTab('search')">Search by Name</button>
+        <!-- Name search — primary input -->
+        <div class="search-wrap">
+          <input
+            type="text"
+            id="artist-search-input"
+            class="search-input"
+            placeholder="Search your artist name..."
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <div class="search-dropdown" id="search-dropdown"></div>
         </div>
+        <div class="selected-artist" id="selected-artist">
+          <img id="selected-artist-img" src="" alt="" />
+          <div class="selected-artist-info">
+            <div class="selected-artist-name" id="selected-artist-name"></div>
+            <div class="selected-artist-meta" id="selected-artist-meta"></div>
+          </div>
+          <button class="selected-artist-remove" onclick="clearSelectedArtist()">&times;</button>
+        </div>
+        <button class="search-analyze-btn" id="search-analyze-btn" onclick="analyzeBySearch()">Get My Score &rarr;</button>
 
-        <!-- URL tab -->
-        <div class="tab-content active" id="tab-url">
+        <!-- URL fallback -->
+        <div style="text-align:center;margin-top:12px;">
+          <button onclick="document.getElementById('url-fallback').classList.toggle('hidden')" style="background:none;border:none;color:rgba(255,255,255,0.4);font-size:0.78rem;cursor:pointer;font-family:'Inter',sans-serif;">Or paste a Spotify artist URL</button>
+        </div>
+        <div id="url-fallback" class="hidden" style="margin-top:10px;">
           <div class="url-row">
-            <input
-              type="text"
-              id="spotify-url-input"
-              class="url-input"
-              placeholder="https://open.spotify.com/artist/..."
-              autocomplete="off"
-              spellcheck="false"
-            />
+            <input type="text" id="spotify-url-input" class="url-input" placeholder="https://open.spotify.com/artist/..." autocomplete="off" spellcheck="false" />
             <button class="url-btn" id="url-analyze-btn" onclick="analyzeByUrl()">Analyze &rarr;</button>
           </div>
-        </div>
-
-        <!-- Search tab -->
-        <div class="tab-content" id="tab-search">
-          <div class="search-wrap">
-            <input
-              type="text"
-              id="artist-search-input"
-              class="search-input"
-              placeholder="Type an artist name..."
-              autocomplete="off"
-              spellcheck="false"
-            />
-            <div class="search-dropdown" id="search-dropdown"></div>
-          </div>
-          <div class="selected-artist" id="selected-artist">
-            <img id="selected-artist-img" src="" alt="" />
-            <div class="selected-artist-info">
-              <div class="selected-artist-name" id="selected-artist-name"></div>
-              <div class="selected-artist-meta" id="selected-artist-meta"></div>
-            </div>
-            <button class="selected-artist-remove" onclick="clearSelectedArtist()">&times;</button>
-          </div>
-          <button class="search-analyze-btn" id="search-analyze-btn" onclick="analyzeBySearch()">Analyze &rarr;</button>
         </div>
 
         <div class="trust-row">
