@@ -1426,7 +1426,7 @@
               : '<div class="search-item-placeholder">&#127925;</div>'}
             <div class="search-item-info">
               <div class="search-item-name">${a.name}</div>
-              <div class="search-item-meta">${(a.followers || 0).toLocaleString()} followers</div>
+              <div class="search-item-meta">${a.popularity ? `Popularity ${a.popularity}/100` : ""}${a.genres?.[0] ? " · " + a.genres[0] : ""}</div>
             </div>
           </div>
         `).join('');
@@ -1443,7 +1443,7 @@
       const card = document.getElementById('selected-artist');
       document.getElementById('selected-artist-img').src = artist.image || '';
       document.getElementById('selected-artist-name').textContent = artist.name;
-      document.getElementById('selected-artist-meta').textContent = `${(artist.followers || 0).toLocaleString()} followers`;
+      document.getElementById('selected-artist-meta').textContent = (artist.popularity ? `Popularity ${artist.popularity}/100` : '') + (artist.genres?.[0] ? ' · ' + artist.genres[0] : '');
       card.classList.add('show');
       document.getElementById('search-analyze-btn').classList.add('show');
     }
