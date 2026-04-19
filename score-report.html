@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your MPI Artist Score Report</title>
+  <meta name="description" content="Your personalized MPI Artist Score diagnostic report — full breakdown, growth signals, playlist footprint, and action plan." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230D1B2A'/><text x='16' y='23' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='18' fill='%23C69214'>M</text></svg>" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0D1B2A;
+      --card: #112233;
+      --card-2: #0f1e30;
+      --gold: #C69214;
+      --gold-light: #f0c040;
+      --gold-dim: rgba(198,146,20,0.15);
+      --white: #ffffff;
+      --muted: rgba(255,255,255,0.6);
+      --faint: rgba(255,255,255,0.3);
+      --very-faint: rgba(255,255,255,0.07);
+      --border: rgba(198,146,20,0.22);
+      --border-dim: rgba(255,255,255,0.1);
+      --green: #22c55e;
+      --green-dim: rgba(34,197,94,0.12);
+      --amber: #f59e0b;
+      --amber-dim: rgba(245,158,11,0.12);
+    }
+
+    html { background: var(--bg); scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      min-height: 100vh;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── STICKY HEADER ── */
+    .sticky-header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: rgba(13,27,42,0.96);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border-dim);
+    }
+    .sticky-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .artist-info {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+    .avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--gold-dim);
+      flex-shrink: 0;
+    }
+    .avatar-placeholder {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: var(--gold-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .artist-info h2 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .score-chip {
+      display: inline-block;
+      font-size: 0.75rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
+    .apply-btn {
+      display: inline-flex;
+      align-items: center;
+      background: var(--gold);
+      color: var(--bg);
+      text-decoration: none;
+      padding: 9px 20px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+      flex-shrink: 0;
+    }
+    .apply-btn:hover { opacity: 0.88; }
+
+    /* ── LAYOUT ── */
+    .report-body {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    /* ── SECTION WRAPPER ── */
+    .report-section {
+      margin-bottom: 40px;
+    }
+    .section-title {
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--faint);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--very-faint);
+    }
+
+    /* ── SCORE HERO ── */
+    .score-hero-section {
+      background: linear-gradient(135deg, #112233 0%, #0f1d2e 100%);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
+      margin-bottom: 32px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+    .score-big-circle {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      flex-shrink: 0;
+    }
+    .score-big-svg { width: 140px; height: 140px; transform: rotate(-90deg); }
+    .score-big-bg { fill: none; stroke: var(--very-faint); stroke-width: 8; }
+    .score-big-fill {
+      fill: none;
+      stroke: url(#heroGrad);
+      stroke-width: 8;
+      stroke-linecap: round;
+      stroke-dasharray: 390;
+      stroke-dashoffset: 390;
+      transition: stroke-dashoffset 1.6s cubic-bezier(0.4,0,0.2,1);
+    }
+    .score-big-inner {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .score-big-num {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--gold);
+      letter-spacing: -0.04em;
+      line-height: 1;
+    }
+    .score-big-label { font-size: 0.65rem; color: var(--faint); margin-top: 2px; }
+
+    .score-hero-text { flex: 1; min-width: 0; }
+    .score-hero-text .tier {
+      display: inline-block;
+      background: var(--gold-dim);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      padding: 4px 14px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .score-hero-text h1 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .score-hero-text p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── COMPONENT GRID ── */
+    .component-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .component-card {
+      background: var(--card);
+      border: 1px solid var(--border-dim);
+      border-radius: 14px;
+      padding: 18px 18px 14px;
+      transition: border-color 0.2s;
+    }
+    .component-card:hover { border-color: var(--border); }
+    .component-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      color: var(--faint);
+      margin-bottom: 10px;
+    }
+    .component-score {
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .component-bar-track {
+      height: 4px;
+      background: var(--very-faint);
+      border-radius: 100px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .component-bar-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+      width: 0%;
+    }
+    .component-status {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 100px;
+    }
+    .status-strong { background: rgba(34,197,94,0.15); color: #86efac; }
+    .status-developing { background: rgba(245,158,11,0.15); color: #fcd34d; }
+    .status-early { background: rgba(239,68,68,0.15); color: #fca5a5; }
+    .status-elite { background: rgba(198,146,20,0.2); color: var(--gold-light); }
+    .component-driver {
+      font-size: 0.72rem;
+      color: var(--faint);
+      margin-top: 6px;
+    }
+
+    /* ── DATA TABLE ── */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .data-table th {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--faint);
+      text-align: left;
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--very-faint);
+    }
+    .data-table td {
+      padding: 14px 16px;
+      font-size: 0.88rem;
+      color: var(--white);
+      border-bottom: 1px solid var(--very-faint);
+      vertical-align: middle;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .metric-name { color: var(--muted); font-size: 0.85rem; }
+    .metric-value { font-weight: 700; font-size: 0.95rem; }
+    .metric-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .status-up { color: #4ade80; }
+    .status-neutral { color: var(--muted); }
+    .status-watch { color: #fbbf24; }
+
+    /* ── CARD ── */
+    .info-card {
+      background: var(--card);
+      border: 1px solid var(--border-dim);
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    /* ── GEOGRAPHY ── */
+    .geo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .geo-col {
+      padding: 24px;
+    }
+    .geo-col:first-child { border-right: 1px solid var(--very-faint); }
+    .geo-col-title {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--faint);
+      margin-bottom: 14px;
+    }
+    .geo-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--very-faint);
+      font-size: 0.85rem;
+    }
+    .geo-item:last-child { border-bottom: none; }
+    .geo-name { color: var(--white); }
+    .geo-val { color: var(--muted); font-size: 0.8rem; }
+    .geo-bar {
+      flex: 1;
+      height: 3px;
+      background: var(--very-faint);
+      border-radius: 100px;
+      margin: 0 12px;
+      overflow: hidden;
+    }
+    .geo-bar-fill { height: 100%; background: var(--gold); border-radius: 100px; }
+
+    .geo-placeholder {
+      padding: 24px;
+      font-size: 0.88rem;
+      color: var(--faint);
+      font-style: italic;
+    }
+
+    /* ── PLAYLIST STATS ── */
+    .stat-row {
+      display: flex;
+      gap: 0;
+    }
+    .stat-item {
+      flex: 1;
+      padding: 24px;
+      text-align: center;
+      border-right: 1px solid var(--very-faint);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-val {
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: -0.03em;
+      margin-bottom: 4px;
+    }
+    .stat-val .gold { color: var(--gold); }
+    .stat-key {
+      font-size: 0.73rem;
+      color: var(--faint);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+    }
+    .stat-note {
+      padding: 12px 24px 16px;
+      font-size: 0.8rem;
+      color: var(--faint);
+      font-style: italic;
+      border-top: 1px solid var(--very-faint);
+    }
+
+    /* ── ACTION PLAN ── */
+    .action-plan {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+    }
+    .action-col {
+      border-radius: 14px;
+      padding: 20px;
+    }
+    .action-col.strengths {
+      background: rgba(34,197,94,0.07);
+      border: 1px solid rgba(34,197,94,0.2);
+    }
+    .action-col.gaps {
+      background: rgba(245,158,11,0.07);
+      border: 1px solid rgba(245,158,11,0.2);
+    }
+    .action-col.recommendations {
+      background: rgba(198,146,20,0.07);
+      border: 1px solid var(--border);
+    }
+    .action-col-title {
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .action-col.strengths .action-col-title { color: #4ade80; }
+    .action-col.gaps .action-col-title { color: #fbbf24; }
+    .action-col.recommendations .action-col-title { color: var(--gold); }
+
+    .action-col ul, .action-col ol {
+      padding-left: 0;
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .action-col li {
+      font-size: 0.83rem;
+      color: var(--muted);
+      line-height: 1.55;
+      padding-left: 16px;
+      position: relative;
+    }
+    .action-col.strengths li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #4ade80;
+      font-weight: 700;
+      font-size: 0.75rem;
+    }
+    .action-col.gaps li::before {
+      content: '⚠';
+      position: absolute;
+      left: 0;
+      font-size: 0.75rem;
+    }
+    .action-col.recommendations li {
+      counter-increment: recs;
+    }
+    .action-col.recommendations li::before {
+      content: counter(recs) '.';
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 0.78rem;
+    }
+    .action-col.recommendations ol { counter-reset: recs; }
+
+    /* ── CTA SECTION ── */
+    .report-cta {
+      background: linear-gradient(135deg, #112233 0%, #0d1b2a 100%);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 48px 40px;
+      text-align: center;
+      margin-top: 48px;
+    }
+    .report-cta h2 {
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .report-cta p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      max-width: 480px;
+      margin: 0 auto 28px;
+    }
+    .cta-actions {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      background: var(--gold);
+      color: var(--bg);
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      transition: opacity 0.2s, transform 0.15s;
+      box-shadow: 0 4px 20px rgba(198,146,20,0.3);
+    }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      background: transparent;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      border: 1px solid var(--border-dim);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--border); color: var(--white); }
+
+    /* ── FOOTER ── */
+    .page-footer {
+      text-align: center;
+      padding: 32px 24px;
+      font-size: 0.75rem;
+      color: var(--faint);
+      border-top: 1px solid var(--very-faint);
+    }
+    .page-footer a { color: var(--gold); text-decoration: none; }
+
+    /* ── NO DATA STATE ── */
+    .no-data {
+      text-align: center;
+      padding: 80px 24px;
+    }
+    .no-data h2 { font-size: 1.5rem; font-weight: 700; color: var(--white); margin-bottom: 12px; }
+    .no-data p { color: var(--muted); margin-bottom: 24px; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 700px) {
+      .score-hero-section { flex-direction: column; align-items: center; text-align: center; padding: 28px; }
+      .component-grid { grid-template-columns: 1fr 1fr; }
+      .action-plan { grid-template-columns: 1fr; }
+      .geo-grid { grid-template-columns: 1fr; }
+      .geo-col:first-child { border-right: none; border-bottom: 1px solid var(--very-faint); }
+      .stat-row { flex-wrap: wrap; }
+      .stat-item { flex: 1 1 50%; }
+      .report-cta { padding: 32px 24px; }
+    }
+    @media (max-width: 480px) {
+      .component-grid { grid-template-columns: 1fr; }
+      .sticky-inner { height: 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- STICKY HEADER -->
+  <header class="sticky-header">
+    <div class="sticky-inner">
+      <div class="artist-info">
+        <div id="header-avatar"></div>
+        <div>
+          <h2 id="header-artist-name">MPI Artist Score Report</h2>
+          <span class="score-chip" id="header-score-chip"></span>
+        </div>
+      </div>
+      <a href="https://mpiartist.com/apply.html" class="apply-btn">Apply to MPI →</a>
+    </div>
+  </header>
+
+  <!-- NO DATA STATE (hidden if data exists) -->
+  <div class="no-data" id="no-data-state" style="display:none;">
+    <h2>No report data found</h2>
+    <p>It looks like you arrived here directly. Get your free MPI Artist Score first.</p>
+    <a href="/score.html" style="display:inline-block;background:var(--gold);color:#0D1B2A;text-decoration:none;padding:12px 28px;border-radius:10px;font-weight:700;font-size:0.95rem;">Get My Score →</a>
+  </div>
+
+  <!-- REPORT BODY -->
+  <div class="report-body" id="report-body" style="display:none;">
+
+    <!-- SECTION 0: Score Hero -->
+    <div class="score-hero-section" id="score-hero">
+      <div class="score-big-circle">
+        <svg class="score-big-svg" viewBox="0 0 140 140">
+          <defs>
+            <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#C69214"/>
+              <stop offset="100%" stop-color="#f0c040"/>
+            </linearGradient>
+          </defs>
+          <circle class="score-big-bg" cx="70" cy="70" r="62"/>
+          <circle class="score-big-fill" id="hero-circle" cx="70" cy="70" r="62"/>
+        </svg>
+        <div class="score-big-inner">
+          <div class="score-big-num" id="hero-score-num">0</div>
+          <div class="score-big-label">MPI Score</div>
+        </div>
+      </div>
+      <div class="score-hero-text">
+        <div class="tier" id="hero-tier">—</div>
+        <h1 id="hero-artist-name">Your Artist Report</h1>
+        <p id="hero-summary"></p>
+      </div>
+    </div>
+
+    <!-- SECTION 1: Score Breakdown -->
+    <div class="report-section">
+      <div class="section-title">Score Breakdown</div>
+      <div class="component-grid" id="component-grid">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <!-- SECTION 2: Growth Signals -->
+    <div class="report-section">
+      <div class="section-title">Growth Signals</div>
+      <div class="info-card">
+        <table class="data-table" id="growth-table">
+          <thead>
+            <tr>
+              <th>Metric</th>
+              <th>Value</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="growth-tbody">
+            <!-- Populated by JS -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SECTION 3: Audience Diagnostics -->
+    <div class="report-section">
+      <div class="section-title">Audience Diagnostics</div>
+      <div class="info-card" id="audience-card">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <!-- SECTION 4: Playlist Footprint -->
+    <div class="report-section">
+      <div class="section-title">Playlist Footprint</div>
+      <div class="info-card">
+        <div class="stat-row" id="playlist-stats">
+          <!-- Populated by JS -->
+        </div>
+        <div class="stat-note">Editorial playlist breakdown requires Spotify for Artists access. Public playlist placements are tracked via Chartmetric.</div>
+      </div>
+    </div>
+
+    <!-- SECTION 5: Catalog Performance -->
+    <div class="report-section">
+      <div class="section-title">Catalog Performance</div>
+      <div class="info-card">
+        <div class="stat-row" id="catalog-stats">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- SECTION 6: Action Plan -->
+    <div class="report-section">
+      <div class="section-title">AI-Generated Action Plan</div>
+      <div class="action-plan" id="action-plan">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+
+    <!-- BOTTOM CTA -->
+    <section class="report-cta">
+      <h2>Ready to build on this momentum?</h2>
+      <p>MPI Artist Services accepts 30% of applicants. Your score qualifies you to apply.</p>
+      <div class="cta-actions">
+        <a href="https://mpiartist.com/apply.html" class="btn-primary">Apply to MPI Artist Services →</a>
+        <a href="https://grow.mpiartist.com" class="btn-secondary">Get the Free Music Marketing Guide</a>
+      </div>
+    </section>
+
+  </div><!-- /report-body -->
+
+  <footer class="page-footer">
+    <p>© 2026 Mollohan Production Inc. · <a href="/">MPI Artist Services</a> · <em>For Artists. By Artists.</em></p>
+  </footer>
+
+  <script>
+    // ── Load data ──────────────────────────────────────────────
+    const raw = sessionStorage.getItem('mpi_report_data');
+
+    if (!raw) {
+      document.getElementById('no-data-state').style.display = 'block';
+    } else {
+      const D = JSON.parse(raw);
+      document.getElementById('report-body').style.display = 'block';
+      buildReport(D);
+    }
+
+    // ── Score calculations ─────────────────────────────────────
+    function calculateComponents(d) {
+      const listeners = d.monthlyListeners || 0;
+      const followers = d.followers || 0;
+      const popularity = d.popularity || 0;
+      const playlists = d.playlists || 0;
+      const playlistReach = d.playlistReach || 0;
+      const spl = d.streamsPerListener || 0;
+      const growthRate = d.growthRate || 0;
+
+      const listenerNorm = Math.min(100, Math.log10(Math.max(listeners, 10)) / Math.log10(50000000) * 100);
+      const followerNorm = Math.min(100, Math.log10(Math.max(followers, 10)) / Math.log10(10000000) * 100);
+      const reachNorm = Math.min(100, Math.log10(Math.max(playlistReach, 10)) / Math.log10(100000000) * 100);
+      const splScore = Math.min(100, (Math.min(spl, 10) / 10) * 100);
+      const growthScore = Math.min(100, Math.max(0, growthRate) * 5);
+
+      return {
+        momentum: Math.round((listenerNorm * 0.5) + (growthScore * 0.5)),
+        audienceQuality: Math.round((splScore * 0.6) + (followerNorm * 0.4)),
+        discoveryEngine: Math.round((Math.min(100, playlists / 5)) * 0.5 + reachNorm * 0.5),
+        catalogStrength: Math.round(Math.min(100, (d.totalReleases || 1) * 2)),
+        playlistFootprint: Math.round((Math.min(100, playlists / 3) * 0.4) + reachNorm * 0.6),
+        marketPosition: Math.round(Math.min(100, (popularity) + (followerNorm * 0.3)))
+      };
+    }
+
+    function getStatus(score) {
+      if (score >= 75) return { label: 'Strong', cls: 'status-strong' };
+      if (score >= 55) return { label: 'Developing', cls: 'status-developing' };
+      if (score >= 35) return { label: 'Early Stage', cls: 'status-early' };
+      return { label: 'Getting Started', cls: 'status-early' };
+    }
+
+    function fmtNum(n) {
+      if (!n && n !== 0) return '—';
+      if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M';
+      if (n >= 1000) return (n / 1000).toFixed(1) + 'K';
+      return n.toLocaleString();
+    }
+
+    // ── Animate score circle ───────────────────────────────────
+    function animateScoreHero(target) {
+      const numEl = document.getElementById('hero-score-num');
+      const circleEl = document.getElementById('hero-circle');
+      const circumference = 390; // 2π × 62 ≈ 389.56
+      const duration = 1600;
+      const start = performance.now();
+
+      function step(now) {
+        const elapsed = now - start;
+        const p = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        numEl.textContent = Math.round(eased * target);
+        circleEl.style.strokeDashoffset = circumference - (circumference * eased * target / 100);
+        if (p < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    // ── Build component cards ──────────────────────────────────
+    function buildComponentGrid(comps) {
+      const cards = [
+        { key: 'momentum', label: 'Momentum Score', driver: 'Listeners × Growth velocity' },
+        { key: 'audienceQuality', label: 'Audience Quality', driver: 'Streams per listener ratio' },
+        { key: 'discoveryEngine', label: 'Playlist-Driven Discovery', driver: 'Playlist count × Reach' },
+        { key: 'catalogStrength', label: 'Catalog Strength', driver: 'Total release volume' },
+        { key: 'playlistFootprint', label: 'Playlist Footprint', driver: 'Estimated playlist reach' },
+        { key: 'marketPosition', label: 'Market Position', driver: 'Popularity × Follower rank' }
+      ];
+
+      const grid = document.getElementById('component-grid');
+      grid.innerHTML = cards.map(c => {
+        const score = comps[c.key] || 0;
+        const st = getStatus(score);
+        return `
+          <div class="component-card">
+            <div class="component-label">${c.label}</div>
+            <div class="component-score">${score}</div>
+            <div class="component-bar-track">
+              <div class="component-bar-fill" data-width="${score}" style="width: 0%"></div>
+            </div>
+            <span class="component-status ${st.cls}">${st.label}</span>
+            <div class="component-driver">${c.driver}</div>
+          </div>
+        `;
+      }).join('');
+
+      // Animate bars
+      setTimeout(() => {
+        grid.querySelectorAll('.component-bar-fill').forEach(el => {
+          el.style.width = el.dataset.width + '%';
+        });
+      }, 300);
+    }
+
+    // ── Build growth signals table ─────────────────────────────
+    function buildGrowthTable(d) {
+      const spl = d.streamsPerListener || 0;
+      const flRatio = d.followers && d.monthlyListeners ? (d.monthlyListeners / Math.max(d.followers, 1)).toFixed(1) : '—';
+      const growthVal = d.growthRate != null ? (d.growthRate > 0 ? `+${d.growthRate}%` : `${d.growthRate}%`) : '—';
+      const growthCls = (d.growthRate || 0) > 5 ? 'status-up' : (d.growthRate || 0) > 0 ? 'status-neutral' : 'status-watch';
+
+      const rows = [
+        {
+          metric: 'Monthly Listeners',
+          value: (d.monthlyListeners || 0).toLocaleString(),
+          status: `<span class="metric-status status-up">↑ Active</span>`
+        },
+        {
+          metric: 'Spotify Followers',
+          value: (d.followers || 0).toLocaleString(),
+          status: `<span class="metric-status status-neutral">— Tracked</span>`
+        },
+        {
+          metric: 'Popularity Score',
+          value: `${d.popularity || 0}/100`,
+          status: d.popularity >= 50 ? `<span class="metric-status status-up">↑ Performing</span>` : `<span class="metric-status status-watch">Developing</span>`
+        },
+        {
+          metric: 'Follower/Listener Ratio',
+          value: `1:${flRatio}`,
+          status: parseFloat(flRatio) > 10 ? `<span class="metric-status status-up">Broad Reach</span>` : `<span class="metric-status status-neutral">Core Audience</span>`
+        },
+        {
+          metric: 'Streams per Listener',
+          value: `${spl.toFixed ? spl.toFixed(1) : spl}x`,
+          status: spl >= 5 ? `<span class="metric-status status-up">↑ Excellent</span>` : spl >= 2 ? `<span class="metric-status status-neutral">Average</span>` : `<span class="metric-status status-watch">Low Replay</span>`
+        },
+        {
+          metric: '30-Day Follower Growth',
+          value: growthVal,
+          status: `<span class="metric-status ${growthCls}">${(d.growthRate || 0) > 5 ? '↑ Strong' : (d.growthRate || 0) > 0 ? '— Steady' : '↓ Flat'}</span>`
+        }
+      ];
+
+      document.getElementById('growth-tbody').innerHTML = rows.map(r => `
+        <tr>
+          <td class="metric-name">${r.metric}</td>
+          <td class="metric-value">${r.value}</td>
+          <td>${r.status}</td>
+        </tr>
+      `).join('');
+    }
+
+    // ── Build audience section ─────────────────────────────────
+    function buildAudience(d) {
+      const card = document.getElementById('audience-card');
+      const cities = d.topCities || [];
+      const countries = d.topCountries || [];
+
+      if (!cities.length && !countries.length) {
+        card.innerHTML = `<div class="geo-placeholder">Audience geography data is being fetched. Check back shortly.</div>`;
+        return;
+      }
+
+      const maxCityVal = Math.max(...cities.map(c => c.listeners || 0), 1);
+      const maxCountryVal = Math.max(...countries.map(c => c.listeners || c.value || 0), 1);
+
+      const citiesHtml = cities.length ? cities.map(c => {
+        const val = c.listeners || c.value || 0;
+        const pct = Math.round((val / maxCityVal) * 100);
+        return `
+          <div class="geo-item">
+            <span class="geo-name">${c.city || c.name || '—'}</span>
+            <div class="geo-bar"><div class="geo-bar-fill" style="width:${pct}%"></div></div>
+            <span class="geo-val">${fmtNum(val)}</span>
+          </div>
+        `;
+      }).join('') : '<p style="color:var(--faint);font-size:0.85rem;padding:8px 0;">No city data available</p>';
+
+      const countriesHtml = countries.length ? countries.map(c => {
+        const val = c.listeners || c.value || 0;
+        const pct = Math.round((val / maxCountryVal) * 100);
+        return `
+          <div class="geo-item">
+            <span class="geo-name">${c.country || c.name || '—'}</span>
+            <div class="geo-bar"><div class="geo-bar-fill" style="width:${pct}%"></div></div>
+            <span class="geo-val">${fmtNum(val)}</span>
+          </div>
+        `;
+      }).join('') : '<p style="color:var(--faint);font-size:0.85rem;padding:8px 0;">No country data available</p>';
+
+      card.innerHTML = `
+        <div class="geo-grid">
+          <div class="geo-col">
+            <div class="geo-col-title">Top Cities</div>
+            ${citiesHtml}
+          </div>
+          <div class="geo-col">
+            <div class="geo-col-title">Top Countries</div>
+            ${countriesHtml}
+          </div>
+        </div>
+      `;
+    }
+
+    // ── Build playlist section ─────────────────────────────────
+    function buildPlaylist(d, comps) {
+      const playlistScore = comps.playlistFootprint || 0;
+      document.getElementById('playlist-stats').innerHTML = `
+        <div class="stat-item">
+          <div class="stat-val">${fmtNum(d.playlists || 0)}</div>
+          <div class="stat-key">Total Playlists</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">${fmtNum(d.playlistReach || 0)}</div>
+          <div class="stat-key">Estimated Reach</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val"><span class="gold">${playlistScore}</span><span style="font-size:1rem;color:var(--faint)">/100</span></div>
+          <div class="stat-key">Playlist Reach Score</div>
+        </div>
+      `;
+    }
+
+    // ── Build catalog section ──────────────────────────────────
+    function buildCatalog(d) {
+      const total = d.totalReleases || 0;
+      const cadenceNote = total >= 20 ? 'High-volume catalog. Strong release consistency signal.' : total >= 10 ? 'Growing catalog. Maintain regular release cadence.' : 'Early catalog. Each new release significantly impacts your score.';
+      document.getElementById('catalog-stats').innerHTML = `
+        <div class="stat-item">
+          <div class="stat-val">${total}</div>
+          <div class="stat-key">Total Releases</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">${Math.round(total * 0.8)}</div>
+          <div class="stat-key">Est. Active Tracks</div>
+        </div>
+        <div class="stat-item" style="flex: 2; text-align: left; padding: 24px 28px;">
+          <div style="font-size: 0.85rem; color: var(--muted); line-height: 1.6;">${cadenceNote}</div>
+        </div>
+      `;
+    }
+
+    // ── Build action plan ──────────────────────────────────────
+    function buildActionPlan(plan) {
+      const s = (plan && plan.strengths) || [];
+      const g = (plan && plan.gaps) || [];
+      const r = (plan && plan.recommendations) || [];
+
+      document.getElementById('action-plan').innerHTML = `
+        <div class="action-col strengths">
+          <div class="action-col-title">✓ Strengths</div>
+          <ul>${s.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>
+        <div class="action-col gaps">
+          <div class="action-col-title">⚠ Growth Gaps</div>
+          <ul>${g.map(i => `<li>${i}</li>`).join('')}</ul>
+        </div>
+        <div class="action-col recommendations">
+          <div class="action-col-title">→ Recommended Actions</div>
+          <ol>${r.map(i => `<li>${i}</li>`).join('')}</ol>
+        </div>
+      `;
+    }
+
+    // ── Main render ────────────────────────────────────────────
+    function buildReport(d) {
+      const comps = calculateComponents(d);
+
+      // Sticky header
+      const avatarEl = document.getElementById('header-avatar');
+      if (d.artistImage) {
+        avatarEl.innerHTML = `<img src="${d.artistImage}" class="avatar" alt="${d.artistName}" onerror="this.outerHTML='<div class=&quot;avatar-placeholder&quot;>🎵</div>'" />`;
+      } else {
+        avatarEl.innerHTML = `<div class="avatar-placeholder">🎵</div>`;
+      }
+      document.getElementById('header-artist-name').textContent = d.artistName || 'Your Artist Profile';
+      document.getElementById('header-score-chip').textContent = `${d.mpiScore || 0} · ${d.tier || 'Developing'}`;
+
+      // Score hero
+      document.getElementById('hero-tier').textContent = d.tier || 'Developing';
+      document.getElementById('hero-artist-name').textContent = d.artistName || 'Your Artist Profile';
+      document.getElementById('hero-summary').textContent = d.summary || '';
+
+      // Build all sections
+      buildComponentGrid(comps);
+      buildGrowthTable(d);
+      buildAudience(d);
+      buildPlaylist(d, comps);
+      buildCatalog(d);
+      buildActionPlan(d.actionPlan);
+
+      // Animate score after render
+      setTimeout(() => animateScoreHero(d.mpiScore || 0), 200);
+    }
+  </script>
+
+</body>
+</html>
