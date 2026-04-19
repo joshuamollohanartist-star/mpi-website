@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MPI Fan Hub — Coming Soon</title>
+  <meta name="description" content="Your own fan subscription platform. Launch-ready from Core and up. Build recurring income directly from your fans." />
+  <meta property="og:title" content="MPI Fan Hub — Coming Soon" />
+  <meta property="og:description" content="Your own subscription platform. Launch-ready from Core and up." />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230D1B2A'/><text x='16' y='23' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='18' fill='%23C69214'>M</text></svg>" />
+
+  <style>
+    body {
+      font-family: 'Inter', 'Satoshi', sans-serif;
+      background: #0D1B2A;
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid transparent;
+      transition: background 0.4s, border-color 0.4s, backdrop-filter 0.4s;
+    }
+    .nav.scrolled {
+      background: rgba(8,15,24,0.92);
+      border-bottom-color: rgba(255,255,255,0.08);
+      backdrop-filter: blur(14px);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: 2rem;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo-text {
+      font-family: 'Clash Display', 'Helvetica Neue', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #F5F1E8;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo-text span { color: #C69214; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid transparent;
+      font-family: inherit;
+    }
+    .btn-primary {
+      background: #C69214;
+      color: #080f18;
+    }
+    .btn-primary:hover { background: #d4a835; box-shadow: 0 4px 20px rgba(198,146,20,0.35); }
+    .btn-ghost {
+      background: transparent;
+      color: rgba(255,255,255,0.55);
+    }
+    .btn-ghost:hover { color: #fff; }
+    .nav-mobile-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .nav-mobile-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #F5F1E8;
+      border-radius: 2px;
+    }
+    .mobile-menu {
+      position: fixed;
+      top: 72px; left: 0; right: 0;
+      background: rgba(8,15,24,0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 24px;
+      z-index: 99;
+      display: none;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu ul { list-style: none; margin-bottom: 20px; }
+    .mobile-menu .mobile-link {
+      display: block;
+      padding: 12px 0;
+      color: rgba(255,255,255,0.7);
+      font-size: 1rem;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      text-decoration: none;
+    }
+
+    /* MAIN */
+    .fanhub-hero {
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: calc(72px + 60px) 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .fanhub-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 50% 10%, rgba(1,105,111,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 20% 70%, rgba(198,146,20,0.07) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .fanhub-inner {
+      position: relative;
+      max-width: 640px;
+    }
+    .fanhub-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(1,105,111,0.12);
+      border: 1px solid rgba(1,105,111,0.3);
+      border-radius: 999px;
+      padding: 5px 16px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #028a92;
+      margin-bottom: 32px;
+    }
+    .fanhub-icon {
+      width: 72px;
+      height: 72px;
+      background: rgba(1,105,111,0.1);
+      border: 1px solid rgba(1,105,111,0.25);
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 32px;
+    }
+    .fanhub-h1 {
+      font-family: 'Clash Display', 'Helvetica Neue', sans-serif;
+      font-size: clamp(2rem, 1.2rem + 3vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      color: #F5F1E8;
+      margin-bottom: 20px;
+    }
+    .fanhub-h1 span { color: #028a92; }
+    .fanhub-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.58);
+      line-height: 1.65;
+      max-width: 48ch;
+      margin-inline: auto;
+      margin-bottom: 48px;
+    }
+
+    /* Notify form */
+    .notify-form {
+      display: flex;
+      gap: 10px;
+      max-width: 440px;
+      margin-inline: auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .notify-input {
+      flex: 1;
+      min-width: 200px;
+      background: rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 13px 18px;
+      font-size: 0.92rem;
+      color: #fff;
+      outline: none;
+      font-family: inherit;
+      transition: border-color 0.2s;
+    }
+    .notify-input::placeholder { color: rgba(255,255,255,0.3); }
+    .notify-input:focus { border-color: rgba(1,105,111,0.6); }
+    .notify-btn {
+      background: #01696F;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 13px 24px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .notify-btn:hover { background: #028a92; box-shadow: 0 4px 20px rgba(1,105,111,0.35); }
+    .notify-note {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.25);
+      margin-top: 14px;
+      text-align: center;
+    }
+    .notify-success {
+      display: none;
+      background: rgba(1,105,111,0.12);
+      border: 1px solid rgba(1,105,111,0.3);
+      border-radius: 10px;
+      padding: 14px 20px;
+      color: #028a92;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-top: 12px;
+    }
+
+    /* Feature hints */
+    .fanhub-features {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-top: 56px;
+      padding-top: 48px;
+      border-top: 1px solid rgba(255,255,255,0.07);
+    }
+    .fanhub-feat {
+      text-align: center;
+      max-width: 160px;
+    }
+    .fanhub-feat-icon {
+      width: 44px;
+      height: 44px;
+      background: rgba(198,146,20,0.08);
+      border: 1px solid rgba(198,146,20,0.15);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      color: rgba(198,146,20,0.7);
+    }
+    .fanhub-feat-title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 5px;
+    }
+    .fanhub-feat-desc {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.5;
+    }
+
+    /* FOOTER */
+    .footer {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 40px 0 32px;
+    }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: 32px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 28px;
+    }
+    .footer-brand p {
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.3);
+      max-width: 32ch;
+    }
+    .footer-links-group p {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 14px;
+    }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a { font-size: 0.85rem; color: rgba(255,255,255,0.5); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-divider { width: 100%; height: 1px; background: rgba(198,146,20,0.12); margin-bottom: 20px; }
+    .footer-bottom p { font-size: 0.72rem; color: rgba(255,255,255,0.25); }
+    .footer-bottom a { color: inherit; }
+
+    @media (max-width: 760px) {
+      .nav-links, .nav-cta { display: none; }
+      .nav-mobile-toggle { display: flex; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .container { padding-inline: 18px; }
+    }
+    @media (max-width: 500px) {
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="MPI Artist Services home">
+        <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="6" fill="#C69214"/>
+          <path d="M8 23V10l8 9 8-9v13" stroke="#0D1B2A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span class="nav-logo-text">MPI<span> Artist</span></span>
+        <span style="font-size:0.6rem;letter-spacing:0.1em;color:rgba(198,146,20,0.5);font-weight:500;text-transform:uppercase;margin-left:6px;align-self:flex-end;padding-bottom:2px;">by Mollohan Production Inc.</span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="/#what-we-are">What It Is</a></li>
+        <li><a href="/#tiers">Tiers</a></li>
+        <li><a href="criteria.html">Standards</a></li>
+        <li><a href="/#how-it-works">How It Works</a></li>
+        <li><a href="/#founder">The Founder</a></li>
+        <li><a href="pricing.html">Pricing</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <a href="https://dashboard.mpiartist.com" class="btn btn-ghost">Artist Login</a>
+        <a href="/score.html" class="btn btn-ghost" style="color:#C69214;border:1px solid rgba(198,146,20,0.4);">Free Score</a>
+        <a href="apply.html" class="btn btn-primary">Apply Now</a>
+      </div>
+
+      <button class="nav-mobile-toggle" aria-label="Open menu" id="mobileToggle">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul role="list">
+      <li><a href="/#what-we-are" class="mobile-link">What It Is</a></li>
+      <li><a href="/#tiers" class="mobile-link">Tiers</a></li>
+      <li><a href="criteria.html" class="mobile-link">Standards</a></li>
+      <li><a href="/#how-it-works" class="mobile-link">How It Works</a></li>
+      <li><a href="/#founder" class="mobile-link">The Founder</a></li>
+      <li><a href="pricing.html" class="mobile-link">Pricing</a></li>
+    </ul>
+    <a href="apply.html" class="btn btn-primary" style="width:100%;justify-content:center;display:flex;">Apply Now</a>
+  </div>
+
+  <main>
+    <section class="fanhub-hero" aria-labelledby="fanhub-heading">
+      <div class="fanhub-inner">
+        <div class="fanhub-badge">
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="4" fill="#028a92"/></svg>
+          Coming Soon
+        </div>
+
+        <div class="fanhub-icon" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#028a92" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+          </svg>
+        </div>
+
+        <h1 class="fanhub-h1" id="fanhub-heading">
+          MPI Fan Hub —<br><span>Coming Soon</span>
+        </h1>
+        <p class="fanhub-sub">
+          Your own subscription platform. Launch-ready from Core and up. Set your tiers, include merch, give fans access to unreleased music. Fans subscribe directly to you.
+        </p>
+
+        <form class="notify-form" id="notifyForm" onsubmit="handleNotify(event)">
+          <input
+            type="email"
+            id="notifyEmail"
+            class="notify-input"
+            placeholder="your@email.com"
+            required
+            aria-label="Email address for Fan Hub notifications"
+          />
+          <button type="submit" class="notify-btn">Get notified</button>
+        </form>
+        <p class="notify-note">No spam. We'll email you when Fan Hub launches.</p>
+        <div class="notify-success" id="notifySuccess" role="status" aria-live="polite">
+          You're on the list. We'll notify you when Fan Hub launches.
+        </div>
+
+        <div class="fanhub-features" role="list">
+          <div class="fanhub-feat" role="listitem">
+            <div class="fanhub-feat-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            </div>
+            <p class="fanhub-feat-title">Your platform</p>
+            <p class="fanhub-feat-desc">Fully branded, fully yours. Not rented space.</p>
+          </div>
+          <div class="fanhub-feat" role="listitem">
+            <div class="fanhub-feat-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+            </div>
+            <p class="fanhub-feat-title">Recurring income</p>
+            <p class="fanhub-feat-desc">Monthly fan subscriptions. Predictable revenue.</p>
+          </div>
+          <div class="fanhub-feat" role="listitem">
+            <div class="fanhub-feat-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            </div>
+            <p class="fanhub-feat-title">Fan-gate tools</p>
+            <p class="fanhub-feat-desc">Unreleased content, behind-the-scenes, merch.</p>
+          </div>
+          <div class="fanhub-feat" role="listitem">
+            <div class="fanhub-feat-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <p class="fanhub-feat-title">Launch-ready</p>
+            <p class="fanhub-feat-desc">Included from Core. Set up in one session.</p>
+          </div>
+        </div>
+
+        <div style="margin-top:40px;">
+          <a href="pricing.html" style="font-size:0.85rem;color:rgba(198,146,20,0.7);text-decoration:underline;text-decoration-color:rgba(198,146,20,0.3);">View plans that include Fan Hub →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo" aria-label="MPI Artist Services">
+            <svg aria-hidden="true" width="28" height="28" viewBox="0 0 32 32" fill="none">
+              <rect width="32" height="32" rx="6" fill="#C69214"/>
+              <path d="M8 23V10l8 9 8-9v13" stroke="#0D1B2A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+            <span class="nav-logo-text">MPI<span> Artist</span></span>
+          </a>
+          <p>A selective release platform for artists who want structure and discipline.</p>
+        </div>
+        <div class="footer-links-group">
+          <p>Platform</p>
+          <ul role="list" class="footer-links">
+            <li><a href="/#what-we-are">What It Is</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="/#how-it-works">How to Apply</a></li>
+            <li><a href="apply.html">Apply Now</a></li>
+          </ul>
+        </div>
+        <div class="footer-links-group">
+          <p>Contact</p>
+          <ul role="list" class="footer-links">
+            <li><a href="mailto:joshua@mpiartist.com">Email MPI</a></li>
+            <li><a href="/#founder">The Founder</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Mollohan Production Inc. · MPI Artist Services · All rights reserved. · <em>For Artists. By Artists.</em></p>
+        <p>MPI Artist Services is a record label and artist services division of Mollohan Production Inc. · Label inquiries: <a href="mailto:info@mpiartist.com">info@mpiartist.com</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    /* Nav scroll */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20), { passive: true });
+
+    /* Mobile menu */
+    const toggle = document.getElementById('mobileToggle');
+    const menu   = document.getElementById('mobileMenu');
+    toggle.addEventListener('click', () => {
+      const open = menu.classList.toggle('open');
+      menu.setAttribute('aria-hidden', String(!open));
+    });
+
+    /* Notify form — posts to GHL location */
+    function handleNotify(e) {
+      e.preventDefault();
+      const email = document.getElementById('notifyEmail').value.trim();
+      if (!email) return;
+
+      /* Post to GHL location webhook (replace URL when GHL is configured) */
+      const GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/YOUR_LOCATION_ID/webhook-triggers/fan-hub-notify';
+
+      fetch(GHL_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, source: 'fan-hub-stub', timestamp: new Date().toISOString() })
+      }).catch(() => { /* Silently fail — form still shows success */ });
+
+      document.getElementById('notifyForm').style.display = 'none';
+      document.querySelector('.notify-note').style.display = 'none';
+      document.getElementById('notifySuccess').style.display = 'block';
+    }
+  </script>
+</body>
+</html>

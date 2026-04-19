@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pricing — MPI Artist Services</title>
+  <meta name="description" content="Start your 7-day free trial. MPI Artist pricing from $4.99/mo. 100% streaming royalties on every plan. Built on your live Spotify data." />
+  <meta property="og:title" content="MPI Artist Services — Pricing" />
+  <meta property="og:description" content="7-day free trial on every plan. Distribution, analytics, Fan Hub, and hands-on support for independent artists." />
+  <link rel="canonical" href="https://mpiartist.com/pricing.html" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230D1B2A'/><text x='16' y='23' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='18' fill='%23C69214'>M</text></svg>" />
+
+  <style>
+    /* ── PRICING PAGE VARS ── */
+    :root {
+      --teal: #01696F;
+      --teal-light: #028a92;
+      --teal-subtle: rgba(1, 105, 111, 0.12);
+      --teal-border: rgba(1, 105, 111, 0.45);
+      --card-bg: #112233;
+      --border-dim: rgba(255,255,255,0.08);
+      --shadow-teal: 0 0 48px rgba(1, 105, 111, 0.18), 0 12px 40px rgba(0,0,0,0.5);
+    }
+
+    body {
+      font-family: 'Inter', 'Satoshi', sans-serif;
+      background: #0D1B2A;
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid transparent;
+      transition: background 0.4s, border-color 0.4s, backdrop-filter 0.4s;
+    }
+    .nav.scrolled {
+      background: rgba(8,15,24,0.92);
+      border-bottom-color: rgba(255,255,255,0.08);
+      backdrop-filter: blur(14px);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: 2rem;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo-text {
+      font-family: 'Clash Display', 'Helvetica Neue', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #F5F1E8;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo-text span { color: #C69214; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: #fff; }
+    .nav-links a.active { color: #C69214; }
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      transition: all 0.2s;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1px solid transparent;
+      font-family: inherit;
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary {
+      background: #C69214;
+      color: #080f18;
+      border-color: transparent;
+    }
+    .btn-primary:hover {
+      background: #d4a835;
+      box-shadow: 0 4px 20px rgba(198,146,20,0.35);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: rgba(255,255,255,0.55);
+      border-color: transparent;
+    }
+    .btn-ghost:hover { color: #fff; }
+    .btn-outline {
+      background: transparent;
+      color: #F5F1E8;
+      border-color: rgba(198,146,20,0.35);
+    }
+    .btn-outline:hover {
+      border-color: #C69214;
+      color: #C69214;
+    }
+    .nav-mobile-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .nav-mobile-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: #F5F1E8;
+      border-radius: 2px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    /* Mobile Menu */
+    .mobile-menu {
+      position: fixed;
+      top: 72px; left: 0; right: 0;
+      background: rgba(8,15,24,0.97);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      padding: 24px;
+      z-index: 99;
+      display: none;
+    }
+    .mobile-menu.open { display: block; }
+    .mobile-menu ul { list-style: none; margin-bottom: 20px; }
+    .mobile-menu .mobile-link {
+      display: block;
+      padding: 12px 0;
+      color: rgba(255,255,255,0.7);
+      font-size: 1rem;
+      font-weight: 500;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .mobile-menu .mobile-link:hover { color: #fff; }
+
+    /* ── HERO ── */
+    .pricing-hero {
+      padding-top: calc(72px + 80px);
+      padding-bottom: 60px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(198,146,20,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 80% 60%, rgba(1,105,111,0.06) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .pricing-hero-inner {
+      position: relative;
+      max-width: 760px;
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+    .pricing-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(198,146,20,0.1);
+      border: 1px solid rgba(198,146,20,0.22);
+      border-radius: 999px;
+      padding: 4px 14px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #C69214;
+      margin-bottom: 28px;
+    }
+    .pricing-h1 {
+      font-family: 'Clash Display', 'Helvetica Neue', sans-serif;
+      font-size: clamp(2rem, 1.2rem + 2.5vw, 3.4rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: #F5F1E8;
+      margin-bottom: 20px;
+    }
+    .pricing-subhead {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+      max-width: 56ch;
+      margin-inline: auto;
+      margin-bottom: 18px;
+    }
+
+    /* ── BILLING TOGGLE ── */
+    .billing-toggle-wrap {
+      margin: 32px auto 14px;
+      display: flex;
+      justify-content: center;
+    }
+    .billing-toggle {
+      display: inline-flex;
+      background: #112233;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 999px;
+      padding: 4px;
+      gap: 0;
+    }
+    .billing-toggle-btn {
+      padding: 9px 22px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.45);
+      cursor: pointer;
+      transition: all 0.22s;
+      border: none;
+      background: transparent;
+      font-family: inherit;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+    .billing-toggle-btn.active {
+      background: #C69214;
+      color: #080f18;
+      box-shadow: 0 2px 12px rgba(198,146,20,0.3);
+    }
+    .billing-toggle-btn:not(.active):hover { color: rgba(255,255,255,0.8); }
+    .billing-trust {
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.35);
+      text-align: center;
+      margin-bottom: 0;
+      letter-spacing: 0.02em;
+    }
+    .billing-trust span { margin: 0 6px; }
+
+    /* ── TIER GRID ── */
+    .pricing-section {
+      padding: 56px 0 72px;
+    }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: 32px;
+    }
+    .tiers-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    /* Tier card base */
+    .tier-card {
+      background: #112233;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 28px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      transition: border-color 0.22s, box-shadow 0.22s, transform 0.22s;
+      position: relative;
+    }
+    .tier-card:hover {
+      border-color: rgba(198,146,20,0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    }
+
+    /* Featured Core card */
+    .tier-card.featured {
+      border: 2px solid #01696F;
+      box-shadow: var(--shadow-teal);
+      z-index: 1;
+      transform: translateY(-4px);
+    }
+    .tier-card.featured:hover {
+      border-color: #028a92;
+      box-shadow: 0 0 60px rgba(1, 105, 111, 0.25), 0 16px 48px rgba(0,0,0,0.5);
+      transform: translateY(-7px);
+    }
+
+    /* Most Popular badge */
+    .most-popular-badge {
+      position: absolute;
+      top: -13px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #01696F;
+      color: #fff;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .tier-name {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 14px;
+    }
+    .tier-card.featured .tier-name { color: #028a92; }
+    .tier-card[data-tier="pro"] .tier-name { color: #C69214; }
+
+    .tier-price-block {
+      margin-bottom: 6px;
+    }
+    .tier-price {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      line-height: 1;
+    }
+    .price-amount {
+      font-family: 'Clash Display', 'Helvetica Neue', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 700;
+      letter-spacing: -0.04em;
+      color: #F5F1E8;
+    }
+    .price-period {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.4);
+      font-weight: 500;
+    }
+    .price-subline {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.35);
+      margin-top: 7px;
+      line-height: 1.4;
+      min-height: 2.1em;
+    }
+    .price-monthly { display: inline; }
+    .price-annual  { display: none; }
+    body.show-annual .price-monthly { display: none; }
+    body.show-annual .price-annual  { display: inline; }
+
+    /* Pro "By Application" price */
+    .price-invite {
+      font-family: 'Clash Display', 'Helvetica Neue', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: #C69214;
+    }
+
+    .tier-tagline {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+      margin: 14px 0 18px;
+      font-style: italic;
+    }
+
+    .tier-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.07);
+      margin-bottom: 18px;
+    }
+
+    .tier-features-heading {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 12px;
+    }
+
+    .tier-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+      flex: 1;
+    }
+    .tier-feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.5;
+      padding: 4px 0;
+    }
+    .tier-feature .check-icon {
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: rgba(255,255,255,0.35);
+    }
+    .tier-card.featured .tier-feature .check-icon { color: #028a92; }
+    .tier-card[data-tier="pro"] .tier-feature .check-icon { color: #C69214; }
+
+    .tier-feature strong { color: #F5F1E8; font-weight: 600; }
+    .tier-feature a {
+      color: #028a92;
+      text-decoration: underline;
+      text-decoration-color: rgba(2,138,146,0.4);
+    }
+    .tier-feature a:hover { color: #01696F; }
+
+    /* CTA button */
+    .cta-btn {
+      width: 100%;
+      justify-content: center;
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 700;
+      padding: 13px 20px;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      border: 1px solid transparent;
+      font-family: inherit;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+    }
+    .cta-btn:active { transform: translateY(1px); }
+    .cta-btn-primary {
+      background: #C69214;
+      color: #080f18;
+    }
+    .cta-btn-primary:hover {
+      background: #d4a835;
+      box-shadow: 0 4px 20px rgba(198,146,20,0.35);
+    }
+    .cta-btn-teal {
+      background: #01696F;
+      color: #fff;
+      border-color: transparent;
+    }
+    .cta-btn-teal:hover {
+      background: #028a92;
+      box-shadow: 0 4px 20px rgba(1,105,111,0.35);
+    }
+    .cta-btn-outline {
+      background: transparent;
+      color: #C69214;
+      border-color: rgba(198,146,20,0.4);
+    }
+    .cta-btn-outline:hover {
+      border-color: #C69214;
+      background: rgba(198,146,20,0.08);
+    }
+    .cta-btn-ghost {
+      background: transparent;
+      color: rgba(255,255,255,0.65);
+      border-color: rgba(255,255,255,0.15);
+    }
+    .cta-btn-ghost:hover {
+      color: #fff;
+      border-color: rgba(255,255,255,0.35);
+    }
+    .cta-sublabel {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* ── COMPARISON TABLE ── */
+    .compare-section {
+      padding: 0 0 72px;
+    }
+    .compare-section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #C69214;
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .compare-section-title {
+      font-family: 'Clash Display', 'Helvetica Neue', sans-serif;
+      font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      color: #F5F1E8;
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .compare-scroll {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .compare-table {
+      width: 100%;
+      min-width: 640px;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+    }
+    .compare-table th,
+    .compare-table td {
+      padding: 11px 16px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .compare-table th:first-child,
+    .compare-table td:first-child {
+      text-align: left;
+      color: rgba(255,255,255,0.7);
+      font-weight: 500;
+      padding-left: 0;
+    }
+    .compare-table thead th {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding-bottom: 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .compare-table thead th:first-child { color: rgba(255,255,255,0.35); }
+    .col-toolkit { color: rgba(255,255,255,0.8); }
+    .col-core {
+      background: rgba(1, 105, 111, 0.1);
+      color: #028a92;
+    }
+    .col-core-header {
+      background: rgba(1,105,111,0.15);
+      color: #028a92 !important;
+    }
+    .col-growth { color: rgba(255,255,255,0.8); }
+    .col-pro { color: #C69214; }
+    .check-yes { color: #028a92; font-size: 1rem; }
+    .check-no  { color: rgba(255,255,255,0.2); font-size: 1rem; }
+    .compare-table tr:last-child td { border-bottom: none; }
+    .compare-table tr:hover td { background: rgba(255,255,255,0.02); }
+    .compare-table tr:hover td.col-core { background: rgba(1,105,111,0.13); }
+
+    /* ── SOCIAL PROOF ── */
+    .proof-section {
+      padding: 0 0 72px;
+    }
+    .proof-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      margin-bottom: 10px;
+    }
+    .proof-tagline {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      margin-bottom: 36px;
+      font-style: italic;
+    }
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .proof-card {
+      background: #112233;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 14px;
+      padding: 28px 24px;
+      transition: border-color 0.22s;
+    }
+    .proof-card:hover { border-color: rgba(198,146,20,0.25); }
+    .proof-quote {
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.65;
+      margin-bottom: 20px;
+      font-style: italic;
+      position: relative;
+    }
+    .proof-quote::before {
+      content: '\201C';
+      font-family: Georgia, serif;
+      font-size: 3rem;
+      color: rgba(198,146,20,0.2);
+      line-height: 1;
+      position: absolute;
+      top: -14px;
+      left: -6px;
+    }
+    .proof-author {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.5);
+      letter-spacing: 0.02em;
+    }
+    .proof-author span {
+      display: block;
+      color: rgba(255,255,255,0.3);
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    /* ── FAQ ── */
+    .faq-section {
+      padding: 0 0 72px;
+    }
+    .faq-inner {
+      max-width: 780px;
+      margin-inline: auto;
+    }
+    .faq-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #C69214;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    .faq-title {
+      font-family: 'Clash Display', 'Helvetica Neue', sans-serif;
+      font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.2rem);
+      font-weight: 600;
+      letter-spacing: -0.025em;
+      color: #F5F1E8;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .faq-item {
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 0;
+      text-align: left;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #F5F1E8;
+      cursor: pointer;
+      font-family: inherit;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: #C69214; }
+    .faq-icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.25s, border-color 0.2s;
+      color: rgba(255,255,255,0.4);
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      border-color: #C69214;
+      color: #C69214;
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s cubic-bezier(0.16,1,0.3,1);
+    }
+    .faq-item.open .faq-answer { max-height: 400px; }
+    .faq-answer-inner {
+      padding: 0 0 18px;
+      font-size: 0.88rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.7;
+    }
+
+    /* ── LEGAL FOOTER LINE ── */
+    .legal-line {
+      max-width: 780px;
+      margin-inline: auto;
+      text-align: center;
+      font-size: 0.73rem;
+      color: rgba(255,255,255,0.22);
+      line-height: 1.65;
+      padding: 0 24px 56px;
+    }
+    .legal-line a { color: rgba(198,146,20,0.55); text-decoration: underline; }
+    .legal-line a:hover { color: #C69214; }
+
+    /* ── FOOTER ── */
+    .footer {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 48px;
+      padding-bottom: 40px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 32px;
+    }
+    .footer-brand p {
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.3);
+      max-width: 32ch;
+    }
+    .footer-links-group p {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 14px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links a {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: #fff; }
+    .footer-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(198,146,20,0.12);
+      margin-bottom: 24px;
+    }
+    .footer-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .footer-bottom p {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.25);
+    }
+    .footer-bottom a { color: inherit; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1000px) {
+      .tiers-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .tier-card.featured { transform: none; }
+      .tier-card.featured:hover { transform: translateY(-2px); }
+      .proof-grid { grid-template-columns: repeat(3, 1fr); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 760px) {
+      .proof-grid { grid-template-columns: 1fr; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-mobile-toggle { display: flex; }
+      .container { padding-inline: 18px; }
+    }
+    @media (max-width: 580px) {
+      .tiers-grid { grid-template-columns: 1fr; }
+      .tier-card.featured { transform: none; }
+      .footer-top { grid-template-columns: 1fr; }
+      .pricing-h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
+  <nav class="nav" id="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="MPI Artist Services home">
+        <svg aria-hidden="true" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="6" fill="#C69214"/>
+          <path d="M8 23V10l8 9 8-9v13" stroke="#0D1B2A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span class="nav-logo-text">MPI<span> Artist</span></span>
+        <span style="font-size: 0.6rem; letter-spacing: 0.1em; color: rgba(198,146,20,0.5); font-weight: 500; text-transform: uppercase; margin-left: 6px; align-self: flex-end; padding-bottom: 2px;">by Mollohan Production Inc.</span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="/#what-we-are">What It Is</a></li>
+        <li><a href="/#tiers">Tiers</a></li>
+        <li><a href="criteria.html">Standards</a></li>
+        <li><a href="/#how-it-works">How It Works</a></li>
+        <li><a href="/#founder">The Founder</a></li>
+        <li><a href="pricing.html" class="active">Pricing</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <a href="https://dashboard.mpiartist.com" class="btn btn-ghost">Artist Login</a>
+        <a href="/score.html" class="btn btn-ghost" style="color:#C69214;border-color:rgba(198,146,20,0.4);">Free Score</a>
+        <a href="apply.html" class="btn btn-primary">Apply Now</a>
+      </div>
+
+      <button class="nav-mobile-toggle" aria-label="Open menu" id="mobileToggle">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul role="list">
+      <li><a href="/#what-we-are" class="mobile-link">What It Is</a></li>
+      <li><a href="/#tiers" class="mobile-link">Tiers</a></li>
+      <li><a href="criteria.html" class="mobile-link">Standards</a></li>
+      <li><a href="/#how-it-works" class="mobile-link">How It Works</a></li>
+      <li><a href="/#founder" class="mobile-link">The Founder</a></li>
+      <li><a href="pricing.html" class="mobile-link" style="color:#C69214;">Pricing</a></li>
+    </ul>
+    <a href="https://dashboard.mpiartist.com" class="btn btn-ghost" style="width:100%;justify-content:center;display:flex;">Artist Login</a>
+    <a href="apply.html" class="btn btn-primary" style="width:100%;justify-content:center;display:flex;margin-top:14px;">Apply Now</a>
+  </div>
+
+  <main>
+
+    <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+    <section class="pricing-hero" aria-labelledby="pricing-h1">
+      <div class="pricing-hero-inner">
+        <div class="pricing-eyebrow">
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><circle cx="4" cy="4" r="4" fill="#C69214"/></svg>
+          7-Day Free Trial · All Plans
+        </div>
+        <h1 class="pricing-h1" id="pricing-h1">
+          Pricing that scales with your streams,<br>not your stress.
+        </h1>
+        <p class="pricing-subhead">
+          Built on your live Spotify data. 7-day free trial on every plan. 100% streaming royalties to the artist on every tier.
+        </p>
+
+        <!-- Billing Toggle -->
+        <div class="billing-toggle-wrap" role="group" aria-label="Billing period selection">
+          <div class="billing-toggle">
+            <button class="billing-toggle-btn active" id="btn-monthly" onclick="setBilling('monthly')" aria-pressed="true">Monthly</button>
+            <button class="billing-toggle-btn" id="btn-annual" onclick="setBilling('annual')" aria-pressed="false">Annual — 2 months free</button>
+          </div>
+        </div>
+
+        <p class="billing-trust">
+          <span>Cancel anytime</span>·<span>No setup fees</span>·<span>Secure checkout via PayPal</span>
+        </p>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════ TIER GRID ═══════════════════════════════ -->
+    <section class="pricing-section" aria-labelledby="tiers-heading">
+      <div class="container">
+        <h2 class="sr-only" id="tiers-heading">Pricing Tiers</h2>
+        <div class="tiers-grid">
+
+          <!-- TOOLKIT -->
+          <div class="tier-card" data-tier="toolkit">
+            <div class="tier-name">Toolkit</div>
+            <div class="tier-price-block">
+              <div class="tier-price">
+                <span class="price-amount">
+                  <span class="price-monthly">$4.99</span>
+                  <span class="price-annual">$4.16</span>
+                </span>
+                <span class="price-period">/mo</span>
+              </div>
+              <p class="price-subline">
+                <span class="price-monthly">Billed monthly. Cancel anytime.</span>
+                <span class="price-annual">$49.90 billed yearly. Save $9.98.</span>
+              </p>
+            </div>
+            <p class="tier-tagline">"The foundation. For independent artists who need the essentials done right."</p>
+            <div class="tier-divider"></div>
+            <ul class="tier-features" role="list">
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Monthly MPI Score re-audit + trend tracking
+              </li>
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Distribution to all DSPs (100% royalty)
+              </li>
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Spotify for Artists setup checklist
+              </li>
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Release calendar + 7-day launch checklist
+              </li>
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Playlist pitching starter template
+              </li>
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Email support, 72-hr response
+              </li>
+            </ul>
+            <!-- PayPal plan IDs to be injected after billing plans are created -->
+            <button class="cta-btn cta-btn-ghost" data-tier="toolkit" data-plan-monthly="PLAN_TOOLKIT_MONTHLY" data-plan-annual="PLAN_TOOLKIT_ANNUAL" onclick="startTrial(this)">
+              Start 7-day free trial →
+            </button>
+            <p class="cta-sublabel">No charge during trial.</p>
+          </div>
+
+
+          <!-- CORE (FEATURED) -->
+          <div class="tier-card featured" data-tier="core">
+            <div class="most-popular-badge">Most Popular</div>
+            <div class="tier-name">Core</div>
+            <div class="tier-price-block">
+              <div class="tier-price">
+                <span class="price-amount">
+                  <span class="price-monthly">$39</span>
+                  <span class="price-annual">$32.50</span>
+                </span>
+                <span class="price-period">/mo</span>
+              </div>
+              <p class="price-subline">
+                <span class="price-monthly">Billed monthly. Cancel anytime.</span>
+                <span class="price-annual">$390 billed yearly. Save $78.</span>
+              </p>
+            </div>
+            <p class="tier-tagline">"The launchpad. Includes the MPI Fan Hub — your own subscription platform, ready to launch."</p>
+            <div class="tier-divider"></div>
+            <p class="tier-features-heading">Everything in Toolkit, plus:</p>
+            <ul class="tier-features" role="list">
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span><strong><a href="fan-hub.html">MPI Fan Hub</a></strong> — your own fan subscription platform, launch-ready</span>
+              </li>
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Live Spotify performance dashboard (updated every 48 hrs)
+              </li>
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Weekly personalized growth email, tier-matched to your data
+              </li>
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Release launch plan templates (12 genres)
+              </li>
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Playlist pitch tracker + response templates
+              </li>
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Email support, 48-hr response
+              </li>
+            </ul>
+            <!-- PayPal plan IDs to be injected after billing plans are created -->
+            <button class="cta-btn cta-btn-teal" data-tier="core" data-plan-monthly="PLAN_CORE_MONTHLY" data-plan-annual="PLAN_CORE_ANNUAL" onclick="startTrial(this)">
+              Start 7-day free trial →
+            </button>
+            <p class="cta-sublabel">No charge during trial.</p>
+          </div>
+
+
+          <!-- GROWTH -->
+          <div class="tier-card" data-tier="growth">
+            <div class="tier-name">Growth</div>
+            <div class="tier-price-block">
+              <div class="tier-price">
+                <span class="price-amount">
+                  <span class="price-monthly">$129</span>
+                  <span class="price-annual">$107.50</span>
+                </span>
+                <span class="price-period">/mo</span>
+              </div>
+              <p class="price-subline">
+                <span class="price-monthly">Billed monthly. Cancel anytime.</span>
+                <span class="price-annual">$1,290 billed yearly. Save $258.</span>
+              </p>
+            </div>
+            <p class="tier-tagline">"For artists turning 5K–50K monthly listeners into real income."</p>
+            <div class="tier-divider"></div>
+            <p class="tier-features-heading">Everything in Core, plus:</p>
+            <ul class="tier-features" role="list">
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Bi-weekly 1:1 written reviews (personalized, from your live data)
+              </li>
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Monetization playbook: merch, sync, licensing, fan funnel setup
+              </li>
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Release campaign planning (1 major + 2 minor/qtr)
+              </li>
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Done-for-you playlist pitching (10/mo)
+              </li>
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Private client portal (shared community with Joshua + team)
+              </li>
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Priority support, 24-hr response
+              </li>
+            </ul>
+            <!-- PayPal plan IDs to be injected after billing plans are created -->
+            <button class="cta-btn cta-btn-primary" data-tier="growth" data-plan-monthly="PLAN_GROWTH_MONTHLY" data-plan-annual="PLAN_GROWTH_ANNUAL" onclick="startTrial(this)">
+              Start 7-day free trial →
+            </button>
+            <p class="cta-sublabel">No charge during trial.</p>
+          </div>
+
+
+          <!-- PRO -->
+          <div class="tier-card" data-tier="pro">
+            <div class="tier-name">Pro</div>
+            <div class="tier-price-block">
+              <div class="tier-price">
+                <span class="price-amount">
+                  <span class="price-monthly">$499</span>
+                  <span class="price-annual">$415.83</span>
+                </span>
+                <span class="price-period">/mo</span>
+              </div>
+              <p class="price-subline">
+                <span class="price-monthly">Billed monthly. 60-day adjust-or-refund.</span>
+                <span class="price-annual">$4,990 billed yearly. Save $998.</span>
+              </p>
+            </div>
+            <p class="tier-tagline">"For established artists scaling to $10K+/mo from their music."</p>
+            <div class="tier-divider"></div>
+            <p class="tier-features-heading">Everything in Growth, plus:</p>
+            <ul class="tier-features" role="list">
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Weekly 1:1 written review + one 30-min call per month
+              </li>
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Custom monetization strategy (sync, touring, brand deals)
+              </li>
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Done-for-you playlist pitching (25/mo) + follow-up
+              </li>
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Release campaign execution (ads, PR, partnerships)
+              </li>
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Sync/licensing brief submissions (2/mo)
+              </li>
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Dedicated client portal thread with Joshua
+              </li>
+              <li class="tier-feature">
+                <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                12-hr response on priority items
+              </li>
+            </ul>
+            <a class="cta-btn cta-btn-outline"
+               href="mailto:joshuamollohanartist@gmail.com?subject=MPI%20Pro%20%E2%80%94%20Application&body=Hey%20Joshua%2C%0A%0AI%27d%20like%20to%20apply%20for%20Pro.%20Here%27s%20where%20I%27m%20at%3A%0A%0A%E2%80%A2%20Spotify%20profile%20URL%3A%0A%E2%80%A2%20Monthly%20listeners%3A%0A%E2%80%A2%20Current%20monthly%20revenue%20from%20music%20(streams%20%2B%20sync%20%2B%20merch%20%2B%20shows)%3A%0A%E2%80%A2%20One%20thing%20you%20want%20Pro%20to%20help%20you%20fix%20in%20the%20next%2090%20days%3A%0A%0AThanks%2C">
+              Apply for Pro →
+            </a>
+            <p class="cta-sublabel">Share your Spotify URL + monthly revenue. I'll reply within 24 hrs.</p>
+          </div>
+
+        </div><!-- /tiers-grid -->
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════ COMPARISON TABLE ═══════════════════════════════ -->
+    <section class="compare-section" aria-labelledby="compare-heading">
+      <div class="container">
+        <p class="compare-section-label">Full Comparison</p>
+        <h2 class="compare-section-title" id="compare-heading">What's included in each tier</h2>
+
+        <div class="compare-scroll" role="region" aria-label="Plan comparison table" tabindex="0">
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th scope="col">Feature</th>
+                <th scope="col" class="col-toolkit">Toolkit</th>
+                <th scope="col" class="col-core-header">Core</th>
+                <th scope="col" class="col-growth">Growth</th>
+                <th scope="col" class="col-pro">Pro</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>MPI Score audit</td>
+                <td class="col-toolkit">Monthly</td>
+                <td class="col-core">Monthly</td>
+                <td class="col-growth">Bi-weekly</td>
+                <td class="col-pro">Weekly</td>
+              </tr>
+              <tr>
+                <td>Distribution to all DSPs</td>
+                <td class="col-toolkit"><span class="check-yes">✓</span></td>
+                <td class="col-core"><span class="check-yes">✓</span></td>
+                <td class="col-growth"><span class="check-yes">✓</span></td>
+                <td class="col-pro"><span class="check-yes">✓</span></td>
+              </tr>
+              <tr>
+                <td>Streaming royalty to artist</td>
+                <td class="col-toolkit">100%</td>
+                <td class="col-core">100%</td>
+                <td class="col-growth">100%</td>
+                <td class="col-pro">100%</td>
+              </tr>
+              <tr>
+                <td>MPI Fan Hub</td>
+                <td class="col-toolkit"><span class="check-no">—</span></td>
+                <td class="col-core"><span class="check-yes">✓</span></td>
+                <td class="col-growth"><span class="check-yes">✓</span></td>
+                <td class="col-pro"><span class="check-yes">✓</span></td>
+              </tr>
+              <tr>
+                <td>Live Spotify dashboard</td>
+                <td class="col-toolkit"><span class="check-no">—</span></td>
+                <td class="col-core"><span class="check-yes">✓</span></td>
+                <td class="col-growth"><span class="check-yes">✓</span></td>
+                <td class="col-pro"><span class="check-yes">✓</span></td>
+              </tr>
+              <tr>
+                <td>Weekly tier-matched email</td>
+                <td class="col-toolkit"><span class="check-no">—</span></td>
+                <td class="col-core"><span class="check-yes">✓</span></td>
+                <td class="col-growth"><span class="check-yes">✓</span></td>
+                <td class="col-pro"><span class="check-yes">✓</span></td>
+              </tr>
+              <tr>
+                <td>1:1 personalized written reviews</td>
+                <td class="col-toolkit"><span class="check-no">—</span></td>
+                <td class="col-core"><span class="check-no">—</span></td>
+                <td class="col-growth">Bi-weekly</td>
+                <td class="col-pro">Weekly</td>
+              </tr>
+              <tr>
+                <td>Monthly call with Joshua</td>
+                <td class="col-toolkit"><span class="check-no">—</span></td>
+                <td class="col-core"><span class="check-no">—</span></td>
+                <td class="col-growth"><span class="check-no">—</span></td>
+                <td class="col-pro">30 min</td>
+              </tr>
+              <tr>
+                <td>Playlist pitches done-for-you</td>
+                <td class="col-toolkit"><span class="check-no">—</span></td>
+                <td class="col-core"><span class="check-no">—</span></td>
+                <td class="col-growth">10/mo</td>
+                <td class="col-pro">25/mo</td>
+              </tr>
+              <tr>
+                <td>Release campaign support</td>
+                <td class="col-toolkit">Checklist</td>
+                <td class="col-core">Templates</td>
+                <td class="col-growth">Per-release</td>
+                <td class="col-pro">Executed</td>
+              </tr>
+              <tr>
+                <td>Monetization playbook</td>
+                <td class="col-toolkit"><span class="check-no">—</span></td>
+                <td class="col-core"><span class="check-no">—</span></td>
+                <td class="col-growth"><span class="check-yes">✓</span></td>
+                <td class="col-pro">Custom</td>
+              </tr>
+              <tr>
+                <td>Sync/licensing submissions</td>
+                <td class="col-toolkit"><span class="check-no">—</span></td>
+                <td class="col-core"><span class="check-no">—</span></td>
+                <td class="col-growth"><span class="check-no">—</span></td>
+                <td class="col-pro">2/mo</td>
+              </tr>
+              <tr>
+                <td>Support response SLA</td>
+                <td class="col-toolkit">72 hr</td>
+                <td class="col-core">48 hr</td>
+                <td class="col-growth">24 hr</td>
+                <td class="col-pro">12 hr</td>
+              </tr>
+              <tr>
+                <td>Client portal access</td>
+                <td class="col-toolkit"><span class="check-no">—</span></td>
+                <td class="col-core"><span class="check-no">—</span></td>
+                <td class="col-growth">Shared community</td>
+                <td class="col-pro">Dedicated thread</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════ SOCIAL PROOF ═══════════════════════════════ -->
+    <section class="proof-section" aria-labelledby="proof-heading">
+      <div class="container">
+        <p class="proof-label" id="proof-heading">Artist Results</p>
+        <p class="proof-tagline">Built from the data of 400+ independent artists.</p>
+
+        <div class="proof-grid">
+          <div class="proof-card">
+            <p class="proof-quote">The MPI Score cut through the noise. I knew exactly what to fix.</p>
+            <div class="proof-author">
+              Sarah M.
+              <span>Americana · 78K monthly listeners</span>
+            </div>
+          </div>
+
+          <div class="proof-card">
+            <p class="proof-quote">Launched my Fan Hub on Core and pulled $1,400/mo in fan subscriptions by month three.</p>
+            <div class="proof-author">
+              Marcus R.
+              <span>Indie country</span>
+            </div>
+          </div>
+
+          <div class="proof-card">
+            <p class="proof-quote">Honest feedback. Joshua told me I wasn't ready for Pro. He was right.</p>
+            <div class="proof-author">
+              Jenna L.
+              <span>Worship</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════ FAQ ═══════════════════════════════ -->
+    <section class="faq-section" aria-labelledby="faq-heading">
+      <div class="container">
+        <div class="faq-inner">
+          <p class="faq-label">Common Questions</p>
+          <h2 class="faq-title" id="faq-heading">Everything you need to know</h2>
+
+          <div class="faq-item" id="faq-1">
+            <button class="faq-question" onclick="toggleFaq('faq-1')" aria-expanded="false" aria-controls="faq-1-answer">
+              What happens after my 7-day trial?
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
+              </span>
+            </button>
+            <div class="faq-answer" id="faq-1-answer" role="region">
+              <div class="faq-answer-inner">If you don't cancel during the trial, your card is charged for your first period. You can cancel any time from your account. No questions, no retention calls.</div>
+            </div>
+          </div>
+
+          <div class="faq-item" id="faq-2">
+            <button class="faq-question" onclick="toggleFaq('faq-2')" aria-expanded="false" aria-controls="faq-2-answer">
+              Can I switch tiers later?
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
+              </span>
+            </button>
+            <div class="faq-answer" id="faq-2-answer" role="region">
+              <div class="faq-answer-inner">Yes. Upgrades are prorated and take effect immediately. Downgrades take effect at the next billing cycle.</div>
+            </div>
+          </div>
+
+          <div class="faq-item" id="faq-3">
+            <button class="faq-question" onclick="toggleFaq('faq-3')" aria-expanded="false" aria-controls="faq-3-answer">
+              What's the MPI Fan Hub?
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
+              </span>
+            </button>
+            <div class="faq-answer" id="faq-3-answer" role="region">
+              <div class="faq-answer-inner">Your own subscription platform, launch-ready. Set your tiers and prices, include merchandise, give fans access to unreleased music and behind-the-scenes. Fans subscribe directly to you. Included from Core and up. Platform fee applies on fan subscriptions (details in onboarding and Terms).</div>
+            </div>
+          </div>
+
+          <div class="faq-item" id="faq-4">
+            <button class="faq-question" onclick="toggleFaq('faq-4')" aria-expanded="false" aria-controls="faq-4-answer">
+              Do I really keep 100% of my streaming royalties?
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
+              </span>
+            </button>
+            <div class="faq-answer" id="faq-4-answer" role="region">
+              <div class="faq-answer-inner">Yes. On every tier — Toolkit through Pro — 100% of streaming royalty revenue flows to you. The MPI Fan Hub is a separate product with its own terms; see onboarding for details.</div>
+            </div>
+          </div>
+
+          <div class="faq-item" id="faq-5">
+            <button class="faq-question" onclick="toggleFaq('faq-5')" aria-expanded="false" aria-controls="faq-5-answer">
+              What if I'm not getting results?
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
+              </span>
+            </button>
+            <div class="faq-answer" id="faq-5-answer" role="region">
+              <div class="faq-answer-inner">Toolkit, Core, and Growth are month-to-month — cancel if it's not working. Pro is a working relationship: if you're not seeing traction at the 60-day mark, we either adjust the plan or refund your last month.</div>
+            </div>
+          </div>
+
+          <div class="faq-item" id="faq-6">
+            <button class="faq-question" onclick="toggleFaq('faq-6')" aria-expanded="false" aria-controls="faq-6-answer">
+              Why is Pro application-only?
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
+              </span>
+            </button>
+            <div class="faq-answer" id="faq-6-answer" role="region">
+              <div class="faq-answer-inner">Pro is high-touch. Limited seats so the quality stays high. Applying lets us confirm fit before either side commits.</div>
+            </div>
+          </div>
+
+          <div class="faq-item" id="faq-7">
+            <button class="faq-question" onclick="toggleFaq('faq-7')" aria-expanded="false" aria-controls="faq-7-answer">
+              Do you work with artists outside the US?
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
+              </span>
+            </button>
+            <div class="faq-answer" id="faq-7-answer" role="region">
+              <div class="faq-answer-inner">Yes. Most deliverables are async. The monthly Pro call uses Zoom and works across time zones.</div>
+            </div>
+          </div>
+
+          <div class="faq-item" id="faq-8">
+            <button class="faq-question" onclick="toggleFaq('faq-8')" aria-expanded="false" aria-controls="faq-8-answer">
+              Can I pause my subscription?
+              <span class="faq-icon" aria-hidden="true">
+                <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="1" x2="5" y2="9"/><line x1="1" y1="5" x2="9" y2="5"/></svg>
+              </span>
+            </button>
+            <div class="faq-answer" id="faq-8-answer" role="region">
+              <div class="faq-answer-inner">Yes. Contact us and we'll pause Toolkit, Core, or Growth for up to 60 days. Pro pauses are case-by-case.</div>
+            </div>
+          </div>
+
+        </div><!-- /faq-inner -->
+      </div>
+    </section>
+
+
+    <!-- Legal line -->
+    <div class="legal-line">
+      Prices in USD. Taxes calculated at checkout where applicable. MPI Fan Hub platform fees apply on fan subscription revenue — see <a href="#">Terms of Service</a>. By starting a trial or purchasing, you agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+    </div>
+
+  </main>
+
+
+  <!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo" aria-label="MPI Artist Services">
+            <svg aria-hidden="true" width="28" height="28" viewBox="0 0 32 32" fill="none">
+              <rect width="32" height="32" rx="6" fill="#C69214"/>
+              <path d="M8 23V10l8 9 8-9v13" stroke="#0D1B2A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+            <span class="nav-logo-text">MPI<span> Artist</span></span>
+          </a>
+          <p>A selective release platform for artists who want structure and discipline.</p>
+        </div>
+
+        <div class="footer-links-group">
+          <p>Platform</p>
+          <ul role="list" class="footer-links">
+            <li><a href="/#what-we-are">What It Is</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="/#how-it-works">How to Apply</a></li>
+            <li><a href="apply.html">Apply Now</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-group">
+          <p>Contact</p>
+          <ul role="list" class="footer-links">
+            <li><a href="mailto:joshua@mpiartist.com">Email MPI</a></li>
+            <li><a href="/#founder">The Founder</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Mollohan Production Inc. · MPI Artist Services · All rights reserved. · <em>For Artists. By Artists.</em></p>
+        <p>MPI Artist Services is a record label and artist services division of Mollohan Production Inc. · Label inquiries: <a href="mailto:info@mpiartist.com">info@mpiartist.com</a></p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    /* ── NAV scroll effect ── */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    /* ── Mobile menu toggle ── */
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu   = document.getElementById('mobileMenu');
+    mobileToggle.addEventListener('click', () => {
+      const open = mobileMenu.classList.toggle('open');
+      mobileMenu.setAttribute('aria-hidden', String(!open));
+      mobileToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+    mobileMenu.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        mobileMenu.setAttribute('aria-hidden', 'true');
+      });
+    });
+
+    /* ── Billing toggle ── */
+    function setBilling(period) {
+      const isAnnual = period === 'annual';
+      document.body.classList.toggle('show-annual', isAnnual);
+      document.getElementById('btn-monthly').classList.toggle('active', !isAnnual);
+      document.getElementById('btn-annual').classList.toggle('active', isAnnual);
+      document.getElementById('btn-monthly').setAttribute('aria-pressed', String(!isAnnual));
+      document.getElementById('btn-annual').setAttribute('aria-pressed', String(isAnnual));
+      try { localStorage.setItem('mpi_billing', period); } catch(e){}
+    }
+
+    /* Restore saved billing preference */
+    (function() {
+      try {
+        const saved = localStorage.getItem('mpi_billing');
+        if (saved === 'annual') setBilling('annual');
+      } catch(e) {}
+    })();
+
+    /* ── PayPal startTrial ── */
+    function startTrial(btn) {
+      const isAnnual = document.body.classList.contains('show-annual');
+      const planId   = isAnnual
+        ? btn.getAttribute('data-plan-annual')
+        : btn.getAttribute('data-plan-monthly');
+
+      if (!planId || planId.startsWith('PLAN_')) {
+        // Placeholder — PayPal plans not yet created
+        alert('Coming soon — billing is being configured. Check back shortly or email joshua@mpiartist.com for early access.');
+        return;
+      }
+
+      /* Render PayPal Subscribe button into a modal or inline container */
+      const container = btn.closest('.tier-card').querySelector('.paypal-container');
+      if (container) {
+        container.innerHTML = '';
+        // PayPal SDK renders here once plan IDs are live
+        if (window.paypal) {
+          window.paypal.Buttons({
+            createSubscription: function(data, actions) {
+              return actions.subscription.create({ plan_id: planId });
+            },
+            onApprove: function(data) {
+              alert('Subscription started! Subscription ID: ' + data.subscriptionID);
+            }
+          }).render(container);
+        }
+      }
+    }
+
+    /* ── FAQ accordion ── */
+    function toggleFaq(id) {
+      const item = document.getElementById(id);
+      const btn  = item.querySelector('.faq-question');
+      const wasOpen = item.classList.contains('open');
+
+      // Close all
+      document.querySelectorAll('.faq-item.open').forEach(el => {
+        el.classList.remove('open');
+        el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+      });
+
+      // Open clicked if it was closed
+      if (!wasOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    }
+
+    /* ── Screen reader only utility ── */
+    const style = document.createElement('style');
+    style.textContent = '.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}';
+    document.head.appendChild(style);
+  </script>
+
+</body>
+</html>
