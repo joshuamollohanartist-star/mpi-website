@@ -215,6 +215,151 @@
     .url-btn:hover { background: rgba(198,146,20,0.25); }
     .url-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
+    /* ── SEARCH TABS ── */
+    .search-tabs {
+      display: flex;
+      gap: 0;
+      background: var(--very-faint);
+      border-radius: 10px;
+      padding: 3px;
+      width: 100%;
+      max-width: 480px;
+    }
+    .search-tab {
+      flex: 1;
+      padding: 10px 0;
+      border: none;
+      background: transparent;
+      color: var(--muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .search-tab.active {
+      background: rgba(198,146,20,0.2);
+      color: var(--gold);
+    }
+    .search-tab:hover:not(.active) { color: var(--white); }
+
+    .tab-content { display: none; width: 100%; max-width: 480px; }
+    .tab-content.active { display: block; }
+
+    /* ── ARTIST SEARCH ── */
+    .search-wrap { position: relative; width: 100%; }
+    .search-input {
+      width: 100%;
+      background: var(--very-faint);
+      border: 1.5px solid rgba(198,146,20,0.25);
+      border-radius: 10px;
+      padding: 12px 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input:focus { border-color: var(--gold); }
+    .search-input::placeholder { color: var(--faint); }
+
+    .search-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0; right: 0;
+      background: #1a2d42;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      z-index: 50;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .search-dropdown.open { display: block; }
+    .search-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: background 0.15s;
+      border-bottom: 1px solid var(--very-faint);
+    }
+    .search-item:last-child { border-bottom: none; }
+    .search-item:hover { background: rgba(198,146,20,0.1); }
+    .search-item img {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: var(--very-faint);
+      flex-shrink: 0;
+    }
+    .search-item-placeholder {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: rgba(198,146,20,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .search-item-info { flex: 1; min-width: 0; }
+    .search-item-name { font-size: 0.88rem; font-weight: 600; color: var(--white); }
+    .search-item-meta { font-size: 0.75rem; color: var(--faint); }
+    .search-spinner {
+      text-align: center;
+      padding: 14px;
+      color: var(--faint);
+      font-size: 0.85rem;
+    }
+
+    /* Selected artist card */
+    .selected-artist {
+      display: none;
+      align-items: center;
+      gap: 14px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-top: 10px;
+      width: 100%;
+    }
+    .selected-artist.show { display: flex; }
+    .selected-artist img {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .selected-artist-info { flex: 1; min-width: 0; }
+    .selected-artist-name { font-weight: 700; font-size: 0.95rem; }
+    .selected-artist-meta { font-size: 0.78rem; color: var(--faint); margin-top: 2px; }
+    .selected-artist-remove {
+      background: none; border: none;
+      color: var(--faint); cursor: pointer;
+      font-size: 1.2rem; padding: 4px 8px;
+      transition: color 0.2s;
+    }
+    .selected-artist-remove:hover { color: var(--red); }
+    .search-analyze-btn {
+      margin-top: 10px;
+      width: 100%;
+      background: rgba(198,146,20,0.15);
+      border: 1.5px solid var(--border);
+      color: var(--gold);
+      border-radius: 10px;
+      padding: 12px 20px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: none;
+    }
+    .search-analyze-btn.show { display: block; }
+    .search-analyze-btn:hover { background: rgba(198,146,20,0.25); }
+    .search-analyze-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
     .trust-row {
       display: flex;
       justify-content: center;
@@ -566,18 +711,50 @@
           Connect Spotify
         </button>
 
-        <div class="divider-row">Or paste your Spotify artist URL</div>
+        <div class="divider-row">Or find your artist profile</div>
 
-        <div class="url-row">
-          <input
-            type="text"
-            id="spotify-url-input"
-            class="url-input"
-            placeholder="https://open.spotify.com/artist/..."
-            autocomplete="off"
-            spellcheck="false"
-          />
-          <button class="url-btn" id="url-analyze-btn" onclick="analyzeByUrl()">Analyze →</button>
+        <div class="search-tabs">
+          <button class="search-tab active" onclick="switchTab('url')">Paste URL</button>
+          <button class="search-tab" onclick="switchTab('search')">Search by Name</button>
+        </div>
+
+        <!-- URL tab -->
+        <div class="tab-content active" id="tab-url">
+          <div class="url-row">
+            <input
+              type="text"
+              id="spotify-url-input"
+              class="url-input"
+              placeholder="https://open.spotify.com/artist/..."
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button class="url-btn" id="url-analyze-btn" onclick="analyzeByUrl()">Analyze &rarr;</button>
+          </div>
+        </div>
+
+        <!-- Search tab -->
+        <div class="tab-content" id="tab-search">
+          <div class="search-wrap">
+            <input
+              type="text"
+              id="artist-search-input"
+              class="search-input"
+              placeholder="Type an artist name..."
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <div class="search-dropdown" id="search-dropdown"></div>
+          </div>
+          <div class="selected-artist" id="selected-artist">
+            <img id="selected-artist-img" src="" alt="" />
+            <div class="selected-artist-info">
+              <div class="selected-artist-name" id="selected-artist-name"></div>
+              <div class="selected-artist-meta" id="selected-artist-meta"></div>
+            </div>
+            <button class="selected-artist-remove" onclick="clearSelectedArtist()">&times;</button>
+          </div>
+          <button class="search-analyze-btn" id="search-analyze-btn" onclick="analyzeBySearch()">Analyze &rarr;</button>
         </div>
 
         <div class="trust-row">
@@ -1201,6 +1378,102 @@
       }, 900);
     }
 
+    // ── Tab switching ────────────────────────────────────────
+    function switchTab(tab) {
+      document.querySelectorAll('.search-tab').forEach((el, i) => {
+        el.classList.toggle('active', (tab === 'url' && i === 0) || (tab === 'search' && i === 1));
+      });
+      document.getElementById('tab-url').classList.toggle('active', tab === 'url');
+      document.getElementById('tab-search').classList.toggle('active', tab === 'search');
+    }
+
+    // ── Artist search with debounce ──────────────────────────
+    let _searchTimer = null;
+    let _selectedArtist = null;
+
+    function debounceSearch(e) {
+      clearTimeout(_searchTimer);
+      const q = e.target.value.trim();
+      const dropdown = document.getElementById('search-dropdown');
+
+      if (q.length < 2) {
+        dropdown.classList.remove('open');
+        return;
+      }
+
+      dropdown.innerHTML = '<div class="search-spinner">Searching...</div>';
+      dropdown.classList.add('open');
+
+      _searchTimer = setTimeout(() => searchArtists(q), 350);
+    }
+
+    async function searchArtists(q) {
+      const dropdown = document.getElementById('search-dropdown');
+      try {
+        const res = await fetch(`${API}/api/public/spotify-search?q=${encodeURIComponent(q)}`);
+        const data = await res.json();
+        const artists = data.artists || [];
+
+        if (artists.length === 0) {
+          dropdown.innerHTML = '<div class="search-spinner">No artists found</div>';
+          return;
+        }
+
+        dropdown.innerHTML = artists.map(a => `
+          <div class="search-item" onclick="selectArtist(${JSON.stringify(a).replace(/"/g, '&quot;')})">
+            ${a.image
+              ? `<img src="${a.image}" alt="${a.name}" onerror="this.style.display='none'" />`
+              : '<div class="search-item-placeholder">&#127925;</div>'}
+            <div class="search-item-info">
+              <div class="search-item-name">${a.name}</div>
+              <div class="search-item-meta">${(a.followers || 0).toLocaleString()} followers</div>
+            </div>
+          </div>
+        `).join('');
+      } catch (e) {
+        dropdown.innerHTML = '<div class="search-spinner">Search failed — try again</div>';
+      }
+    }
+
+    function selectArtist(artist) {
+      _selectedArtist = artist;
+      document.getElementById('search-dropdown').classList.remove('open');
+      document.getElementById('artist-search-input').value = '';
+
+      const card = document.getElementById('selected-artist');
+      document.getElementById('selected-artist-img').src = artist.image || '';
+      document.getElementById('selected-artist-name').textContent = artist.name;
+      document.getElementById('selected-artist-meta').textContent = `${(artist.followers || 0).toLocaleString()} followers`;
+      card.classList.add('show');
+      document.getElementById('search-analyze-btn').classList.add('show');
+    }
+
+    function clearSelectedArtist() {
+      _selectedArtist = null;
+      document.getElementById('selected-artist').classList.remove('show');
+      document.getElementById('search-analyze-btn').classList.remove('show');
+    }
+
+    async function analyzeBySearch() {
+      if (!_selectedArtist) return;
+      const btn = document.getElementById('search-analyze-btn');
+      btn.disabled = true;
+      btn.textContent = 'Analyzing...';
+      showSpinner('Analyzing your Spotify data...');
+
+      try {
+        const data = await fetchScore({ spotifyUrl: _selectedArtist.url });
+        hideSpinner();
+        renderResult(data);
+      } catch (e) {
+        hideSpinner();
+        showError(e.message || 'Something went wrong. Try again.');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Analyze \u2192';
+      }
+    }
+
     // ── Init ──────────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', async () => {
       // Check for Spotify callback
@@ -1219,6 +1492,16 @@
       // Enter key on URL input
       document.getElementById('spotify-url-input').addEventListener('keydown', e => {
         if (e.key === 'Enter') analyzeByUrl();
+      });
+
+      // Artist search input
+      document.getElementById('artist-search-input').addEventListener('input', debounceSearch);
+
+      // Close dropdown when clicking outside
+      document.addEventListener('click', e => {
+        if (!e.target.closest('.search-wrap')) {
+          document.getElementById('search-dropdown').classList.remove('open');
+        }
       });
     });
 
