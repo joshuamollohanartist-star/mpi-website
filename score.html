@@ -509,6 +509,24 @@
       .score-circle-svg { width: 160px; height: 160px; }
       .email-gate-row { flex-direction: column; }
     }
+
+    /* ── FAQ SECTION ── */
+    .faq-section { padding: 80px 0; border-top: 1px solid rgba(255,255,255,0.06); }
+    .faq-container { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+    .faq-title { font-size: clamp(1.6rem,4vw,2.2rem); font-weight: 800; color: #fff; margin-bottom: 8px; letter-spacing: -0.02em; }
+    .faq-subtitle { color: rgba(255,255,255,0.55); margin-bottom: 48px; font-size: 1rem; }
+    .faq-group { margin-bottom: 40px; }
+    .faq-group-title { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #C69214; margin-bottom: 16px; }
+    .faq-item { border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .faq-question { width: 100%; background: none; border: none; color: #fff; font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 600; text-align: left; padding: 20px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 16px; line-height: 1.4; }
+    .faq-question:hover { color: #C69214; }
+    .faq-icon { color: #C69214; font-size: 1.4rem; font-weight: 300; flex-shrink: 0; transition: transform 0.2s; }
+    .faq-question.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer { display: none; padding: 0 0 20px; color: rgba(255,255,255,0.7); font-size: 0.95rem; line-height: 1.7; }
+    .faq-answer.open { display: block; }
+    .faq-answer a { color: #C69214; text-decoration: none; }
+    .faq-answer a:hover { text-decoration: underline; }
+    .faq-answer strong { color: #fff; }
   </style>
 </head>
 <body>
@@ -665,7 +683,253 @@
 
   </div><!-- /page-wrap -->
 
-  <footer class="page-footer">
+  
+  <!-- FAQ SECTION -->
+  <section class="faq-section">
+    <div class="faq-container">
+      <h2 class="faq-title">Frequently Asked Questions</h2>
+      <p class="faq-subtitle">Everything you need to know about the MPI Artist Score.</p>
+
+      <!-- Group: Understanding Your Score -->
+      <div class="faq-group">
+        <h3 class="faq-group-title">Understanding Your Score</h3>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            What is the MPI Artist Score?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            The MPI Artist Score is a <strong>0–100 performance index</strong> built specifically for independent artists. It analyzes your Spotify data through the Chartmetric API and translates six weighted metrics into a single, clear number. The goal isn't to rate you — it's to show you exactly where you stand and where your biggest growth opportunities are hiding. Think of it as your career health check.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            How is my score calculated?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Your score is a weighted composite of six Spotify data points pulled via the Chartmetric API:
+            <br><br>
+            <strong>Streams per Listener — 30%</strong> (the single biggest factor — how engaged your audience actually is)<br>
+            <strong>Audience Quality — 20%</strong> (follower-to-listener ratio and engagement signals)<br>
+            <strong>Listener Growth — 20%</strong> (month-over-month trajectory)<br>
+            <strong>Playlist Footprint — 15%</strong> (reach and editorial placement)<br>
+            <strong>Follower Growth — 10%</strong> (momentum in your fanbase)<br>
+            <strong>Market Position — 5%</strong> (Spotify popularity relative to your tier)<br>
+            <br>
+            Every component is normalized so that 100 isn't a ceiling reserved for superstars — it reflects excellence at your level of career.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            What do the score tiers mean?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            <strong>Elite (80–100)</strong> — Exceptional engagement across every metric. Your audience is highly active and your growth momentum is strong. You're operating at a professional level.<br><br>
+            <strong>Strong (65–79)</strong> — Above-average performance with clear, identifiable strengths. A few targeted improvements could push you into Elite territory.<br><br>
+            <strong>Developing (50–64)</strong> — Solid foundation with real gaps to close. You have an audience — now it's about deepening engagement and widening your reach.<br><br>
+            <strong>Early Stage (35–49)</strong> — Building momentum. The fundamentals are in place; consistency and strategic playlisting will move the needle most at this stage.<br><br>
+            <strong>Getting Started (0–34)</strong> — You're in the early chapters. Focus on release cadence, playlist pitching, and converting casual listeners into repeat fans before scaling.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            Why is my score different from what I expected?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            The MPI Score is built to reward <strong>engagement quality, not vanity metrics</strong>. An artist with 50,000 monthly listeners and a 4.2 streams-per-listener ratio will often outscore an artist with 500,000 listeners who mostly skip after one play. If your score feels low, look at streams per listener and audience quality first — those two components make up 50% of your total score and are the most common gaps we see.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            My streams are high but my score is low. Why?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            High streams don't automatically mean high engagement. If you have a large passive listener base — people who hear your music once on a playlist but never return — your streams-per-listener ratio will be low, and that's our highest-weighted metric at <strong>30%</strong>. The score is designed to flag exactly this pattern. The fix: focus on converting passive listeners into active fans through consistent releases, deeper catalog, and direct-to-fan promotion.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            Does follower count affect my score?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Yes, but not in the way most people think. Raw follower count is not a direct input. What matters is <strong>follower growth rate</strong> (10% weight) and the <strong>ratio of followers to monthly listeners</strong>, which factors into Audience Quality (20%). An artist with 2,000 followers who gained 400 last month will score better on those components than an artist with 50,000 stagnant followers. Momentum beats size every time.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            How often does my score update?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Your score is <strong>calculated live every time you run it</strong> — it reflects the current state of your Spotify data at that moment via the Chartmetric API. There's no cached snapshot aging in the background. Run it today and run it again after a big release or playlist placement and you'll see the difference in real time.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            Is my score the same as my Spotify popularity score?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            No. Spotify's internal popularity score is a proprietary algorithm that primarily reflects recent streaming volume relative to all other artists on the platform — it heavily favors major-label releases and recency. The MPI Score uses Spotify's popularity metric as one small input (<strong>5% weight</strong> in Market Position), but it's built around engagement depth, growth trajectory, and audience quality — signals that actually predict an independent artist's career momentum. It's a completely different lens.
+          </div>
+        </div>
+      </div>
+
+      <!-- Group: Data & Privacy -->
+      <div class="faq-group">
+        <h3 class="faq-group-title">Data &amp; Privacy</h3>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            What data do you use to calculate my score?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            We pull publicly available Spotify artist data — <strong>monthly listeners, follower count, Spotify popularity score, playlist placements, and release history</strong> — via the Spotify Web API and Chartmetric analytics. We also calculate derived metrics like streams-per-listener ratio and month-over-month growth rate from that data. We never access your personal streaming history, payment information, or private account data.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            Do you store my Spotify data?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            The score tool itself does not permanently store your raw Spotify data. If you choose to unlock your full report by entering your email, we save your score, artist name, and Spotify URL so we can send you your report and follow up with relevant MPI resources. We don't sell your data. Ever. We're artists too — we built this for us, not for ad networks.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            Why do you need my Spotify URL or to connect Spotify?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            We need to know which Spotify artist profile to analyze. You have two options: <strong>paste your Spotify artist URL</strong> (the fastest way, no login needed), or <strong>connect Spotify via OAuth</strong> (more accurate — we can verify you're the artist and pull richer data). Connecting Spotify uses a secure PKCE authorization flow — we never see your Spotify password. You can disconnect at any time from your Spotify account settings.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            Is this tool free?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Yes. The MPI Artist Score is <strong>completely free</strong> — no credit card, no subscription, no catch. We built it because we believe every artist deserves to know where they actually stand. The full diagnostic report (breakdown, action plan, growth roadmap) unlocks when you enter your email, and that's free too. If you want to go further and apply to the MPI platform itself, that's a separate step — see <a href="https://mpiartist.com/apply.html">mpiartist.com/apply.html</a>.
+          </div>
+        </div>
+      </div>
+
+      <!-- Group: Improving Your Score -->
+      <div class="faq-group">
+        <h3 class="faq-group-title">Improving Your Score</h3>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            What's the fastest way to improve my score?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Attack the highest-weighted components first. In order of impact:<br><br>
+            1. <strong>Streams per Listener (30%)</strong> — Release more music so loyal fans have a deeper catalog to stream. A two-track EP gives fans less to return to than a 10-song album.<br>
+            2. <strong>Audience Quality (20%)</strong> — Convert passive playlist listeners into followers with strong artist bio copy, social links, and call-to-actions on your music.<br>
+            3. <strong>Listener Growth (20%)</strong> — Consistent release cadence is the most reliable driver. Pitching editorial playlists and running targeted ads around release week accelerates this fastest.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            My streams per listener ratio is low. What does that mean?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            It means most people who find your music only listen once. A healthy streams-per-listener ratio is typically <strong>3.5 or above</strong>. Below that, you're getting exposure but not retention. The fix is two-pronged: build a deeper catalog so there's more to listen to, and improve first-listen quality so people hit repeat. Also check whether your listeners are mostly coming from passive playlist adds — those tend to inflate raw listener numbers without building real fans.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            How important are playlists to my score?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Playlists carry <strong>15% of your total score</strong> via the Playlist Footprint component. But the relationship goes deeper than that — playlist placements drive listener growth and can indirectly improve your streams-per-listener ratio if the right audience finds you. Quality matters more than quantity: landing on one well-curated, genre-relevant playlist with 50,000 followers will do more for your score than being on 200 low-engagement ones. Pitch Spotify editorial playlists through Spotify for Artists and cultivate relationships with independent curators in your genre.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            I just released new music. Will my score go up?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Possibly, but it depends on how the release performs. A strong release week with high save rates, playlist adds, and returning listeners will lift your growth velocity and streams-per-listener metrics. However, if a release brings in a flood of one-time listeners who don't return, it can temporarily <em>lower</em> your streams-per-listener ratio before it recovers. Run your score 2–4 weeks after release for a meaningful read — that's when the data stabilizes and tells the real story.
+          </div>
+        </div>
+      </div>
+
+      <!-- Group: MPI Platform -->
+      <div class="faq-group">
+        <h3 class="faq-group-title">MPI Platform</h3>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            Does my score determine if I get accepted to MPI?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Your MPI Score is one input in the application review, but it's <strong>not the deciding factor</strong>. MPI is an application-based platform with approximately a 30% acceptance rate. We look at your score alongside your catalog, trajectory, genre fit, professionalism, and goals. An artist with a 45 who has a clear direction and consistent output can be a better fit than an artist with a 70 who's coasting. That said, a strong score signals you're ready to level up — and it gives our team more to work with.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            What score do I need to apply to MPI?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            There's <strong>no minimum score requirement to apply</strong>. We accept applications from all genres and all career stages. If you're Getting Started (0–34), we encourage you to review your full diagnostic report first, implement the action plan, and apply when you've built some momentum — you'll have a stronger application and a better experience on the platform. But the door is always open. Apply at <a href="https://mpiartist.com/apply.html">mpiartist.com/apply.html</a>.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            What happens after I get my score?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            Enter your email to unlock your <strong>full diagnostic report</strong> — a breakdown of each score component, your strengths, your gaps, and a personalized action plan. From there, you can apply to MPI Artist Services, where accepted artists get access to sync licensing opportunities, industry connections, promotional tools, and a community of working professionals. You can also run your score again anytime after implementing changes to track your progress.
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFAQ(this)">
+            How is MPI different from a music distributor or label?
+            <span class="faq-icon">+</span>
+          </button>
+          <div class="faq-answer">
+            MPI Artist Services is <strong>not a distributor and not a label</strong>. We don't take ownership of your music, we don't distribute your releases, and we don't take a cut of your streaming revenue. We're a services platform — built by artists, for artists — that provides tools, sync licensing access, industry relationships, and strategic support to help independent artists build sustainable careers. Think of it as the infrastructure layer between where you are and where you want to be. <a href="https://mpiartist.com">Learn more at mpiartist.com</a>.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+<footer class="page-footer">
     <p>© 2026 Mollohan Production Inc. · <a href="/">MPI Artist Services</a> · <em>For Artists. By Artists.</em></p>
   </footer>
 
@@ -957,6 +1221,21 @@
         if (e.key === 'Enter') analyzeByUrl();
       });
     });
+
+    function toggleFAQ(btn) {
+      const answer = btn.nextElementSibling;
+      const isOpen = btn.classList.contains('open');
+      // Close all
+      document.querySelectorAll('.faq-question.open').forEach(q => {
+        q.classList.remove('open');
+        q.nextElementSibling.classList.remove('open');
+      });
+      // Open clicked if it was closed
+      if (!isOpen) {
+        btn.classList.add('open');
+        answer.classList.add('open');
+      }
+    }
   </script>
 
 </body>
