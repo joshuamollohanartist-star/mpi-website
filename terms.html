@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms of Service — MPI Artist Services</title>
+  <meta name="description" content="Terms of Service for MPI Artist Services, a division of Mollohan Production Inc. Effective April 1, 2026." />
+  <link rel="canonical" href="https://mpiartist.com/terms.html" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230D1B2A'/><text x='16' y='23' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='18' fill='%23C69214'>M</text></svg>" />
+
+  <style>
+    :root {
+      --card-bg: #112233;
+      --border-dim: rgba(255,255,255,0.08);
+    }
+
+    body {
+      font-family: 'Inter', 'Satoshi', sans-serif;
+      background: #0D1B2A;
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid transparent;
+      transition: background 0.4s, border-color 0.4s, backdrop-filter 0.4s;
+    }
+    .nav.scrolled {
+      background: rgba(8,15,24,0.92);
+      border-bottom-color: rgba(255,255,255,0.08);
+      backdrop-filter: blur(14px);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: 2rem;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo-text {
+      font-family: 'Clash Display', 'Helvetica Neue', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #F5F1E8;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo-text span { color: #C69214; }
+    .nav-back {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: #C69214; }
+    .nav-back svg { flex-shrink: 0; }
+
+    /* ── MAIN CONTENT ── */
+    .legal-page {
+      padding-top: calc(72px + 64px);
+      padding-bottom: 80px;
+      padding-inline: 24px;
+    }
+    .legal-inner {
+      max-width: 760px;
+      margin-inline: auto;
+    }
+
+    /* Page header */
+    .legal-header {
+      margin-bottom: 56px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(198,146,20,0.18);
+    }
+    .legal-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(198,146,20,0.1);
+      border: 1px solid rgba(198,146,20,0.22);
+      border-radius: 999px;
+      padding: 4px 14px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #C69214;
+      margin-bottom: 24px;
+    }
+    .legal-title {
+      font-family: 'Clash Display', 'Helvetica Neue', sans-serif;
+      font-size: clamp(1.8rem, 1.2rem + 2vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: #F5F1E8;
+      margin-bottom: 16px;
+    }
+    .legal-meta {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+    }
+    .legal-meta strong { color: rgba(255,255,255,0.65); font-weight: 500; }
+
+    /* Section structure */
+    .legal-section {
+      margin-bottom: 48px;
+    }
+    .legal-section h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #F5F1E8;
+      margin-bottom: 14px;
+      margin-top: 0;
+      letter-spacing: -0.01em;
+    }
+    .legal-section h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #C69214;
+      margin-bottom: 10px;
+      margin-top: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .legal-section p {
+      font-size: 0.9375rem;
+      line-height: 1.75;
+      color: #94a3b8;
+      margin-bottom: 14px;
+    }
+    .legal-section p:last-child { margin-bottom: 0; }
+    .legal-section ul, .legal-section ol {
+      padding-left: 1.4rem;
+      margin-bottom: 14px;
+    }
+    .legal-section li {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: #94a3b8;
+      margin-bottom: 8px;
+    }
+    .legal-section a {
+      color: #C69214;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .legal-section a:hover { color: #d4a835; }
+
+    /* Section number badge */
+    .section-num {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #C69214;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    /* Highlight box */
+    .info-box {
+      background: rgba(198,146,20,0.06);
+      border: 1px solid rgba(198,146,20,0.2);
+      border-left: 3px solid #C69214;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+    }
+    .info-box p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 0;
+    }
+
+    /* Divider between sections */
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+      margin-bottom: 48px;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 48px;
+      padding-bottom: 40px;
+    }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: 32px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 32px;
+    }
+    .footer-brand p {
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.3);
+      max-width: 32ch;
+    }
+    .footer-links-group p {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 14px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links a {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: #fff; }
+    .footer-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(198,146,20,0.12);
+      margin-bottom: 24px;
+    }
+    .footer-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .footer-bottom p {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.25);
+    }
+    .footer-bottom a { color: inherit; text-decoration: underline; }
+    .footer-bottom a:hover { color: rgba(255,255,255,0.5); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 760px) {
+      .legal-page { padding-top: calc(72px + 40px); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 580px) {
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
+  <nav class="nav" id="nav" aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="MPI Artist Services — Home">
+        <svg aria-hidden="true" width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="6" fill="#C69214"/>
+          <path d="M8 23V10l8 9 8-9v13" stroke="#0D1B2A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span class="nav-logo-text">MPI<span> Artist</span></span>
+      </a>
+      <a href="pricing.html" class="nav-back" aria-label="Back to Pricing">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to Pricing
+      </a>
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════ MAIN ═══════════════════════════════ -->
+  <main class="legal-page" id="main">
+    <div class="legal-inner">
+
+      <header class="legal-header">
+        <div class="legal-eyebrow">Legal</div>
+        <h1 class="legal-title">Terms of Service</h1>
+        <div class="legal-meta">
+          <strong>Effective Date:</strong> April 1, 2026 &nbsp;·&nbsp;
+          <strong>Company:</strong> Mollohan Production Inc. / MPI Artist Services &nbsp;·&nbsp;
+          <strong>Website:</strong> <a href="https://mpiartist.com" style="color:#C69214;">mpiartist.com</a>
+        </div>
+      </header>
+
+      <div class="info-box">
+        <p>Please read these Terms of Service carefully before creating an account or subscribing to any MPI Artist Services plan. By registering, beginning a free trial, or making a payment, you agree to be bound by these Terms.</p>
+      </div>
+
+      <!-- 1. Introduction -->
+      <div class="legal-section">
+        <span class="section-num">Section 1</span>
+        <h2>Introduction and Acceptance of Terms</h2>
+        <p>These Terms of Service ("Terms") constitute a legally binding agreement between you ("Artist," "User," or "you") and Mollohan Production Inc., a Colorado company doing business as MPI Artist Services ("MPI," "we," "us," or "our"), governing your access to and use of the MPI Artist Services platform, including the analytics dashboard, metadata management tools, Fan Hub, distribution support services, and all related software, APIs, and content (collectively, the "Services") available at mpiartist.com and associated subdomains.</p>
+        <p>By creating an account, starting a free trial, subscribing to a paid plan, or otherwise accessing the Services, you represent that you are at least 18 years of age, have the legal capacity to enter into a binding contract, and agree to be bound by these Terms and our Privacy Policy, which is incorporated by reference. If you are accessing the Services on behalf of an entity, you represent that you have authority to bind that entity to these Terms.</p>
+        <p>We reserve the right to update or modify these Terms at any time. We will provide notice of material changes by updating the "Effective Date" at the top of this page and, where appropriate, by emailing registered users. Your continued use of the Services following such notice constitutes your acceptance of the revised Terms.</p>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- 2. Account Registration -->
+      <div class="legal-section">
+        <span class="section-num">Section 2</span>
+        <h2>Account Registration</h2>
+        <p>To access the Services, you must create an account by providing accurate, current, and complete information, including your name, email address, and any required payment details. You agree to maintain the accuracy of this information and to promptly update it if it changes.</p>
+        <p>You are responsible for safeguarding your account credentials and for all activity that occurs under your account. You agree not to share your password with any third party. If you suspect unauthorized access to your account, you must notify us immediately at <a href="mailto:info@mpiartist.com">info@mpiartist.com</a>. MPI will not be liable for any loss or damage arising from unauthorized access to your account resulting from your failure to protect your credentials.</p>
+        <p>You may only maintain one active account per person. We reserve the right to refuse registration, suspend, or terminate accounts that we reasonably believe are fraudulent, in violation of these Terms, or created by a person previously banned from the platform.</p>
+        <p>As part of onboarding, you may be asked to connect third-party accounts (such as Spotify, YouTube, or Apple Music) to enable platform functionality. Your authorization of such connections is governed by the respective third-party terms of service, and you represent that you have the right to grant MPI access to the associated data.</p>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- 3. Subscription Plans, Billing & Trials -->
+      <div class="legal-section">
+        <span class="section-num">Section 3</span>
+        <h2>Subscription Plans, Billing, and Free Trials</h2>
+
+        <h3>3.1 Available Plans</h3>
+        <p>MPI Artist Services offers the following subscription tiers (prices in USD, billed monthly unless otherwise stated):</p>
+        <ul>
+          <li><strong>Toolkit</strong> — $4.99 per month</li>
+          <li><strong>Core</strong> — $39.00 per month</li>
+          <li><strong>Growth</strong> — $129.00 per month</li>
+          <li><strong>Pro</strong> — $499.00 per month</li>
+        </ul>
+        <p>Plan features and included services are described on the <a href="pricing.html">Pricing page</a> and may be updated from time to time. We will provide notice of any changes to plan features that materially reduce the value of your current plan.</p>
+
+        <h3>3.2 Free Trial</h3>
+        <p>All subscription plans include a 7-day free trial period for new subscribers. The trial begins on the date you complete sign-up and provide valid payment information via PayPal. You will not be charged during the trial period. At the end of the 7-day trial, your subscription will automatically convert to a paid plan at the rate applicable to your selected tier unless you cancel before the trial period expires.</p>
+        <p>Free trials are available once per user. MPI reserves the right to verify eligibility and to decline or terminate trial access where abuse is suspected (e.g., creating multiple accounts to obtain repeated trials).</p>
+
+        <h3>3.3 Billing and Payment</h3>
+        <p>All subscription billing is processed through PayPal. By subscribing, you authorize MPI (through PayPal) to charge your selected payment method on a recurring monthly basis, beginning at the end of your free trial or immediately upon upgrade if no trial is applicable. Subscription fees are charged in advance at the start of each billing cycle.</p>
+        <p>You are responsible for ensuring that your PayPal account and associated payment method remain valid and have sufficient funds. If a payment fails, we will attempt to collect the outstanding amount and may suspend access to the Services until payment is received. You remain liable for any uncollected amounts.</p>
+        <p>All fees are stated in U.S. dollars. Taxes, if applicable, will be calculated and displayed at checkout in accordance with applicable law.</p>
+
+        <h3>3.4 Cancellation</h3>
+        <p>You may cancel your subscription at any time through your PayPal account or by contacting us at <a href="mailto:info@mpiartist.com">info@mpiartist.com</a>. Cancellation takes effect at the end of the current billing cycle. You will retain access to the Services until the end of the period for which you have already paid. MPI does not pro-rate cancellations mid-cycle.</p>
+
+        <h3>3.5 Refund Policy</h3>
+        <p>Subscription fees are generally non-refundable. If you cancel during your free trial before any charges are incurred, you owe nothing. If you are charged in error due to a billing system failure on our part, contact us within 14 days of the charge and we will investigate and, where appropriate, issue a full refund for the erroneous charge.</p>
+        <p>We may, at our sole discretion, offer partial or full refunds in extraordinary circumstances on a case-by-case basis. Chargebacks initiated without first contacting us may result in immediate account suspension.</p>
+
+        <h3>3.6 Plan Changes</h3>
+        <p>You may upgrade or downgrade your subscription plan at any time. Upgrades take effect immediately, with prorated credit applied to your current billing cycle. Downgrades take effect at the start of your next billing cycle.</p>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- 4. Fan Hub Revenue Share -->
+      <div class="legal-section">
+        <span class="section-num">Section 4</span>
+        <h2>Fan Hub Revenue Share Terms</h2>
+
+        <h3>4.1 Fan Hub Overview</h3>
+        <p>The MPI Fan Hub is an optional feature available on eligible subscription tiers that allows artists to offer fan subscriptions, exclusive content, or other paid offerings directly to their audience. All fan payments processed through the Fan Hub are handled via PayPal.</p>
+
+        <h3>4.2 MPI Platform Commission</h3>
+        <p>For all revenue generated through the Fan Hub, MPI retains a platform commission of 10% of net revenue. "Net revenue" is defined as gross fan payments received, less PayPal transaction fees. PayPal's standard transaction fee for the Fan Hub is currently 3.49% of the transaction amount plus $0.49 per transaction, though PayPal may update its fee schedule independently of MPI. You acknowledge and agree that the applicable PayPal fee will be deducted before MPI's 10% commission is calculated.</p>
+        <p><strong>Example:</strong> If a fan pays $10.00, and PayPal fees are $0.84 (3.49% × $10.00 + $0.49), the net revenue is $9.16. MPI retains $0.916 (10%), and the artist receives $8.244.</p>
+        <p>MPI reserves the right to adjust its commission rate with 30 days' advance notice to affected artists via email and platform notification. Continued use of the Fan Hub after the notice period constitutes acceptance of the revised rate.</p>
+
+        <h3>4.3 Payouts</h3>
+        <p>Artist Fan Hub earnings (after MPI commission and PayPal fees) will be remitted to the artist's designated PayPal account on or before the last calendar day of the month following the month in which the fan payments were received. For example, fan payments received in May will be paid out on or before June 30.</p>
+        <p>Payouts are contingent on your providing a valid PayPal account and completing any identity verification required by MPI or PayPal. MPI may delay or withhold payouts in cases of suspected fraud, chargebacks, policy violations, or as required by applicable law. Minimum payout thresholds may apply; if your balance does not meet the minimum at the end of a payout period, it will roll over to the next month.</p>
+
+        <h3>4.4 Artist Responsibilities</h3>
+        <p>You are solely responsible for the content you offer through the Fan Hub, for complying with all applicable laws in connection with fan transactions (including tax obligations), and for honoring any commitments you make to fans. MPI is a platform intermediary and is not responsible for fulfilling artist obligations to fans.</p>
+        <p>You are responsible for any taxes owed on your Fan Hub earnings. MPI will provide transaction records to assist with tax reporting but is not responsible for calculating or withholding taxes on your behalf, except as required by applicable law.</p>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- 5. Acceptable Use -->
+      <div class="legal-section">
+        <span class="section-num">Section 5</span>
+        <h2>Acceptable Use Policy</h2>
+        <p>You agree to use the Services only for lawful purposes and in a manner consistent with these Terms. The following conduct is strictly prohibited:</p>
+        <ul>
+          <li>Uploading, transmitting, or distributing any content that infringes the intellectual property rights of any third party, including copyrighted music, artwork, or other materials you do not own or have a license to use;</li>
+          <li>Using the platform to distribute content that is obscene, defamatory, harassing, threatening, or that promotes violence, illegal activity, or discrimination based on race, gender, religion, national origin, disability, sexual orientation, or age;</li>
+          <li>Attempting to gain unauthorized access to any portion of the Services, other user accounts, or MPI's infrastructure, including through hacking, password mining, or any other means;</li>
+          <li>Interfering with or disrupting the integrity or performance of the Services, including through the transmission of malware, viruses, or other malicious code;</li>
+          <li>Using automated scripts, bots, or scrapers to access the Services in a manner that exceeds reasonable personal use or that places undue burden on MPI's servers;</li>
+          <li>Misrepresenting your identity, affiliation, or the rights you hold in content uploaded to the platform;</li>
+          <li>Artificially manipulating streaming data, playlist placements, or fan metrics through fraudulent means;</li>
+          <li>Selling, reselling, or sublicensing access to the Services or your account credentials without MPI's prior written consent.</li>
+        </ul>
+        <p>MPI reserves the right to investigate suspected violations and to take any action we deem appropriate, including content removal, account suspension, or termination, without prior notice where immediate action is necessary to protect the platform or other users.</p>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- 6. Intellectual Property -->
+      <div class="legal-section">
+        <span class="section-num">Section 6</span>
+        <h2>Intellectual Property</h2>
+
+        <h3>6.1 Artist Content — You Retain All Rights</h3>
+        <p>You retain full ownership of all music, artwork, lyrics, videos, photographs, and other creative content ("Artist Content") that you upload to or create in connection with the Services. Nothing in these Terms transfers, assigns, or otherwise conveys any intellectual property rights in your Artist Content to MPI.</p>
+        <p>By uploading Artist Content to the Services, you grant MPI a limited, non-exclusive, royalty-free, worldwide license to host, store, display, reproduce, and transmit your Artist Content solely as necessary to operate the platform and provide the Services to you. This license terminates when you remove your content from the platform or close your account, subject to reasonable technical delays in deletion.</p>
+        <p>You represent and warrant that you own or hold all necessary rights, licenses, and permissions in your Artist Content to grant the license above, and that your Artist Content does not infringe the intellectual property rights of any third party.</p>
+
+        <h3>6.2 MPI Platform IP</h3>
+        <p>The Services, including all software, interfaces, design, trade dress, trademarks, data models, and the compilation of content on the platform (excluding Artist Content), are the exclusive property of Mollohan Production Inc. and are protected by U.S. and international intellectual property laws. You are granted a limited, non-exclusive, non-transferable license to use the Services during the term of your subscription solely for your own personal or professional use as an artist. No other rights are granted.</p>
+        <p>You agree not to reproduce, modify, create derivative works from, publicly display, publicly perform, republish, download, store, or transmit any portion of the MPI platform, except as necessary to use the Services as intended.</p>
+
+        <h3>6.3 Feedback</h3>
+        <p>If you submit suggestions, ideas, feedback, or other input regarding the Services ("Feedback"), you grant MPI an unrestricted, perpetual, irrevocable, royalty-free license to use and incorporate such Feedback into the Services or other MPI offerings, without any compensation or credit to you.</p>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- 7. Termination -->
+      <div class="legal-section">
+        <span class="section-num">Section 7</span>
+        <h2>Termination</h2>
+
+        <h3>7.1 Termination by You</h3>
+        <p>You may terminate your account at any time by canceling your subscription (as described in Section 3.4) and contacting us at <a href="mailto:info@mpiartist.com">info@mpiartist.com</a> to request account deletion. Upon termination, your access to the Services will cease at the end of your current paid billing period. We will process deletion of your personal data in accordance with our Privacy Policy and applicable law.</p>
+
+        <h3>7.2 Termination by MPI</h3>
+        <p>MPI may suspend or terminate your account and access to the Services at any time, with or without notice, if we determine, in our reasonable discretion, that you have violated these Terms, engaged in fraudulent or abusive behavior, failed to pay amounts due, or if continued access poses a risk to the platform or other users. Upon termination by MPI for cause, no refund will be issued for any prepaid subscription fees.</p>
+        <p>MPI may also terminate or discontinue the Services in whole or in part at any time. In the event of a service-wide discontinuation, we will provide at least 30 days' advance notice and will pro-rate refunds for unused prepaid subscription periods.</p>
+
+        <h3>7.3 Effect of Termination</h3>
+        <p>Upon termination of your account for any reason: (a) all licenses granted to you under these Terms immediately terminate; (b) you must cease all use of the Services; (c) any outstanding Fan Hub payouts owed to you at the time of termination will be remitted to your designated PayPal account within 60 days, net of any amounts owed to MPI; and (d) sections of these Terms that by their nature should survive termination (including Sections 4, 6, 8, 9, 10, and 11) will continue in full force and effect.</p>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- 8. Disclaimer of Warranties -->
+      <div class="legal-section">
+        <span class="section-num">Section 8</span>
+        <h2>Disclaimer of Warranties</h2>
+        <p>THE SERVICES ARE PROVIDED ON AN "AS IS" AND "AS AVAILABLE" BASIS WITHOUT WARRANTIES OF ANY KIND, EITHER EXPRESS OR IMPLIED. TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, MPI EXPRESSLY DISCLAIMS ALL WARRANTIES, INCLUDING BUT NOT LIMITED TO IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT.</p>
+        <p>MPI does not warrant that the Services will be uninterrupted, error-free, or free of viruses or other harmful components; that defects will be corrected; that streaming analytics data provided through the platform will be accurate, complete, or timely; or that the Services will meet your specific requirements or expectations. Streaming data is provided by third-party services (Spotify, YouTube, Apple Music, Chartmetric) and MPI is not responsible for inaccuracies or delays in third-party data.</p>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- 9. Limitation of Liability -->
+      <div class="legal-section">
+        <span class="section-num">Section 9</span>
+        <h2>Limitation of Liability</h2>
+        <p>TO THE FULLEST EXTENT PERMITTED BY APPLICABLE LAW, IN NO EVENT WILL MPI, ITS OFFICERS, DIRECTORS, EMPLOYEES, AGENTS, LICENSORS, OR SERVICE PROVIDERS BE LIABLE FOR ANY INDIRECT, INCIDENTAL, SPECIAL, CONSEQUENTIAL, PUNITIVE, OR EXEMPLARY DAMAGES, INCLUDING BUT NOT LIMITED TO LOSS OF PROFITS, LOSS OF REVENUE, LOSS OF DATA, LOSS OF GOODWILL, OR BUSINESS INTERRUPTION, ARISING OUT OF OR RELATED TO YOUR USE OF OR INABILITY TO USE THE SERVICES, EVEN IF MPI HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.</p>
+        <p>IN NO EVENT WILL MPI'S TOTAL CUMULATIVE LIABILITY TO YOU FOR ALL CLAIMS ARISING OUT OF OR RELATED TO THESE TERMS OR THE SERVICES EXCEED THE GREATER OF: (A) THE TOTAL SUBSCRIPTION FEES ACTUALLY PAID BY YOU TO MPI IN THE THREE (3) MONTHS IMMEDIATELY PRECEDING THE CLAIM, OR (B) ONE HUNDRED U.S. DOLLARS ($100.00).</p>
+        <p>Some jurisdictions do not allow the exclusion or limitation of certain warranties or liability. In such jurisdictions, MPI's liability will be limited to the greatest extent permitted by applicable law. Nothing in these Terms limits MPI's liability for gross negligence, willful misconduct, fraud, or any liability that cannot be excluded or limited by law.</p>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- 10. Indemnification -->
+      <div class="legal-section">
+        <span class="section-num">Section 10</span>
+        <h2>Indemnification</h2>
+        <p>You agree to indemnify, defend, and hold harmless Mollohan Production Inc. and its officers, directors, employees, agents, and successors from and against any claims, liabilities, damages, judgments, awards, losses, costs, and expenses (including reasonable attorneys' fees) arising out of or relating to: (a) your use of the Services; (b) your Artist Content; (c) your violation of these Terms; (d) your violation of any applicable law or regulation; or (e) any claim by a third party that your Artist Content infringes their intellectual property rights or other rights.</p>
+        <p>MPI reserves the right to assume exclusive control of the defense of any matter subject to indemnification by you, at your expense, in which case you agree to cooperate with MPI's defense of such claims.</p>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- 11. Governing Law and Disputes -->
+      <div class="legal-section">
+        <span class="section-num">Section 11</span>
+        <h2>Governing Law and Dispute Resolution</h2>
+
+        <h3>11.1 Governing Law</h3>
+        <p>These Terms and any dispute arising out of or related to the Services shall be governed by and construed in accordance with the laws of the State of Colorado, United States, without regard to its conflict of law principles. The United Nations Convention on Contracts for the International Sale of Goods does not apply.</p>
+
+        <h3>11.2 Venue</h3>
+        <p>Any legal action or proceeding arising out of or relating to these Terms or the Services that is not subject to mandatory arbitration shall be brought exclusively in the state or federal courts located in Colorado. You consent to the personal jurisdiction of those courts and waive any objection to the laying of venue in those courts.</p>
+
+        <h3>11.3 Informal Resolution</h3>
+        <p>Before filing a formal legal claim, you agree to first contact us at <a href="mailto:info@mpiartist.com">info@mpiartist.com</a> and provide a written description of the dispute, the relief sought, and your contact information. We will attempt to resolve the dispute informally within 30 days. This informal resolution requirement does not apply to claims involving intellectual property infringement or emergency injunctive relief.</p>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- 12. General Provisions -->
+      <div class="legal-section">
+        <span class="section-num">Section 12</span>
+        <h2>General Provisions</h2>
+
+        <h3>12.1 Entire Agreement</h3>
+        <p>These Terms, together with the Privacy Policy and any plan-specific agreements, constitute the entire agreement between you and MPI regarding the Services and supersede all prior agreements, representations, and understandings.</p>
+
+        <h3>12.2 Severability</h3>
+        <p>If any provision of these Terms is found to be unenforceable or invalid by a court of competent jurisdiction, that provision will be modified to the minimum extent necessary to make it enforceable, and the remaining provisions will continue in full force and effect.</p>
+
+        <h3>12.3 Waiver</h3>
+        <p>MPI's failure to enforce any right or provision of these Terms will not constitute a waiver of that right or provision. Any waiver must be in writing and signed by an authorized representative of MPI to be effective.</p>
+
+        <h3>12.4 Assignment</h3>
+        <p>You may not assign or transfer your rights or obligations under these Terms without MPI's prior written consent. MPI may assign its rights and obligations under these Terms, in whole or in part, in connection with a merger, acquisition, corporate reorganization, or sale of all or substantially all of its assets, without your consent.</p>
+
+        <h3>12.5 Contact</h3>
+        <p>If you have questions about these Terms, please contact us:</p>
+        <ul>
+          <li><strong>Mollohan Production Inc. / MPI Artist Services</strong></li>
+          <li>Colorado, USA</li>
+          <li>Email: <a href="mailto:info@mpiartist.com">info@mpiartist.com</a></li>
+          <li>Website: <a href="https://mpiartist.com">mpiartist.com</a></li>
+        </ul>
+      </div>
+
+    </div><!-- /legal-inner -->
+  </main>
+
+
+  <!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo" aria-label="MPI Artist Services">
+            <svg aria-hidden="true" width="28" height="28" viewBox="0 0 32 32" fill="none">
+              <rect width="32" height="32" rx="6" fill="#C69214"/>
+              <path d="M8 23V10l8 9 8-9v13" stroke="#0D1B2A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+            <span class="nav-logo-text">MPI<span> Artist</span></span>
+          </a>
+          <p>A selective release platform for artists who want structure and discipline.</p>
+        </div>
+
+        <div class="footer-links-group">
+          <p>Platform</p>
+          <ul role="list" class="footer-links">
+            <li><a href="/#what-we-are">What It Is</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="/#how-it-works">How to Apply</a></li>
+            <li><a href="apply.html">Apply Now</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-group">
+          <p>Legal &amp; Contact</p>
+          <ul role="list" class="footer-links">
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="mailto:info@mpiartist.com">Email MPI</a></li>
+            <li><a href="/#founder">The Founder</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Mollohan Production Inc. · MPI Artist Services · All rights reserved. · <em>For Artists. By Artists.</em></p>
+        <p>MPI Artist Services is a record label and artist services division of Mollohan Production Inc. · Label inquiries: <a href="mailto:info@mpiartist.com">info@mpiartist.com</a></p>
+        <p><a href="terms.html">Terms of Service</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy Policy</a></p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    /* ── NAV scroll effect ── */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+  </script>
+
+</body>
+</html>

@@ -811,6 +811,25 @@
   </style>
   <!-- PayPal SDK -->
   <script src="https://www.paypal.com/sdk/js?client-id=BAASBUWckeOsT-ahXOa6K6FqXc67EgP0hMd7m7N3tngaWwL8Hu97SoHisTTs92qJhHUkg2MEPgyno729lM&vault=true&intent=subscription&currency=USD" data-sdk-integration-source="button-factory"></script>
+  <!-- GA4 — swap G-XXXXXXXXXX with your real Measurement ID from analytics.google.com -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX', {
+      page_title: 'Pricing',
+      page_path: '/pricing'
+    });
+    // Fire pricing_page_view with billing cycle
+    window.addEventListener('DOMContentLoaded', function() {
+      const cycle = localStorage.getItem('mpi_billing_cycle') || 'monthly';
+      gtag('event', 'pricing_page_view', {
+        billing_cycle: cycle,
+        page_location: window.location.href
+      });
+    });
+  </script>
 </head>
 <body>
 
@@ -1430,7 +1449,7 @@
 
       <div class="footer-bottom">
         <p>&copy; 2026 Mollohan Production Inc. · MPI Artist Services · All rights reserved. · <em>For Artists. By Artists.</em></p>
-        <p>MPI Artist Services is a record label and artist services division of Mollohan Production Inc. · Label inquiries: <a href="mailto:info@mpiartist.com">info@mpiartist.com</a></p>
+        <p><a href="/terms.html">Terms of Service</a> &middot; <a href="/privacy.html">Privacy Policy</a> &middot; Label inquiries: <a href="mailto:info@mpiartist.com">info@mpiartist.com</a></p>
       </div>
     </div>
   </footer>
@@ -1498,12 +1517,27 @@
         if (window.paypal) {
           window.paypal.Buttons({
             createSubscription: function(data, actions) {
+              // GA4: begin_checkout (user clicked Subscribe)
+              const tier = btn.getAttribute('data-tier') || '';
+              const billing = document.body.classList.contains('show-annual') ? 'annual' : 'monthly';
+              gtag('event', 'begin_checkout', {
+                tier: tier,
+                billing_cycle: billing,
+                currency: 'USD'
+              });
               return actions.subscription.create({ plan_id: planId });
             },
             style: { shape: 'rect', color: 'black', layout: 'vertical', label: 'subscribe' },
             onApprove: function(data) {
               const tier = btn.getAttribute('data-tier');
               const billing = document.body.classList.contains('show-annual') ? 'annual' : 'monthly';
+              // GA4: trial_started
+              gtag('event', 'trial_started', {
+                tier: tier,
+                billing_cycle: billing,
+                subscription_id: data.subscriptionID,
+                currency: 'USD'
+              });
               fetch('https://mpi-dashboard-production-0433.up.railway.app/api/public/paypal-subscribed', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },

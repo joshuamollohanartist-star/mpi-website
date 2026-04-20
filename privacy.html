@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — MPI Artist Services</title>
+  <meta name="description" content="Privacy Policy for MPI Artist Services, a division of Mollohan Production Inc. Effective April 1, 2026." />
+  <link rel="canonical" href="https://mpiartist.com/privacy.html" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230D1B2A'/><text x='16' y='23' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='18' fill='%23C69214'>M</text></svg>" />
+
+  <style>
+    :root {
+      --card-bg: #112233;
+      --border-dim: rgba(255,255,255,0.08);
+    }
+
+    body {
+      font-family: 'Inter', 'Satoshi', sans-serif;
+      background: #0D1B2A;
+      color: #fff;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    .nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid transparent;
+      transition: background 0.4s, border-color 0.4s, backdrop-filter 0.4s;
+    }
+    .nav.scrolled {
+      background: rgba(8,15,24,0.92);
+      border-bottom-color: rgba(255,255,255,0.08);
+      backdrop-filter: blur(14px);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: 2rem;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+    .nav-logo-text {
+      font-family: 'Clash Display', 'Helvetica Neue', sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: #F5F1E8;
+      letter-spacing: -0.02em;
+    }
+    .nav-logo-text span { color: #C69214; }
+    .nav-back {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.55);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: color 0.2s;
+    }
+    .nav-back:hover { color: #C69214; }
+    .nav-back svg { flex-shrink: 0; }
+
+    /* ── MAIN CONTENT ── */
+    .legal-page {
+      padding-top: calc(72px + 64px);
+      padding-bottom: 80px;
+      padding-inline: 24px;
+    }
+    .legal-inner {
+      max-width: 760px;
+      margin-inline: auto;
+    }
+
+    /* Page header */
+    .legal-header {
+      margin-bottom: 56px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(198,146,20,0.18);
+    }
+    .legal-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(198,146,20,0.1);
+      border: 1px solid rgba(198,146,20,0.22);
+      border-radius: 999px;
+      padding: 4px 14px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #C69214;
+      margin-bottom: 24px;
+    }
+    .legal-title {
+      font-family: 'Clash Display', 'Helvetica Neue', sans-serif;
+      font-size: clamp(1.8rem, 1.2rem + 2vw, 2.8rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.1;
+      color: #F5F1E8;
+      margin-bottom: 16px;
+    }
+    .legal-meta {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.6;
+    }
+    .legal-meta strong { color: rgba(255,255,255,0.65); font-weight: 500; }
+
+    /* Section structure */
+    .legal-section {
+      margin-bottom: 48px;
+    }
+    .legal-section h2 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #F5F1E8;
+      margin-bottom: 14px;
+      margin-top: 0;
+      letter-spacing: -0.01em;
+    }
+    .legal-section h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #C69214;
+      margin-bottom: 10px;
+      margin-top: 24px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .legal-section p {
+      font-size: 0.9375rem;
+      line-height: 1.75;
+      color: #94a3b8;
+      margin-bottom: 14px;
+    }
+    .legal-section p:last-child { margin-bottom: 0; }
+    .legal-section ul, .legal-section ol {
+      padding-left: 1.4rem;
+      margin-bottom: 14px;
+    }
+    .legal-section li {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: #94a3b8;
+      margin-bottom: 8px;
+    }
+    .legal-section a {
+      color: #C69214;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .legal-section a:hover { color: #d4a835; }
+
+    /* Section number badge */
+    .section-num {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: #C69214;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    /* Highlight box */
+    .info-box {
+      background: rgba(198,146,20,0.06);
+      border: 1px solid rgba(198,146,20,0.2);
+      border-left: 3px solid #C69214;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
+    }
+    .info-box p {
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 0;
+    }
+
+    /* Data table */
+    .data-table-wrap {
+      overflow-x: auto;
+      margin-bottom: 16px;
+      border-radius: 8px;
+    }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.875rem;
+    }
+    .data-table th {
+      background: rgba(198,146,20,0.1);
+      color: #C69214;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(198,146,20,0.2);
+    }
+    .data-table td {
+      padding: 12px 16px;
+      color: #94a3b8;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      vertical-align: top;
+      line-height: 1.55;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:nth-child(odd) td { background: rgba(255,255,255,0.02); }
+
+    /* Divider between sections */
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+      margin-bottom: 48px;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding-top: 48px;
+      padding-bottom: 40px;
+    }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: 32px;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 32px;
+    }
+    .footer-brand p {
+      margin-top: 10px;
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.3);
+      max-width: 32ch;
+    }
+    .footer-links-group p {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.3);
+      margin-bottom: 14px;
+    }
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .footer-links a {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: #fff; }
+    .footer-divider {
+      width: 100%;
+      height: 1px;
+      background: rgba(198,146,20,0.12);
+      margin-bottom: 24px;
+    }
+    .footer-bottom {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .footer-bottom p {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.25);
+    }
+    .footer-bottom a { color: inherit; text-decoration: underline; }
+    .footer-bottom a:hover { color: rgba(255,255,255,0.5); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 760px) {
+      .legal-page { padding-top: calc(72px + 40px); }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 580px) {
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════════════════ NAV ═══════════════════════════════ -->
+  <nav class="nav" id="nav" aria-label="Site navigation">
+    <div class="nav-inner">
+      <a href="/" class="nav-logo" aria-label="MPI Artist Services — Home">
+        <svg aria-hidden="true" width="28" height="28" viewBox="0 0 32 32" fill="none">
+          <rect width="32" height="32" rx="6" fill="#C69214"/>
+          <path d="M8 23V10l8 9 8-9v13" stroke="#0D1B2A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        </svg>
+        <span class="nav-logo-text">MPI<span> Artist</span></span>
+      </a>
+      <a href="pricing.html" class="nav-back" aria-label="Back to Pricing">
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+          <path d="M9 2L4 7l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Back to Pricing
+      </a>
+    </div>
+  </nav>
+
+
+  <!-- ═══════════════════════════════ MAIN ═══════════════════════════════ -->
+  <main class="legal-page" id="main">
+    <div class="legal-inner">
+
+      <header class="legal-header">
+        <div class="legal-eyebrow">Legal</div>
+        <h1 class="legal-title">Privacy Policy</h1>
+        <div class="legal-meta">
+          <strong>Effective Date:</strong> April 1, 2026 &nbsp;·&nbsp;
+          <strong>Company:</strong> Mollohan Production Inc. / MPI Artist Services &nbsp;·&nbsp;
+          <strong>Website:</strong> <a href="https://mpiartist.com" style="color:#C69214;">mpiartist.com</a>
+        </div>
+      </header>
+
+      <div class="info-box">
+        <p>This Privacy Policy explains how Mollohan Production Inc. ("MPI," "we," "us," or "our") collects, uses, stores, and shares information about you when you use the MPI Artist Services platform. We are committed to protecting your privacy and handling your data with transparency and care.</p>
+      </div>
+
+      <!-- 1. About This Policy -->
+      <div class="legal-section">
+        <span class="section-num">Section 1</span>
+        <h2>About This Policy and Who We Are</h2>
+        <p>Mollohan Production Inc. is a Colorado-based company operating MPI Artist Services, an artist analytics, metadata management, Fan Hub, and distribution support platform accessible at mpiartist.com. For the purposes of applicable data protection law, Mollohan Production Inc. is the data controller responsible for your personal information collected through the Services.</p>
+        <p>This Privacy Policy applies to all personal information collected through mpiartist.com and any related services, applications, APIs, or communications. It does not apply to third-party websites or services that may be linked to from our platform — those are governed by their own privacy policies.</p>
+        <p>By creating an account or using the Services, you acknowledge that you have read and understood this Privacy Policy. If you do not agree with our data practices, please do not use the Services.</p>
+        <p>We may update this Privacy Policy from time to time. When we make material changes, we will update the "Effective Date" and, where appropriate, notify you by email. Your continued use of the Services after any update constitutes acceptance of the revised policy.</p>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- 2. Information We Collect -->
+      <div class="legal-section">
+        <span class="section-num">Section 2</span>
+        <h2>Information We Collect</h2>
+        <p>We collect information in three primary ways: information you provide directly, information collected automatically, and information received from third-party services you connect to your account.</p>
+
+        <h3>2.1 Information You Provide Directly</h3>
+        <ul>
+          <li><strong>Account registration:</strong> When you create an account, you provide your name and email address. You may optionally provide additional profile information such as your artist name, genre, and social media handles.</li>
+          <li><strong>Payment information:</strong> We do not store your payment card numbers or bank account details directly. All payment processing is handled by PayPal. When you subscribe to a plan or use the Fan Hub, PayPal collects and processes your payment credentials. We receive transaction records (subscription IDs, payment statuses, and timestamps) from PayPal to manage your subscription.</li>
+          <li><strong>Communications:</strong> When you contact us by email or through the platform, we retain the content of your communications and your contact details in order to respond and maintain a record of our interaction.</li>
+          <li><strong>Artist content:</strong> Any music files, artwork, metadata, lyrics, or other content you upload to the platform as part of the Services.</li>
+          <li><strong>Fan Hub content:</strong> Descriptions, pricing, and exclusive content you publish to your Fan Hub, along with fan transaction records.</li>
+        </ul>
+
+        <h3>2.2 Information Collected Automatically</h3>
+        <ul>
+          <li><strong>Usage data:</strong> When you use the platform, we automatically log information about your interactions, including pages visited, features used, clicks, and session duration. This helps us understand how the platform is used and where improvements can be made.</li>
+          <li><strong>Device and technical data:</strong> We collect information about the device and browser you use to access the platform, including IP address, browser type and version, operating system, time zone, and referring URLs.</li>
+          <li><strong>Cookies and similar technologies:</strong> We use cookies and similar tracking technologies to maintain your session (keeping you logged in), remember your preferences (such as billing period selections), and gather aggregate analytics. You can control cookies through your browser settings, though disabling certain cookies may impair platform functionality.</li>
+        </ul>
+
+        <h3>2.3 Information Received from Third-Party Services</h3>
+        <p>To provide streaming analytics and platform features, you may connect third-party accounts to MPI Artist Services. When you authorize these connections, we receive data from those services as described below:</p>
+
+        <div class="data-table-wrap">
+          <table class="data-table" role="table" aria-label="Third-party data sources">
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Data Received</th>
+                <th>Purpose</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Spotify</strong></td>
+                <td>OAuth access tokens, streaming counts, listener counts, playlist placements, follower data, monthly listener statistics</td>
+                <td>Populate your Spotify analytics dashboard; track streaming performance over time</td>
+              </tr>
+              <tr>
+                <td><strong>YouTube</strong></td>
+                <td>OAuth access tokens, video views, watch time, subscriber counts, channel analytics</td>
+                <td>Display YouTube performance metrics in the analytics dashboard</td>
+              </tr>
+              <tr>
+                <td><strong>Apple Music</strong></td>
+                <td>OAuth access tokens, streams, shazams, purchases, playlist adds</td>
+                <td>Display Apple Music metrics alongside other streaming platform data</td>
+              </tr>
+              <tr>
+                <td><strong>PayPal</strong></td>
+                <td>Subscription IDs, payment statuses, transaction amounts, payout records</td>
+                <td>Manage subscription billing, process Fan Hub revenue, calculate payouts</td>
+              </tr>
+              <tr>
+                <td><strong>Chartmetric</strong></td>
+                <td>Cross-platform streaming data, chart positions, playlist metrics, audience demographics</td>
+                <td>Supplement first-party data with industry-wide analytics and benchmarking</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>OAuth tokens obtained from Spotify, YouTube, and Apple Music are stored securely and used solely to make authorized API calls on your behalf. We do not use these tokens for any purpose other than fetching data for your MPI dashboard. You may revoke these connections at any time through your MPI account settings or directly through each third-party platform.</p>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- 3. How We Use Your Information -->
+      <div class="legal-section">
+        <span class="section-num">Section 3</span>
+        <h2>How We Use Your Information</h2>
+        <p>We use the information we collect for the following purposes:</p>
+
+        <h3>3.1 Providing and Operating the Services</h3>
+        <p>Your account information, connected platform credentials, and streaming data are necessary to provide core platform functionality — including your analytics dashboard, metadata tools, Fan Hub operations, and distribution support. Without this data, we cannot deliver the Services you have subscribed to.</p>
+
+        <h3>3.2 Analytics Display and Reporting</h3>
+        <p>Streaming metrics, audience data, and platform analytics received from connected services are processed and displayed within your MPI dashboard. We may perform calculations, aggregations, and historical comparisons on this data to generate trend reports, release performance summaries, and benchmark insights. This processing occurs on your behalf and for your benefit as an MPI subscriber.</p>
+
+        <h3>3.3 Billing and Subscription Management</h3>
+        <p>We use your subscription information, PayPal transaction records, and payment status data to manage your active subscription, enforce plan entitlements, process Fan Hub payouts, resolve billing disputes, and comply with financial record-keeping obligations.</p>
+
+        <h3>3.4 Email Communications</h3>
+        <p>We use your email address for the following communications:</p>
+        <ul>
+          <li><strong>Transactional emails:</strong> Account confirmation, password resets, subscription confirmations, payment receipts, payout notifications, and service-critical alerts. These emails are sent as part of the Services and cannot be opted out of while your account is active.</li>
+          <li><strong>Platform updates:</strong> Notifications about new features, changes to your plan, or updates to our policies. You may adjust the frequency of these communications in your account settings.</li>
+          <li><strong>Marketing communications:</strong> Promotional emails about MPI services, new features, or partnerships. You may opt out of marketing emails at any time by clicking the "Unsubscribe" link in any marketing email, or by updating your notification preferences in your account settings.</li>
+        </ul>
+
+        <h3>3.5 Platform Improvement and Security</h3>
+        <p>We analyze usage patterns, error logs, and aggregate performance data to improve the reliability, performance, and features of the platform. We also use technical data (including IP addresses and device information) to detect and prevent fraud, unauthorized access, and abuse of the Services.</p>
+
+        <h3>3.6 Legal Compliance</h3>
+        <p>We may process and retain certain information as required to comply with applicable laws and regulations, respond to lawful requests from government authorities, enforce our Terms of Service, and protect the rights, property, and safety of MPI, our users, and the public.</p>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- 4. How We Share Your Information -->
+      <div class="legal-section">
+        <span class="section-num">Section 4</span>
+        <h2>How We Share Your Information</h2>
+        <p>We do not sell your personal information to third parties. We share your information only in the following limited circumstances:</p>
+
+        <h3>4.1 Third-Party Service Providers</h3>
+        <p>We engage trusted third-party vendors to help us operate the platform. These vendors have access to personal information only to the extent necessary to perform their functions and are contractually obligated to protect your information and use it only for the purposes for which it is disclosed. Key service providers include:</p>
+        <ul>
+          <li><strong>Amazon Web Services (AWS S3):</strong> We use AWS S3 for cloud storage of platform data, uploaded artist content, and system backups. Data stored on AWS is subject to AWS's security standards and our data processing agreements.</li>
+          <li><strong>PayPal:</strong> Payment processing for subscriptions and Fan Hub transactions. Your payment data is governed by PayPal's Privacy Policy.</li>
+          <li><strong>Chartmetric:</strong> We use Chartmetric's data feeds to supplement the streaming analytics displayed on your dashboard. We share identifiers (such as Spotify Artist IDs) with Chartmetric to enable data retrieval.</li>
+          <li><strong>Email service providers:</strong> We use a third-party email delivery service to send transactional and marketing emails. Your email address and communication preferences are shared with this provider solely for delivery purposes.</li>
+        </ul>
+
+        <h3>4.2 Legal Requirements</h3>
+        <p>We may disclose your personal information if we believe in good faith that doing so is necessary to: (a) comply with applicable law, regulation, legal process, or governmental request; (b) enforce our Terms of Service; (c) protect the security or integrity of the Services; or (d) protect the rights, property, or safety of MPI, our users, or the public.</p>
+
+        <h3>4.3 Business Transfers</h3>
+        <p>In the event of a merger, acquisition, financing, reorganization, bankruptcy, or sale of all or a portion of MPI's assets, your personal information may be transferred as part of that transaction. We will provide notice of any such transfer and any changes to this Privacy Policy that result from it.</p>
+
+        <h3>4.4 With Your Consent</h3>
+        <p>We may share your information in other ways if you have explicitly consented to such sharing.</p>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- 5. Data Storage and Security -->
+      <div class="legal-section">
+        <span class="section-num">Section 5</span>
+        <h2>Data Storage and Security</h2>
+
+        <h3>5.1 Storage Location</h3>
+        <p>Your data is stored on servers located in the United States, primarily through Amazon Web Services (AWS). By using the Services, you consent to the transfer, storage, and processing of your information in the United States. If you are located outside the United States, please be aware that U.S. data protection laws may differ from those in your jurisdiction.</p>
+
+        <h3>5.2 Security Measures</h3>
+        <p>We implement industry-standard technical, administrative, and physical safeguards to protect your personal information against unauthorized access, alteration, disclosure, or destruction. These measures include encrypted data transmission (TLS/HTTPS), access controls limiting employee access to personal data, secure storage of OAuth tokens, and regular security reviews of our infrastructure.</p>
+        <p>However, no method of transmission over the internet or electronic storage is 100% secure. While we take the protection of your data seriously, we cannot guarantee absolute security. You are responsible for maintaining the confidentiality of your account credentials and for any activity that occurs under your account.</p>
+
+        <h3>5.3 OAuth Token Security</h3>
+        <p>OAuth access tokens from Spotify, YouTube, and Apple Music are stored in encrypted form and are used solely to make authorized API requests on your behalf. We do not transmit these tokens to any third party other than to the issuing platform (e.g., Spotify's API servers) in the course of normal platform operation. Tokens are refreshed or revoked in accordance with each platform's OAuth specifications.</p>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- 6. Data Retention -->
+      <div class="legal-section">
+        <span class="section-num">Section 6</span>
+        <h2>Data Retention</h2>
+        <p>We retain your personal information for as long as your account is active and for a reasonable period thereafter to fulfill the purposes outlined in this Privacy Policy, comply with legal obligations, resolve disputes, and enforce our agreements. The following general retention guidelines apply:</p>
+        <ul>
+          <li><strong>Account data (email, profile):</strong> Retained while your account is active. Deleted within 90 days of a confirmed account deletion request, subject to any legal hold obligations.</li>
+          <li><strong>Streaming analytics data:</strong> Historical analytics data (e.g., monthly listener trends, streaming counts) is retained while your account is active to enable historical comparisons and reporting. It is deleted within 90 days of account deletion.</li>
+          <li><strong>Financial and billing records:</strong> Subscription records and Fan Hub transaction records are retained for a minimum of 7 years to comply with financial record-keeping requirements under applicable U.S. tax law, even after account deletion.</li>
+          <li><strong>Communications:</strong> Support communications and emails are retained for up to 3 years to maintain a record of our interactions and assist in resolving future disputes.</li>
+          <li><strong>OAuth tokens:</strong> Revoked immediately upon disconnection of a third-party account or deletion of your MPI account, whichever occurs first.</li>
+        </ul>
+        <p>When retention periods expire, we delete or anonymize personal information. Where full deletion is not immediately possible (for example, data stored in encrypted backups), we isolate the data from further processing until deletion is feasible.</p>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- 7. Your Rights and Choices -->
+      <div class="legal-section">
+        <span class="section-num">Section 7</span>
+        <h2>Your Rights and Choices</h2>
+        <p>Depending on your location, you may have certain rights with respect to your personal information. We honor the following rights for all users regardless of jurisdiction:</p>
+
+        <h3>7.1 Access and Portability</h3>
+        <p>You may request a copy of the personal information we hold about you by emailing <a href="mailto:info@mpiartist.com">info@mpiartist.com</a> with the subject line "Data Access Request." We will respond within 30 days and provide your data in a commonly used, machine-readable format where technically feasible.</p>
+
+        <h3>7.2 Correction</h3>
+        <p>You may update or correct inaccurate personal information through your account settings at any time. If you believe there is an error in data we hold that you cannot correct yourself, contact us at <a href="mailto:info@mpiartist.com">info@mpiartist.com</a> and we will investigate and correct the information if warranted.</p>
+
+        <h3>7.3 Account and Data Deletion</h3>
+        <p>You have the right to request deletion of your account and associated personal data. To initiate a deletion request, send an email to <a href="mailto:info@mpiartist.com">info@mpiartist.com</a> with the subject line "Account Deletion Request." Upon receiving your request, we will:</p>
+        <ul>
+          <li>Cancel any active subscription;</li>
+          <li>Process any outstanding Fan Hub payouts owed to you;</li>
+          <li>Delete your account and associated personal data within 90 days, subject to applicable legal retention requirements (see Section 6).</li>
+        </ul>
+        <p>Please note that certain data (such as financial transaction records) may be retained beyond account deletion as required by law. Where we retain data, it will not be used for any purpose other than compliance with legal obligations.</p>
+
+        <h3>7.4 Disconnecting Third-Party Accounts</h3>
+        <p>You may disconnect Spotify, YouTube, Apple Music, or other linked accounts at any time through your MPI account settings. Upon disconnection, we will cease making API calls to that service and will delete the associated OAuth tokens. Historical analytics data derived from those connections prior to disconnection may be retained as described in Section 6.</p>
+
+        <h3>7.5 Marketing Opt-Out</h3>
+        <p>You may opt out of marketing emails at any time by clicking the "Unsubscribe" link in any marketing email or by contacting us at <a href="mailto:info@mpiartist.com">info@mpiartist.com</a>. Note that even after opting out of marketing communications, you will continue to receive transactional emails related to your account and subscription (e.g., payment receipts, payout notifications).</p>
+
+        <h3>7.6 California Privacy Rights</h3>
+        <p>If you are a California resident, you have additional rights under the California Consumer Privacy Act (CCPA) and the California Privacy Rights Act (CPRA), including the right to know what personal information is collected and sold, the right to opt out of the sale of personal information, the right to non-discrimination for exercising your privacy rights, and the right to limit use of sensitive personal information. We do not sell personal information. To exercise your California rights, contact us at <a href="mailto:info@mpiartist.com">info@mpiartist.com</a>.</p>
+
+        <h3>7.7 Colorado Privacy Rights</h3>
+        <p>As a Colorado-based company, MPI is subject to the Colorado Privacy Act (CPA). Colorado residents may have rights to access, correct, delete, and obtain a copy of their personal data, and to opt out of certain processing. To exercise these rights, email <a href="mailto:info@mpiartist.com">info@mpiartist.com</a> with the subject line "Colorado Privacy Request." We will respond within 45 days as required by law.</p>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- 8. Cookies -->
+      <div class="legal-section">
+        <span class="section-num">Section 8</span>
+        <h2>Cookies and Tracking Technologies</h2>
+        <p>We use cookies (small data files stored in your browser) and similar technologies to operate the platform. The categories of cookies we use are:</p>
+        <ul>
+          <li><strong>Essential cookies:</strong> Required for core platform functionality, including keeping you logged in during a session and maintaining your preferences (such as billing period selections). These cannot be disabled without impairing platform use.</li>
+          <li><strong>Analytics cookies:</strong> We use aggregate, anonymized usage analytics to understand how artists use the platform and to identify areas for improvement. We do not use third-party behavioral advertising cookies.</li>
+          <li><strong>Preference cookies:</strong> Store your UI preferences (e.g., selected billing cycle, dashboard layout) to improve your experience across sessions.</li>
+        </ul>
+        <p>You can manage cookies through your browser's cookie settings. Most browsers allow you to block or delete cookies. Please note that blocking essential cookies will prevent the platform from functioning correctly.</p>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- 9. Children's Privacy -->
+      <div class="legal-section">
+        <span class="section-num">Section 9</span>
+        <h2>Children's Privacy</h2>
+        <p>The Services are not directed to individuals under the age of 18, and we do not knowingly collect personal information from children under 18. If we become aware that we have inadvertently collected personal information from a person under 18 without parental consent, we will take prompt steps to delete that information. If you believe we may have collected information from a minor, please contact us at <a href="mailto:info@mpiartist.com">info@mpiartist.com</a>.</p>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- 10. Third-Party Services and Links -->
+      <div class="legal-section">
+        <span class="section-num">Section 10</span>
+        <h2>Third-Party Services and External Links</h2>
+        <p>The MPI platform integrates with and may link to third-party services including Spotify, YouTube, Apple Music, PayPal, Chartmetric, and AWS. This Privacy Policy does not govern the privacy practices of those third parties. We encourage you to review the privacy policies of each third-party service before connecting them to your MPI account.</p>
+        <p>Relevant third-party privacy policies:</p>
+        <ul>
+          <li><a href="https://www.spotify.com/us/legal/privacy-policy/" target="_blank" rel="noopener noreferrer">Spotify Privacy Policy</a></li>
+          <li><a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer">Google / YouTube Privacy Policy</a></li>
+          <li><a href="https://www.apple.com/legal/privacy/" target="_blank" rel="noopener noreferrer">Apple Privacy Policy</a></li>
+          <li><a href="https://www.paypal.com/us/legalhub/privacy-full" target="_blank" rel="noopener noreferrer">PayPal Privacy Statement</a></li>
+          <li><a href="https://aws.amazon.com/privacy/" target="_blank" rel="noopener noreferrer">AWS Privacy Notice</a></li>
+          <li><a href="https://www.chartmetric.com/privacy" target="_blank" rel="noopener noreferrer">Chartmetric Privacy Policy</a></li>
+        </ul>
+        <p>MPI is not responsible for the privacy practices, content, or data handling of any third-party service, regardless of whether a link to that service appears on our platform.</p>
+      </div>
+      <div class="section-divider"></div>
+
+      <!-- 11. Contact -->
+      <div class="legal-section">
+        <span class="section-num">Section 11</span>
+        <h2>Contact Us</h2>
+        <p>If you have questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:</p>
+        <ul>
+          <li><strong>Mollohan Production Inc. / MPI Artist Services</strong></li>
+          <li>Colorado, USA</li>
+          <li>Email: <a href="mailto:info@mpiartist.com">info@mpiartist.com</a></li>
+          <li>Website: <a href="https://mpiartist.com">mpiartist.com</a></li>
+        </ul>
+        <p>For privacy-specific requests (access, deletion, correction), please include "Privacy Request" in the subject line of your email so we can route your request appropriately. We will respond to all privacy inquiries within the timeframes required by applicable law, and in all cases within 45 days.</p>
+      </div>
+
+    </div><!-- /legal-inner -->
+  </main>
+
+
+  <!-- ═══════════════════════════════ FOOTER ═══════════════════════════════ -->
+  <footer class="footer" role="contentinfo">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="/" class="nav-logo" aria-label="MPI Artist Services">
+            <svg aria-hidden="true" width="28" height="28" viewBox="0 0 32 32" fill="none">
+              <rect width="32" height="32" rx="6" fill="#C69214"/>
+              <path d="M8 23V10l8 9 8-9v13" stroke="#0D1B2A" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+            <span class="nav-logo-text">MPI<span> Artist</span></span>
+          </a>
+          <p>A selective release platform for artists who want structure and discipline.</p>
+        </div>
+
+        <div class="footer-links-group">
+          <p>Platform</p>
+          <ul role="list" class="footer-links">
+            <li><a href="/#what-we-are">What It Is</a></li>
+            <li><a href="pricing.html">Pricing</a></li>
+            <li><a href="/#how-it-works">How to Apply</a></li>
+            <li><a href="apply.html">Apply Now</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-links-group">
+          <p>Legal &amp; Contact</p>
+          <ul role="list" class="footer-links">
+            <li><a href="terms.html">Terms of Service</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="mailto:info@mpiartist.com">Email MPI</a></li>
+            <li><a href="/#founder">The Founder</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-divider"></div>
+
+      <div class="footer-bottom">
+        <p>&copy; 2026 Mollohan Production Inc. · MPI Artist Services · All rights reserved. · <em>For Artists. By Artists.</em></p>
+        <p>MPI Artist Services is a record label and artist services division of Mollohan Production Inc. · Label inquiries: <a href="mailto:info@mpiartist.com">info@mpiartist.com</a></p>
+        <p><a href="terms.html">Terms of Service</a> &nbsp;·&nbsp; <a href="privacy.html">Privacy Policy</a></p>
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    /* ── NAV scroll effect ── */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+  </script>
+
+</body>
+</html>
