@@ -817,15 +817,22 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){ dataLayer.push(arguments); }
     gtag('js', new Date());
+    // Read rep_variant cookie for A/B tracking
+    function getRepVariant() {
+      const m = document.cookie.match(/(?:^|;\s*)rep_variant=([^;]+)/);
+      return m ? m[1] : 'A';
+    }
     gtag('config', 'G-XXXXXXXXXX', {
       page_title: 'Pricing',
       page_path: '/pricing'
     });
-    // Fire pricing_page_view with billing cycle
+    // Fire pricing_page_view with billing cycle + variant
     window.addEventListener('DOMContentLoaded', function() {
       const cycle = localStorage.getItem('mpi_billing_cycle') || 'monthly';
+      const variant = getRepVariant();
       gtag('event', 'pricing_page_view', {
         billing_cycle: cycle,
+        rep_variant: variant,
         page_location: window.location.href
       });
     });
@@ -961,10 +968,10 @@
                 Email support, 72-hr response
               </li>
             </ul>
-            <!-- PayPal plan IDs to be injected after billing plans are created -->
             <button class="cta-btn cta-btn-ghost" data-tier="toolkit" data-plan-monthly="P-3KY83267RR139793GNHSV3FQ" data-plan-annual="P-62R51543HX302870GNHSV3FY" onclick="startTrial(this)">
               Start 7-day free trial →
             </button>
+            <div class="paypal-container"></div>
             <p class="cta-sublabel">No charge during trial.</p>
           </div>
 
@@ -1015,10 +1022,10 @@
                 Email support, 48-hr response
               </li>
             </ul>
-            <!-- PayPal plan IDs to be injected after billing plans are created -->
             <button class="cta-btn cta-btn-teal" data-tier="core" data-plan-monthly="P-84175554HY2464018NHSV3FY" data-plan-annual="P-81H758338C130092DNHSV3FY" onclick="startTrial(this)">
               Start 7-day free trial →
             </button>
+            <div class="paypal-container"></div>
             <p class="cta-sublabel">No charge during trial.</p>
           </div>
 
@@ -1068,10 +1075,10 @@
                 Priority support, 24-hr response
               </li>
             </ul>
-            <!-- PayPal plan IDs to be injected after billing plans are created -->
             <button class="cta-btn cta-btn-primary" data-tier="growth" data-plan-monthly="P-5NL58356EA824673PNHSV3GA" data-plan-annual="P-17Y487913R670930VNHSV3GA" onclick="startTrial(this)">
               Start 7-day free trial →
             </button>
+            <div class="paypal-container"></div>
             <p class="cta-sublabel">No charge during trial.</p>
           </div>
 
@@ -1405,7 +1412,7 @@
 
     <!-- Legal line -->
     <div class="legal-line">
-      Prices in USD. Taxes calculated at checkout where applicable. MPI Fan Hub platform fees apply on fan subscription revenue — see <a href="#">Terms of Service</a>. By starting a trial or purchasing, you agree to the <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.
+      Prices in USD. Taxes calculated at checkout where applicable. MPI Fan Hub platform fees apply on fan subscription revenue — see <a href="/terms.html">Terms of Service</a>. By starting a trial or purchasing, you agree to the <a href="/terms.html">Terms of Service</a> and <a href="/privacy.html">Privacy Policy</a>.
     </div>
 
   </main>
@@ -1523,6 +1530,7 @@
               gtag('event', 'begin_checkout', {
                 tier: tier,
                 billing_cycle: billing,
+                rep_variant: getRepVariant(),
                 currency: 'USD'
               });
               return actions.subscription.create({ plan_id: planId });
@@ -1535,6 +1543,7 @@
               gtag('event', 'trial_started', {
                 tier: tier,
                 billing_cycle: billing,
+                rep_variant: getRepVariant(),
                 subscription_id: data.subscriptionID,
                 currency: 'USD'
               });
