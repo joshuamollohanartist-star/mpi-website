@@ -3,15 +3,310 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MPI Artist Services — A Selective Release Platform for Serious Artists</title>
-  <meta name="description" content="Distribution is built in. The real value is the system behind the release. MPI Artist Services is selective, structured, and built for independent artists across all genres." />
-  <meta property="og:title" content="MPI Artist Services" />
-  <meta property="og:description" content="A selective release platform for artists who want structure and discipline." />
+  <title>MPI Artist Services — Built for Artists. By Artists.</title>
+  <meta name="description" content="Label-level structure. Complete independence. MPI gives independent artists the release system, analytics, fan platform, and career tools that major labels keep to themselves — without giving up ownership, royalties, or creative control." />
+  <meta property="og:title" content="MPI Artist Services — Built for Artists. By Artists." />
+  <meta property="og:description" content="Label-level structure. Complete independence. Release system, analytics, fan platform, and career tools for independent artists." />
   <meta property="og:url" content="https://www.mpiartist.com" />
   <meta property="og:type" content="website" />
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/page.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='4' fill='%230D1B2A'/><text x='16' y='23' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='18' fill='%23C69214'>M</text></svg>" />
+
+  <style>
+    /* ── SCORE WIDGET SECTION ── */
+    .score-widget-section {
+      background: rgba(17, 34, 51, 0.6);
+      border-top: 1px solid rgba(198,146,20,0.15);
+      border-bottom: 1px solid rgba(198,146,20,0.15);
+      padding: var(--space-20) 0;
+    }
+    .score-widget-inner {
+      max-width: 560px;
+      margin: 0 auto;
+      padding: 0 24px;
+      text-align: center;
+    }
+    .score-widget-headline {
+      font-size: clamp(1.8rem, 4vw, 2.4rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: var(--off-white);
+      margin-bottom: var(--space-3);
+    }
+    .score-widget-sub {
+      color: rgba(245,241,232,0.55);
+      font-size: 1rem;
+      margin-bottom: var(--space-8);
+    }
+    /* search-wrap, search-input, search-dropdown already styled via shared selectors below */
+
+    /* ── SHARED SEARCH COMPONENTS (score.html style) ── */
+    .search-wrap { position: relative; width: 100%; max-width: 480px; margin: 0 auto; }
+    .search-input {
+      width: 100%;
+      background: rgba(255,255,255,0.07);
+      border: 1.5px solid rgba(198,146,20,0.35);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-family: var(--font-body, 'Inter', sans-serif);
+      font-size: 0.95rem;
+      color: var(--off-white, #F5F1E8);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input:focus { border-color: var(--gold, #C69214); }
+    .search-input::placeholder { color: rgba(245,241,232,0.35); }
+
+    .selected-artist-card {
+      display: none;
+      align-items: center;
+      gap: 14px;
+      background: rgba(17,34,51,0.8);
+      border: 1px solid rgba(198,146,20,0.3);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-top: 10px;
+      text-align: left;
+    }
+    .selected-artist-card.show { display: flex; }
+    .selected-artist-card img {
+      width: 48px; height: 48px;
+      border-radius: 50%; object-fit: cover; flex-shrink: 0;
+    }
+    .selected-artist-card-info { flex: 1; min-width: 0; }
+    .selected-artist-card-name { font-weight: 700; font-size: 0.95rem; color: var(--off-white, #F5F1E8); }
+    .selected-artist-card-meta { font-size: 0.78rem; color: rgba(245,241,232,0.4); margin-top: 2px; }
+    .selected-artist-card-remove {
+      background: none; border: none;
+      color: rgba(245,241,232,0.4); cursor: pointer;
+      font-size: 1.2rem; padding: 4px 8px;
+      transition: color 0.2s;
+    }
+    .selected-artist-card-remove:hover { color: #ef4444; }
+    .score-widget-analyze-btn {
+      margin-top: 12px;
+      width: 100%;
+      max-width: 480px;
+      background: var(--gold, #C69214);
+      border: none;
+      color: #091520;
+      border-radius: 10px;
+      padding: 16px 20px;
+      font-family: var(--font-body, 'Inter', sans-serif);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      display: none;
+      letter-spacing: -0.01em;
+    }
+    .score-widget-analyze-btn.show { display: block; }
+    .score-widget-analyze-btn:hover { background: #e8b53a; transform: translateY(-1px); }
+    .score-widget-trust {
+      margin-top: 14px;
+      font-size: 0.75rem;
+      color: rgba(245,241,232,0.3);
+      text-align: center;
+    }
+
+    /* ── HOMEPAGE SEARCH WIDGET ── */
+    .hero-search-wrap { position: relative; width: 100%; max-width: 480px; }
+    .hero-search-input {
+      width: 100%;
+      background: rgba(255,255,255,0.07);
+      border: 1.5px solid rgba(198,146,20,0.35);
+      border-radius: 10px;
+      padding: 14px 18px;
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--off-white);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .hero-search-input:focus { border-color: var(--gold); }
+    .hero-search-input::placeholder { color: rgba(245,241,232,0.35); }
+
+    .search-dropdown {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0; right: 0;
+      background: #1a2d42;
+      border: 1px solid rgba(198,146,20,0.25);
+      border-radius: 10px;
+      overflow: hidden;
+      z-index: 50;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+    .search-dropdown.open { display: block; }
+    .search-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: background 0.15s;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .search-item:last-child { border-bottom: none; }
+    .search-item:hover { background: rgba(198,146,20,0.1); }
+    .search-item img {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: rgba(255,255,255,0.08);
+      flex-shrink: 0;
+    }
+    .search-item-placeholder {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: rgba(198,146,20,0.15);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; flex-shrink: 0;
+    }
+    .search-item-info { flex: 1; min-width: 0; }
+    .search-item-name { font-size: 0.88rem; font-weight: 600; color: var(--off-white); }
+    .search-item-meta { font-size: 0.75rem; color: rgba(245,241,232,0.35); }
+    .search-spinner {
+      text-align: center;
+      padding: 14px;
+      color: rgba(245,241,232,0.35);
+      font-size: 0.85rem;
+    }
+
+    /* Selected artist card */
+    .hero-selected-artist {
+      display: none;
+      align-items: center;
+      gap: 14px;
+      background: var(--navy-mid);
+      border: 1px solid rgba(198,146,20,0.25);
+      border-radius: 12px;
+      padding: 14px 18px;
+      margin-top: 10px;
+      max-width: 480px;
+    }
+    .hero-selected-artist.show { display: flex; }
+    .hero-selected-artist img {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .hero-selected-info { flex: 1; min-width: 0; }
+    .hero-selected-name { font-weight: 700; font-size: 0.95rem; color: var(--off-white); }
+    .hero-selected-meta { font-size: 0.78rem; color: rgba(245,241,232,0.4); margin-top: 2px; }
+    .hero-selected-remove {
+      background: none; border: none;
+      color: rgba(245,241,232,0.35); cursor: pointer;
+      font-size: 1.2rem; padding: 4px 8px;
+      transition: color 0.2s;
+    }
+    .hero-selected-remove:hover { color: #ef4444; }
+
+    .hero-score-btn {
+      margin-top: 12px;
+      display: none;
+      background: var(--gold);
+      border: none;
+      color: var(--navy-deep);
+      border-radius: 10px;
+      padding: 16px 24px;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: -0.01em;
+      max-width: 480px;
+      width: 100%;
+    }
+    .hero-score-btn.show { display: block; }
+    .hero-score-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+    /* ── SPOTIFY CONNECT BUTTON ── */
+    .btn-spotify {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-4) var(--space-8);
+      border-radius: var(--radius-md);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      border: 1px solid rgba(245,241,232,0.2);
+      background: transparent;
+      color: var(--color-text-muted);
+      cursor: pointer;
+      transition: border-color var(--transition), color var(--transition), background var(--transition);
+      white-space: nowrap;
+      font-family: var(--font-body);
+    }
+    .btn-spotify:hover {
+      border-color: #1DB954;
+      color: #1DB954;
+      background: rgba(29,185,84,0.06);
+    }
+    .btn-spotify svg { flex-shrink: 0; }
+
+    /* ── FEATURE GRID ── */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+      margin-top: var(--space-16);
+    }
+    .feature-card {
+      padding: var(--space-8);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      background: rgba(255,255,255,0.01);
+      transition: border-color var(--transition), background var(--transition), transform var(--transition);
+    }
+    .feature-card:hover {
+      border-color: var(--color-border-strong);
+      background: rgba(198,146,20,0.03);
+      transform: translateY(-2px);
+    }
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-md);
+      background: rgba(198,146,20,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      margin-bottom: var(--space-5);
+      flex-shrink: 0;
+    }
+    .feature-title {
+      font-family: var(--font-display);
+      font-size: var(--text-base);
+      font-weight: 600;
+      color: var(--off-white);
+      margin-bottom: var(--space-3);
+      letter-spacing: -0.01em;
+    }
+    .feature-desc {
+      font-size: var(--text-sm);
+      color: var(--color-text-muted);
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1100px) {
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .feature-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── MOBILE MENU UPDATED ── */
+    .mobile-menu { display: none; }
+    @media (max-width: 640px) {
+      .mobile-menu { display: flex; }
+    }
+  </style>
 </head>
 <body>
 
@@ -28,18 +323,18 @@
       </a>
 
       <ul class="nav-links" role="list">
-        <li><a href="#what-we-are">What It Is</a></li>
-        <li><a href="#tiers">Tiers</a></li>
-        <li><a href="criteria.html">Standards</a></li>
+        <li><a href="#what-mpi-does">What MPI Does</a></li>
+        <li><a href="#tiers">Pricing</a></li>
+        <li><a href="/score.html">Score</a></li>
         <li><a href="#how-it-works">How It Works</a></li>
         <li><a href="/#founder">The Founder</a></li>
-        <li><a href="pricing.html">Pricing</a></li>
+        <li><a href="pricing.html">Plans</a></li>
       </ul>
 
       <div class="nav-cta">
         <a href="https://dashboard.mpiartist.com" class="btn btn-ghost">Artist Login</a>
         <a href="/score.html" class="btn btn-ghost" style="color:#C69214;border-color:rgba(198,146,20,0.4);">Free Score</a>
-        <a href="apply.html" class="btn btn-primary">Apply Now</a>
+        <a href="/pricing.html" class="btn btn-primary">Start Free Trial</a>
       </div>
 
       <button class="nav-mobile-toggle" aria-label="Open menu" id="mobileToggle">
@@ -51,15 +346,15 @@
   <!-- Mobile menu -->
   <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
     <ul role="list">
-      <li><a href="#what-we-are" class="mobile-link">What It Is</a></li>
-      <li><a href="#tiers" class="mobile-link">Tiers</a></li>
-      <li><a href="criteria.html" class="mobile-link">Standards</a></li>
+      <li><a href="#what-mpi-does" class="mobile-link">What MPI Does</a></li>
+      <li><a href="#tiers" class="mobile-link">Pricing</a></li>
+      <li><a href="/score.html" class="mobile-link">Score</a></li>
       <li><a href="#how-it-works" class="mobile-link">How It Works</a></li>
       <li><a href="/#founder" class="mobile-link">The Founder</a></li>
-      <li><a href="pricing.html" class="mobile-link">Pricing</a></li>
+      <li><a href="pricing.html" class="mobile-link">Plans</a></li>
     </ul>
     <a href="https://dashboard.mpiartist.com" class="btn btn-ghost btn-lg" style="width: 100%; justify-content: center;">Artist Login</a>
-    <a href="apply.html" class="btn btn-primary btn-lg" style="width: 100%; justify-content: center; margin-top: var(--space-4);">Apply Now</a>
+    <a href="/pricing.html" class="btn btn-primary btn-lg" style="width: 100%; justify-content: center; margin-top: var(--space-4);">Start Free Trial</a>
   </div>
 
   <main>
@@ -73,43 +368,74 @@
 
       <div class="container hero-content">
         <div class="hero-eyebrow">
-          <span class="badge badge-gold">Free Score · No Login Required</span>
+          <span class="badge badge-gold">For Artists. By Artists.</span>
         </div>
 
         <h1 class="display hero-heading" id="hero-heading">
-          Find out exactly<br/>
-          <em class="hero-em">where you stand.</em>
+          Label-level structure.<br/>
+          <em class="hero-em">Complete independence.</em>
         </h1>
 
         <p class="body-lg hero-subtext">
-          Get your free MPI Artist Score in seconds. See how your Spotify performance stacks up — and where your biggest growth opportunity is hiding.
+          Label-level structure. Complete independence. MPI gives independent artists the release system, analytics, fan platform, and career tools that major labels keep to themselves — without giving up ownership, royalties, or creative control.
         </p>
 
-        <div class="hero-score-input" style="display:flex;gap:10px;max-width:520px;margin-bottom:var(--space-4);">
-          <input
-            type="text"
-            id="hero-spotify-input"
-            placeholder="Paste your Spotify artist URL…"
-            style="flex:1;background:rgba(255,255,255,0.07);border:1.5px solid rgba(198,146,20,0.35);border-radius:10px;padding:14px 18px;font-size:0.95rem;color:#fff;outline:none;"
-            onkeydown="if(event.key==='Enter') window.location.href='/score.html?url='+encodeURIComponent(this.value)"
-          />
-          <a id="hero-analyze-btn" href="/score.html" class="btn btn-primary btn-lg" style="white-space:nowrap;padding:14px 24px;"
-            onclick="event.preventDefault(); window.location.href='/score.html?url='+encodeURIComponent(document.getElementById('hero-spotify-input').value||'')"
-          >Get My Score</a>
+        <!-- Hero CTAs -->
+        <div class="hero-actions" style="margin-bottom: var(--space-6);">
+          <a href="/score.html" class="btn btn-primary btn-lg">Get Your Free Artist Score →</a>
+          <button class="btn-spotify" onclick="connectSpotify()" id="spotify-connect-btn" type="button">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+            </svg>
+            Connect Spotify
+          </button>
         </div>
 
-        <div style="display:flex;gap:20px;font-size:0.78rem;color:rgba(255,255,255,0.35);margin-bottom:var(--space-8);">
-          <span>✓ Free forever</span>
-          <span>✓ No login needed</span>
-          <span>✓ Results in seconds</span>
+        <div style="margin-bottom: var(--space-6);">
+          <p style="font-size: var(--text-xs); color: rgba(245,241,232,0.35); letter-spacing: 0.04em;">Free forever · No login required · Results in seconds</p>
         </div>
 
-        <div class="hero-actions">
-          <a href="apply.html" class="btn btn-ghost btn-lg">Apply for Access</a>
-          <a href="#tiers" class="btn btn-ghost btn-lg">See pricing</a>
+        <!-- Artist name search widget -->
+        <div style="margin-bottom: var(--space-10);">
+          <div class="hero-search-wrap">
+            <input
+              type="text"
+              id="hero-artist-search"
+              class="hero-search-input"
+              placeholder="Search your artist name to get your score…"
+              autocomplete="off"
+              oninput="heroDebounceSearch(this)"
+            />
+            <div class="search-dropdown" id="hero-search-dropdown"></div>
+          </div>
+          <div class="hero-selected-artist" id="hero-selected-artist">
+            <img src="" alt="" id="hero-selected-img" />
+            <div class="hero-selected-info">
+              <div class="hero-selected-name" id="hero-selected-name"></div>
+              <div class="hero-selected-meta" id="hero-selected-meta"></div>
+            </div>
+            <button class="hero-selected-remove" onclick="heroClearArtist()" type="button" aria-label="Remove selection">×</button>
+          </div>
+          <button class="hero-score-btn" id="hero-score-btn" onclick="heroGoToScore()" type="button">Get My Score →</button>
         </div>
 
-
+        <!-- Hero stat bar -->
+        <div class="hero-stats">
+          <div class="stat-item">
+            <span class="stat-number">262K+</span>
+            <span class="stat-label text-muted">Monthly Listeners</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-number">312</span>
+            <span class="stat-label text-muted">Playlist Placements</span>
+          </div>
+          <div class="stat-divider" aria-hidden="true"></div>
+          <div class="stat-item">
+            <span class="stat-number">100%</span>
+            <span class="stat-label text-muted">Royalties to Artists</span>
+          </div>
+        </div>
       </div>
 
       <div class="hero-scroll-indicator" aria-hidden="true">
@@ -121,84 +447,147 @@
     </section>
 
 
-    <!-- ═══════════════════════════════ WHAT WE ARE ═══════════════════════════════ -->
-    <section class="section" id="what-we-are" aria-labelledby="what-heading">
+    <!-- ═══════════════════════════════ SCORE WIDGET ═══════════════════════════════ -->
+    <section class="score-widget-section" id="score-widget" aria-labelledby="score-widget-heading">
+      <div class="score-widget-inner">
+        <p class="label text-gold" style="margin-bottom: var(--space-3);">Free Artist Score</p>
+        <h2 class="score-widget-headline" id="score-widget-heading">See where you stand. Free.</h2>
+        <p class="score-widget-sub">Type your artist name, get your MPI Artist Score in seconds.</p>
+
+        <div class="search-wrap" id="score-widget-search-wrap">
+          <input
+            type="text"
+            id="widget-artist-search"
+            class="search-input"
+            placeholder="Search your artist name…"
+            autocomplete="off"
+            oninput="widgetDebounceSearch(this)"
+            aria-label="Search artist name"
+          />
+          <div class="search-dropdown" id="widget-search-dropdown"></div>
+        </div>
+
+        <div class="selected-artist-card" id="widget-selected-artist">
+          <img src="" alt="" id="widget-selected-img" />
+          <div class="selected-artist-card-info">
+            <div class="selected-artist-card-name" id="widget-selected-name"></div>
+            <div class="selected-artist-card-meta" id="widget-selected-meta"></div>
+          </div>
+          <button class="selected-artist-card-remove" onclick="widgetClearArtist()" type="button" aria-label="Remove selection">&times;</button>
+        </div>
+
+        <div style="display:flex;justify-content:center;">
+          <button class="score-widget-analyze-btn" id="widget-score-btn" onclick="widgetGoToScore()" type="button">Get My Free Score &rarr;</button>
+        </div>
+
+        <p class="score-widget-trust">Free forever &middot; No login required &middot; Results in seconds</p>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════════ WHAT MPI DOES ═══════════════════════════════ -->
+    <section class="section" id="what-mpi-does" aria-labelledby="what-heading">
       <div class="container">
         <div class="rule-gold" aria-hidden="true" style="margin-bottom: var(--space-16);"></div>
 
-        <div class="what-layout">
-          <div class="what-left">
-            <p class="label text-gold" style="margin-bottom: var(--space-4);">What MPI Is</p>
-            <h2 class="heading-xl" id="what-heading">
-              Distribution is built in.<br/>
-              The system is the product.
-            </h2>
-          </div>
-
-          <div class="what-right">
-            <p class="body-lg" style="margin-bottom: var(--space-6);">
-              Most artists have access to distribution. What they lack is a structured release process, campaign discipline, and tools built for a specific lane.
-            </p>
-            <p style="color: var(--color-text-muted); margin-bottom: var(--space-6);">
-              MPI is built from real release volume, not theory. Every framework, every automation, every scoring metric was forged inside an active catalog — 165+ songs, 52 albums written and produced, one release every Friday without fail.
-            </p>
-            <p style="color: var(--color-text-muted);">
-              This isn't a distribution upload button with a dashboard tacked on. It's an operating system for artists who treat releasing as a discipline.
-            </p>
-          </div>
+        <div style="text-align: center; max-width: 70ch; margin-inline: auto;">
+          <p class="label text-gold" style="margin-bottom: var(--space-4);">What MPI Does</p>
+          <h2 class="heading-xl" id="what-heading">
+            Everything a major label gives their artists.<br/>
+            <em style="color: var(--gold); font-style: italic;">None of the strings.</em>
+          </h2>
+          <p class="text-muted" style="margin-top: var(--space-6); font-size: var(--text-lg);">
+            MPI is built from real release volume, not theory. Every tool, every system, every metric was forged inside an active catalog — 165+ songs, 52 albums, one release every Friday without fail.
+          </p>
         </div>
 
-        <div class="what-pillars" style="margin-top: var(--space-16);">
-          <div class="pillar-card">
-            <div class="pillar-icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
-              </svg>
-            </div>
-            <h3 class="pillar-title">Distribution to all DSPs</h3>
-            <p class="text-muted">Your music, everywhere. Royalties tracked, splits visible, ISRC managed.</p>
-          </div>
+        <div class="feature-grid reveal">
 
-          <div class="pillar-card">
-            <div class="pillar-icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <!-- 1 -->
+          <div class="feature-card reveal reveal-delay-1">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>
+                <path d="M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01"/>
               </svg>
             </div>
-            <h3 class="pillar-title">6-Week Release Playbook</h3>
-            <p class="text-muted">A structured cycle framework with automated reminders and campaign templates.</p>
+            <h3 class="feature-title">Release Operations</h3>
+            <p class="feature-desc">Prepare metadata once, export to any distributor. ISRC registry, release calendar, and marketing briefs from one place.</p>
           </div>
 
-          <div class="pillar-card">
-            <div class="pillar-icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <!-- 2 -->
+          <div class="feature-card reveal reveal-delay-2">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
               </svg>
             </div>
-            <h3 class="pillar-title">Streaming Analytics</h3>
-            <p class="text-muted">Real data from Spotify, playlist tracking, and the MPI Artist Score built on your actual metrics.</p>
+            <h3 class="feature-title">Live Analytics</h3>
+            <p class="feature-desc">Real Spotify data updated daily. Listener trends, playlist tracking, and MPI Score to show exactly where you stand.</p>
           </div>
 
-          <div class="pillar-card">
-            <div class="pillar-icon" aria-hidden="true">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+          <!-- 3 -->
+          <div class="feature-card reveal reveal-delay-3">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
               </svg>
             </div>
-            <h3 class="pillar-title">Presave &amp; Fan Gate Tools</h3>
-            <p class="text-muted">Automated pre-save campaigns, smart links, and fan-gate flows that grow your list every release.</p>
+            <h3 class="feature-title">MPI Fan Hub</h3>
+            <p class="feature-desc">Your own subscription platform. Set your tiers, prices, and perks. Fans pay you directly.</p>
           </div>
+
+          <!-- 4 -->
+          <div class="feature-card reveal reveal-delay-1">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">AI Campaign Tools</h3>
+            <p class="feature-desc">Promo video generation, album covers, Meta ad launches, and playlist pitching powered by your real streaming data.</p>
+          </div>
+
+          <!-- 5 -->
+          <div class="feature-card reveal reveal-delay-2">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="M2 17l10 5 10-5"/>
+                <path d="M2 12l10 5 10-5"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Distribution Freedom</h3>
+            <p class="feature-desc">Keep your current distributor. MPI is your metadata and release operations brain. Your data always stays yours.</p>
+          </div>
+
+          <!-- 6 -->
+          <div class="feature-card reveal reveal-delay-3">
+            <div class="feature-icon">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </div>
+            <h3 class="feature-title">Music Marketing Funnels</h3>
+            <p class="feature-desc">Pre-save campaigns, email sequences, and release launch playbooks built on what actually works.</p>
+          </div>
+
         </div>
       </div>
     </section>
 
 
-    <!-- ═══════════════════════════════ FOR / NOT FOR ═══════════════════════════════ -->
+    <!-- ═══════════════════════════════ WHO THIS IS FOR ═══════════════════════════════ -->
     <section class="section section-fit" id="fit" aria-labelledby="fit-heading">
       <div class="container container--narrow">
         <div style="text-align: center; margin-bottom: var(--space-12);">
-          <p class="label text-gold" style="margin-bottom: var(--space-3);">Who This Is For</p>
-          <h2 class="heading-xl" id="fit-heading">Built for a specific kind of artist.</h2>
+          <p class="label text-gold" style="margin-bottom: var(--space-3);">Who MPI Is For</p>
+          <h2 class="heading-xl" id="fit-heading">MPI is open to every artist who wants to build.</h2>
+          <p class="text-muted" style="margin-top: var(--space-5); max-width: 56ch; margin-inline: auto;">
+            The door is open. The only requirement is commitment to building something real.
+          </p>
         </div>
 
         <div class="fit-grid">
@@ -212,11 +601,11 @@
               <h3 class="fit-col-title">This is for you if…</h3>
             </div>
             <ul role="list" class="fit-list">
-              <li>You release consistently</li>
               <li>You want a release system, not just an upload button</li>
-              <li>You're willing to execute on a plan</li>
-              <li>You want ownership with structure</li>
-              <li>You're an independent artist serious about your career</li>
+              <li>You're serious about building a real career</li>
+              <li>You want ownership with structure and discipline</li>
+              <li>You're ready to execute on a plan consistently</li>
+              <li>You want label-level tools without giving up control</li>
             </ul>
           </div>
 
@@ -230,12 +619,12 @@
               <h3 class="fit-col-title">This isn't for you if…</h3>
             </div>
             <ul role="list" class="fit-list">
-              <li>You're looking for a cheap upload tool</li>
-              <li>You release when you feel like it</li>
+              <li>You're looking for a cheap upload button with no strategy</li>
+              <li>You want someone else to do all the work for you</li>
               <li>You're unwilling to follow a release process</li>
-              <li>You expect someone else to do the work for you</li>
+              <li>You expect results without consistent effort</li>
             </ul>
-            <p class="fit-redirect text-faint">There are better options for all of the above. This isn't one of them.</p>
+            <p class="fit-redirect text-faint">There are simpler tools for the above. MPI is for artists building, not just uploading.</p>
           </div>
         </div>
       </div>
@@ -247,28 +636,29 @@
       <div class="container">
         <div style="text-align: center; margin-bottom: var(--space-16);">
           <p class="label text-gold" style="margin-bottom: var(--space-3);">Pricing</p>
-          <h2 class="heading-xl" id="tiers-heading">Five tiers. One system.</h2>
+          <h2 class="heading-xl" id="tiers-heading">Four tiers. One system.</h2>
           <p class="text-muted" style="margin-top: var(--space-4); max-width: 56ch; margin-inline: auto;">
-            Every tier includes distribution. Intelligence is what separates them.
+            Every tier gives you ownership of your music and 100% of your royalties. Intelligence and tooling are what separate them.
           </p>
         </div>
 
-        <div class="tiers-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px;">
+        <div class="tiers-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
 
-          <!-- FREE -->
-          <div class="tier-card card" data-tier="free">
+          <!-- TOOLKIT -->
+          <div class="tier-card card" data-tier="toolkit">
             <div class="tier-header">
-              <span class="badge badge-navy" style="margin-bottom: var(--space-4);">Free</span>
+              <span class="badge badge-navy" style="margin-bottom: var(--space-4);">Toolkit</span>
               <div class="tier-price">
-                <span class="tier-amount">$0</span>
+                <span class="tier-amount">$4.99</span>
+                <span class="tier-period text-muted">/mo</span>
               </div>
-              <p class="tier-royalty text-muted">Get your MPI Score · see where you stand</p>
+              <p class="tier-royalty text-muted"><span class="text-gold">100%</span> royalty to artist</p>
             </div>
             <div class="divider" style="margin-block: var(--space-6);"></div>
             <ul class="tier-features" role="list">
               <li class="tier-feature">
                 <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Distribution to all DSPs
+                Release calendar &amp; planning
               </li>
               <li class="tier-feature">
                 <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -276,65 +666,28 @@
               </li>
               <li class="tier-feature">
                 <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Release calendar
+                ISRC management
               </li>
               <li class="tier-feature tier-feature--absent">
                 <svg class="feature-x" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                Growth insights
+                Fan Hub
               </li>
               <li class="tier-feature tier-feature--absent">
                 <svg class="feature-x" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                Campaign tools
+                AI campaign tools
               </li>
             </ul>
-            <p class="tier-note text-faint">Start for free. See where you stand.</p>
-            <div class="tier-cta"><a href="score.html" class="btn btn-outline" style="width:100%;justify-content:center;">Get Free Score</a></div>
+            <p class="tier-note text-faint">The essentials. A real release system at a minimal cost.</p>
+            <div class="tier-cta"><a href="pricing.html" class="btn btn-outline" style="width:100%;justify-content:center;">Start 7-day free trial</a></div>
           </div>
 
-          <!-- CORE -->
-          <div class="tier-card card" data-tier="core">
+          <!-- CORE (FLAGSHIP) -->
+          <div class="tier-card card-featured" data-tier="core">
             <div class="tier-header">
-              <span class="badge badge-navy" style="margin-bottom: var(--space-4);">Core</span>
+              <span class="badge badge-gold" style="margin-bottom: var(--space-4);">Flagship · Core</span>
               <div class="tier-price">
-                <span class="tier-amount">$4.99</span>
-                <span class="tier-period text-muted">/month</span>
-              </div>
-              <p class="tier-royalty text-muted"><span class="text-gold">100%</span> royalty to artist</p>
-            </div>
-            <div class="divider" style="margin-block: var(--space-6);"></div>
-            <ul class="tier-features" role="list">
-              <li class="tier-feature">
-                <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Unlimited distribution
-              </li>
-              <li class="tier-feature">
-                <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Basic analytics dashboard
-              </li>
-              <li class="tier-feature">
-                <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Royalty tracking
-              </li>
-              <li class="tier-feature tier-feature--absent">
-                <svg class="feature-x" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                Full MPI Score breakdown
-              </li>
-              <li class="tier-feature tier-feature--absent">
-                <svg class="feature-x" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                Growth insights
-              </li>
-            </ul>
-            <p class="tier-note text-faint">Upload your music. See basic performance. Keep everything you earn.</p>
-            <div class="tier-cta"><a href="apply.html" class="btn btn-outline" style="width:100%;justify-content:center;">Apply for Core</a></div>
-          </div>
-
-          <!-- GROWTH (FEATURED) -->
-          <div class="tier-card card-featured" data-tier="growth">
-            <div class="tier-header">
-              <span class="badge badge-gold" style="margin-bottom: var(--space-4);">Most Selected · Growth</span>
-              <div class="tier-price">
-                <span class="tier-amount">$29</span>
-                <span class="tier-period text-muted">/month</span>
+                <span class="tier-amount">$39</span>
+                <span class="tier-period text-muted">/mo</span>
               </div>
               <p class="tier-royalty text-muted"><span class="text-gold">100%</span> royalty to artist</p>
             </div>
@@ -342,15 +695,15 @@
             <ul class="tier-features" role="list">
               <li class="tier-feature">
                 <svg class="feature-check text-gold" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Everything in Core
+                Everything in Toolkit
               </li>
               <li class="tier-feature">
                 <svg class="feature-check text-gold" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Full MPI Score breakdown
+                MPI Fan Hub included
               </li>
               <li class="tier-feature">
                 <svg class="feature-check text-gold" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Growth insights &amp; optimization
+                Full live analytics dashboard
               </li>
               <li class="tier-feature">
                 <svg class="feature-check text-gold" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -358,24 +711,57 @@
               </li>
               <li class="tier-feature">
                 <svg class="feature-check text-gold" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Campaign automation tools
+                Full MPI Score breakdown
+              </li>
+            </ul>
+            <p class="tier-note text-muted" style="color:rgba(198,146,20,0.7);">The complete MPI system. Build your career and your fan platform.</p>
+            <div class="tier-cta"><a href="pricing.html" class="btn btn-primary" style="width:100%;justify-content:center;">Start 7-day free trial</a></div>
+          </div>
+
+          <!-- GROWTH -->
+          <div class="tier-card card" data-tier="growth">
+            <div class="tier-header">
+              <span class="badge badge-teal" style="margin-bottom: var(--space-4);">Growth</span>
+              <div class="tier-price">
+                <span class="tier-amount">$129</span>
+                <span class="tier-period text-muted">/mo</span>
+              </div>
+              <p class="tier-royalty text-muted"><span class="text-gold">100%</span> royalty to artist</p>
+            </div>
+            <div class="divider" style="margin-block: var(--space-6);"></div>
+            <ul class="tier-features" role="list">
+              <li class="tier-feature">
+                <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Everything in Core
               </li>
               <li class="tier-feature">
-                <svg class="feature-check text-gold" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                AI campaign &amp; ad tools
+              </li>
+              <li class="tier-feature">
+                <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Growth insights &amp; optimization
+              </li>
+              <li class="tier-feature">
+                <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Playlist pitching support
+              </li>
+              <li class="tier-feature">
+                <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
                 Priority support
               </li>
             </ul>
-            <p class="tier-note text-muted" style="color:rgba(198,146,20,0.7);">Understand your performance. Scale what's working.</p>
-            <div class="tier-cta"><a href="apply.html" class="btn btn-primary" style="width:100%;justify-content:center;">Apply for Growth</a></div>
+            <p class="tier-note text-faint">Scale what's working with the full MPI growth engine behind every release.</p>
+            <div class="tier-cta"><a href="pricing.html" class="btn btn-outline" style="width:100%;justify-content:center;">Start 7-day free trial</a></div>
           </div>
 
           <!-- PRO -->
           <div class="tier-card card" data-tier="pro">
             <div class="tier-header">
-              <span class="badge badge-teal" style="margin-bottom: var(--space-4);">Pro</span>
+              <span class="badge" style="margin-bottom:var(--space-4);background:linear-gradient(135deg,#C69214,#01696F);color:white;">Pro</span>
               <div class="tier-price">
-                <span class="tier-amount">$149</span>
-                <span class="tier-period text-muted">/month</span>
+                <span class="tier-amount">$499</span>
+                <span class="tier-period text-muted">/mo</span>
               </div>
               <p class="tier-royalty text-muted"><span class="text-gold">100%</span> royalty to artist</p>
             </div>
@@ -384,10 +770,6 @@
               <li class="tier-feature">
                 <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
                 Everything in Growth
-              </li>
-              <li class="tier-feature">
-                <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                AI-powered campaign tools
               </li>
               <li class="tier-feature">
                 <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -406,42 +788,14 @@
                 Sync licensing submissions
               </li>
             </ul>
-            <p class="tier-note text-faint">For artists ready to scale with the full MPI system behind every release.</p>
-            <div class="tier-cta"><a href="apply.html" class="btn btn-outline" style="width:100%;justify-content:center;">Apply for Pro</a></div>
+            <p class="tier-note text-faint">Application only. For artists ready for the full MPI team behind every release.</p>
+            <div class="tier-cta"><a href="pricing.html" class="btn btn-outline" style="width:100%;justify-content:center;">Start 7-day free trial</a></div>
           </div>
 
-          <!-- PARTNER -->
-          <div class="tier-card card" data-tier="partner">
-            <div class="tier-header">
-              <span class="badge" style="margin-bottom:var(--space-4);background:linear-gradient(135deg,#C69214,#01696F);color:white;">Partner</span>
-              <div class="tier-price">
-                <span class="tier-amount" style="font-size:var(--text-xl);">Invite Only</span>
-              </div>
-              <p class="tier-royalty text-muted">MPI-funded campaigns · negotiated split</p>
-            </div>
-            <div class="divider" style="margin-block: var(--space-6);"></div>
-            <ul class="tier-features" role="list">
-              <li class="tier-feature">
-                <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                MPI funds your release campaign
-              </li>
-              <li class="tier-feature">
-                <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Up to $20K marketing budget
-              </li>
-              <li class="tier-feature">
-                <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Performance-based scaling
-              </li>
-              <li class="tier-feature">
-                <svg class="feature-check" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
-                Full team support
-              </li>
-            </ul>
-            <p class="tier-note text-faint">MPI identifies Partner artists based on MPI Score, trajectory, and fit.</p>
-            <div class="tier-cta"><a href="apply.html" class="btn btn-outline" style="width:100%;justify-content:center;opacity:0.6;pointer-events:none;cursor:default;">Invitation Only</a></div>
-          </div>
+        </div>
 
+        <div style="text-align: center; margin-top: var(--space-10);">
+          <a href="pricing.html" class="btn btn-ghost">View full pricing details →</a>
         </div>
       </div>
     </section>
@@ -456,10 +810,10 @@
           <div class="how-left">
             <p class="label text-gold" style="margin-bottom: var(--space-4);">The Process</p>
             <h2 class="heading-xl" id="how-heading">
-              How to apply.
+              How to get started.
             </h2>
             <p class="text-muted" style="margin-top: var(--space-5); max-width: 44ch;">
-              Applications are reviewed on five criteria. You'll know exactly where you stand.
+              Start with a free score, pick a plan, and run your first structured release cycle.
             </p>
           </div>
 
@@ -468,58 +822,32 @@
               <li class="how-step">
                 <span class="step-number label">01</span>
                 <div class="step-body">
-                  <h3 class="step-title">Submit your application</h3>
-                  <p class="text-muted">Takes 10–15 minutes. You'll need your Spotify profile link, release history, and a description of your current release process.</p>
+                  <h3 class="step-title">Get your free MPI Artist Score</h3>
+                  <p class="text-muted">Search your artist name or connect Spotify. See exactly where you stand — growth opportunities, playlist velocity, listener trends — in seconds. Free forever, no login required.</p>
                 </div>
               </li>
               <li class="how-step">
                 <span class="step-number label">02</span>
                 <div class="step-body">
-                  <h3 class="step-title">We score you on 5 criteria</h3>
-                  <p class="text-muted">Platform momentum, creative quality, release consistency, marketing effort, and brand alignment. Every application is reviewed by a human. No auto-rejections.</p>
+                  <h3 class="step-title">Choose your plan and start a free trial</h3>
+                  <p class="text-muted">Every paid plan starts with a 7-day free trial. Pick the tier that fits where you are right now. Upgrade or change anytime — your data stays with you.</p>
                 </div>
               </li>
               <li class="how-step">
                 <span class="step-number label">03</span>
                 <div class="step-body">
-                  <h3 class="step-title">You hear back within 14 business days</h3>
-                  <p class="text-muted">Accepted applications move to onboarding. Declined applications receive a full scorecard — not a form rejection. You'll know exactly what needs to change.</p>
+                  <h3 class="step-title">Set up your release system</h3>
+                  <p class="text-muted">Connect your distributor, set your release calendar, build your pre-save campaign. The system is pre-configured for your catalog. You execute.</p>
                 </div>
               </li>
               <li class="how-step">
                 <span class="step-number label">04</span>
                 <div class="step-body">
-                  <h3 class="step-title">Onboard and run your first release cycle</h3>
-                  <p class="text-muted">Your first 6-week release cycle begins. The system is pre-loaded. The calendar is set. You execute.</p>
+                  <h3 class="step-title">Run your first release cycle</h3>
+                  <p class="text-muted">Follow the 6-week release playbook. Watch your MPI Score update in real time. Build your fan platform. Start compounding your career.</p>
                 </div>
               </li>
             </ol>
-          </div>
-        </div>
-
-        <div class="how-criteria" style="margin-top: var(--space-16);">
-          <p class="label text-faint" style="margin-bottom: var(--space-8); text-align: center;">Applications are scored on</p>
-          <div class="criteria-grid">
-            <div class="criteria-item">
-              <span class="criteria-num text-gold">01</span>
-              <span class="criteria-label">Platform Momentum</span>
-            </div>
-            <div class="criteria-item">
-              <span class="criteria-num text-gold">02</span>
-              <span class="criteria-label">Creative Quality</span>
-            </div>
-            <div class="criteria-item">
-              <span class="criteria-num text-gold">03</span>
-              <span class="criteria-label">Release Consistency</span>
-            </div>
-            <div class="criteria-item">
-              <span class="criteria-num text-gold">04</span>
-              <span class="criteria-label">Marketing Effort</span>
-            </div>
-            <div class="criteria-item">
-              <span class="criteria-num text-gold">05</span>
-              <span class="criteria-label">Brand Alignment</span>
-            </div>
           </div>
         </div>
       </div>
@@ -534,7 +862,7 @@
           Your growth, quantified.
         </h2>
         <p class="text-muted" style="margin-top: var(--space-5); margin-inline: auto; max-width: 52ch;">
-          Every artist in MPI has a score from 0–100 built on real streaming data — not follower counts. Your score tells you and us exactly where you stand.
+          Every MPI Artist Score is built on real streaming data — not follower counts. Your score tells you exactly where you stand and where your biggest growth opportunity is hiding.
         </p>
 
         <div class="score-formula" aria-label="MPI Artist Score Formula">
@@ -563,6 +891,11 @@
             <span class="score-metric">MPI Score</span>
           </div>
         </div>
+
+        <div style="margin-top: var(--space-10);">
+          <a href="/score.html" class="btn btn-primary btn-lg">Get Your Free Score →</a>
+          <p style="margin-top: var(--space-4); font-size: var(--text-xs); color: rgba(245,241,232,0.35);">Free forever · No login required · Results in seconds</p>
+        </div>
       </div>
     </section>
 
@@ -584,7 +917,7 @@
 
             <div class="founder-stat-list">
               <div class="founder-stat">
-                <span class="founder-stat-val">250K &amp; growing</span>
+                <span class="founder-stat-val">262K+</span>
                 <span class="founder-stat-key text-faint">Monthly listeners</span>
               </div>
               <div class="founder-stat">
@@ -619,17 +952,20 @@
               Built from real release volume, not theory.
             </p>
             <p class="text-muted" style="margin-top: var(--space-5);">
-              Joshua writes, produces, mixes, and masters his own catalog. He releases every Friday without exception. MPI was built to solve the operational problem most independent artists never solve: how to release consistently, at volume, with structure and discipline.
+              MPI Artist Services was built by Joshua Mollohan — a working independent artist — because the tools and systems that help artists build real careers were locked behind label deals, expensive agencies, or buried in generic platforms that don't understand music.
             </p>
             <p class="text-muted" style="margin-top: var(--space-4);">
-              Every system inside MPI was built inside an active catalog under real release pressure — the 6-week playbook, the campaign automation, the MPI Artist Score. None of it is theory. All of it was stress-tested against real releases before it was offered to anyone else.
+              We built the release system, the analytics, the fan platform, and the marketing tools we wished we had. Then we opened it to every independent artist serious about building something real.
+            </p>
+            <p class="text-muted" style="margin-top: var(--space-4);">
+              For Artists. By Artists. That’s not a tagline. That’s the reason this exists.
             </p>
             <p class="text-muted" style="margin-top: var(--space-4);">
               <strong style="color: #C69214;">MPI Artist Services is a record label and artist services division of Mollohan Production Inc.</strong>, a Colorado-based independent music company owned and operated by Joshua Mollohan. All releases on the MPI roster are distributed and licensed under Mollohan Production Inc. Label inquiries: <a href="mailto:info@mpiartist.com" style="color: #C69214;">info@mpiartist.com</a> · <a href="mailto:joshua@mpiartist.com" style="color: #C69214;">joshua@mpiartist.com</a>
             </p>
 
             <div class="founder-note" style="margin-top: var(--space-8);">
-              <p class="text-faint" style="font-style: italic;">"The reason MPI is selective is simple: this system only works if the artist is willing to work it. The 30% rejection rate isn't about gatekeeping — it's about maintaining the discipline the platform was built on."</p>
+              <p class="text-faint" style="font-style: italic;">"For Artists. By Artists. That's not a tagline. It's the reason this exists. We built the system we wished we had, then opened it to every independent artist serious about building something real."</p>
               <p class="text-gold" style="margin-top: var(--space-3); font-size: var(--text-sm); font-weight: 600;">— Joshua Mollohan</p>
             </div>
           </div>
@@ -641,19 +977,19 @@
     <!-- ═══════════════════════════════ CTA BAND ═══════════════════════════════ -->
     <section class="section section-cta" id="apply-cta" aria-labelledby="cta-heading">
       <div class="container" style="text-align: center;">
-        <p class="label text-gold" style="margin-bottom: var(--space-4);">Ready?</p>
+        <p class="label text-gold" style="margin-bottom: var(--space-4);">Ready to build?</p>
         <h2 class="display" id="cta-heading" style="font-size: var(--text-2xl);">
-          Apply for access.
+          Start building your career.
         </h2>
         <p class="text-muted" style="margin-top: var(--space-5); margin-inline: auto; max-width: 48ch;">
-          Applications are reviewed within 14 business days. Declined applications receive a full scorecard — not a form rejection.
+          Every plan starts with a 7-day free trial. No credit card required to get your MPI Score. Start today.
         </p>
         <div style="margin-top: var(--space-8); display: flex; gap: var(--space-4); justify-content: center; flex-wrap: wrap;">
-          <a href="apply.html" class="btn btn-primary btn-lg">Start Your Application</a>
-          <a href="mailto:joshua@mpiartist.com" class="btn btn-outline btn-lg">Questions? Email us</a>
+          <a href="/pricing.html" class="btn btn-primary btn-lg">Start Free Trial</a>
+          <a href="/score.html" class="btn btn-outline btn-lg">Get Your Free Score</a>
         </div>
         <p class="text-faint" style="margin-top: var(--space-6); font-size: var(--text-sm);">
-          30% acceptance rate · All genres welcome · Partner tier excludes explicit content
+          All genres welcome · 100% royalties to artists · Cancel anytime
         </p>
       </div>
     </section>
@@ -674,17 +1010,18 @@
             <span class="nav-logo-text">MPI<span> Artist</span></span>
           </a>
           <p class="text-faint" style="margin-top: var(--space-3); font-size: var(--text-sm); max-width: 32ch;">
-            A selective release platform for artists who want structure and discipline.
+            Label-level tools. Complete independence. For Artists. By Artists.
           </p>
         </div>
 
         <div class="footer-links-group">
           <p class="label text-faint" style="margin-bottom: var(--space-4);">Platform</p>
           <ul role="list" class="footer-links">
-            <li><a href="#what-we-are">What It Is</a></li>
+            <li><a href="#what-mpi-does">What MPI Does</a></li>
             <li><a href="#tiers">Pricing</a></li>
-            <li><a href="#how-it-works">How to Apply</a></li>
-            <li><a href="apply.html">Apply Now</a></li>
+            <li><a href="/score.html">Get Your Score</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="pricing.html">Start Free Trial</a></li>
           </ul>
         </div>
 
@@ -712,5 +1049,214 @@
 
 
   <script src="js/main.js"></script>
+
+  <script>
+    const API = 'https://mpi-dashboard-production-0433.up.railway.app';
+
+    // ── PKCE Helpers (copied from score.html) ─────────────────────────────────
+    function generateRandomString(length) {
+      const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';
+      return Array.from(crypto.getRandomValues(new Uint8Array(length)), x => chars[x % chars.length]).join('');
+    }
+
+    async function generatePKCE() {
+      const verifier = generateRandomString(128);
+      const encoder = new TextEncoder();
+      const data = encoder.encode(verifier);
+      const digest = await crypto.subtle.digest('SHA-256', data);
+      const challenge = btoa(String.fromCharCode(...new Uint8Array(digest)))
+        .replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+      sessionStorage.setItem('pkce_verifier', verifier);
+      return challenge;
+    }
+
+    async function connectSpotify() {
+      const challenge = await generatePKCE();
+      const state = generateRandomString(16);
+      sessionStorage.setItem('pkce_state', state);
+      const params = new URLSearchParams({
+        client_id: '1841513b87a5464aada58eb412cf156c',
+        response_type: 'code',
+        redirect_uri: 'https://mpiartist.com/score.html',
+        scope: 'user-read-private user-read-email',
+        code_challenge_method: 'S256',
+        code_challenge: challenge,
+        state
+      });
+      window.location.href = `https://accounts.spotify.com/authorize?${params}`;
+    }
+
+    // ── Artist Search (copied from score.html) ────────────────────────────────
+    let _heroSearchTimer = null;
+    let _heroSelectedArtist = null;
+
+    function heroDebounceSearch(input) {
+      clearTimeout(_heroSearchTimer);
+      const q = input.value.trim();
+      const dropdown = document.getElementById('hero-search-dropdown');
+
+      if (q.length < 2) {
+        dropdown.classList.remove('open');
+        return;
+      }
+
+      dropdown.innerHTML = '<div class="search-spinner">Searching...</div>';
+      dropdown.classList.add('open');
+
+      _heroSearchTimer = setTimeout(() => heroSearchArtists(q), 350);
+    }
+
+    async function heroSearchArtists(q) {
+      const dropdown = document.getElementById('hero-search-dropdown');
+      try {
+        const res = await fetch(`${API}/api/public/spotify-search?q=${encodeURIComponent(q)}`);
+        const data = await res.json();
+        const artists = data.artists || [];
+
+        if (artists.length === 0) {
+          dropdown.innerHTML = '<div class="search-spinner">No artists found</div>';
+          return;
+        }
+
+        dropdown.innerHTML = artists.map(a => `
+          <div class="search-item" onclick="heroSelectArtist(${JSON.stringify(a).replace(/"/g, '&quot;')})">
+            ${a.image
+              ? `<img src="${a.image}" alt="${a.name}" onerror="this.style.display='none'" />`
+              : '<div class="search-item-placeholder">&#127925;</div>'}
+            <div class="search-item-info">
+              <div class="search-item-name">${a.name}</div>
+              <div class="search-item-meta">${a.popularity ? `Popularity ${a.popularity}/100` : ''}${a.genres?.[0] ? ' · ' + a.genres[0] : ''}</div>
+            </div>
+          </div>
+        `).join('');
+      } catch (e) {
+        dropdown.innerHTML = '<div class="search-spinner">Search failed — try again</div>';
+      }
+    }
+
+    function heroSelectArtist(artist) {
+      _heroSelectedArtist = artist;
+      document.getElementById('hero-search-dropdown').classList.remove('open');
+      document.getElementById('hero-artist-search').value = '';
+
+      const card = document.getElementById('hero-selected-artist');
+      const img = document.getElementById('hero-selected-img');
+      img.src = artist.image || '';
+      img.style.display = artist.image ? 'block' : 'none';
+      document.getElementById('hero-selected-name').textContent = artist.name;
+      document.getElementById('hero-selected-meta').textContent =
+        (artist.popularity ? `Popularity ${artist.popularity}/100` : '') +
+        (artist.genres?.[0] ? ' · ' + artist.genres[0] : '');
+      card.classList.add('show');
+      document.getElementById('hero-score-btn').classList.add('show');
+    }
+
+    function heroClearArtist() {
+      _heroSelectedArtist = null;
+      document.getElementById('hero-selected-artist').classList.remove('show');
+      document.getElementById('hero-score-btn').classList.remove('show');
+    }
+
+    function heroGoToScore() {
+      if (!_heroSelectedArtist) return;
+      const spotifyUrl = _heroSelectedArtist.url ||
+        `https://open.spotify.com/artist/${_heroSelectedArtist.id}`;
+      window.location.href = `/score.html?spotifyUrl=${encodeURIComponent(spotifyUrl)}`;
+    }
+
+    // ── Score Widget Search ────────────────────────────────────────────────────
+    let _widgetSearchTimer = null;
+    let _widgetSelectedArtist = null;
+
+    function widgetDebounceSearch(input) {
+      clearTimeout(_widgetSearchTimer);
+      const q = input.value.trim();
+      const dropdown = document.getElementById('widget-search-dropdown');
+
+      if (q.length < 2) {
+        dropdown.classList.remove('open');
+        return;
+      }
+
+      dropdown.innerHTML = '<div class="search-spinner">Searching...</div>';
+      dropdown.classList.add('open');
+
+      _widgetSearchTimer = setTimeout(() => widgetSearchArtists(q), 350);
+    }
+
+    async function widgetSearchArtists(q) {
+      const dropdown = document.getElementById('widget-search-dropdown');
+      try {
+        const res = await fetch(`${API}/api/public/spotify-search?q=${encodeURIComponent(q)}`);
+        const data = await res.json();
+        const artists = data.artists || [];
+
+        if (artists.length === 0) {
+          dropdown.innerHTML = '<div class="search-spinner">No artists found</div>';
+          return;
+        }
+
+        dropdown.innerHTML = artists.map(a => `
+          <div class="search-item" onclick="widgetSelectArtist(${JSON.stringify(a).replace(/"/g, '&quot;')})">
+            ${a.image
+              ? `<img src="${a.image}" alt="${a.name}" onerror="this.style.display='none'" />`
+              : '<div class="search-item-placeholder">&#127925;</div>'}
+            <div class="search-item-info">
+              <div class="search-item-name">${a.name}</div>
+              <div class="search-item-meta">${a.popularity ? `Popularity ${a.popularity}/100` : ''}${a.genres?.[0] ? ' · ' + a.genres[0] : ''}</div>
+            </div>
+          </div>
+        `).join('');
+      } catch (e) {
+        dropdown.innerHTML = '<div class="search-spinner">Search failed — try again</div>';
+      }
+    }
+
+    function widgetSelectArtist(artist) {
+      _widgetSelectedArtist = artist;
+      document.getElementById('widget-search-dropdown').classList.remove('open');
+      document.getElementById('widget-artist-search').value = '';
+
+      const card = document.getElementById('widget-selected-artist');
+      const img = document.getElementById('widget-selected-img');
+      img.src = artist.image || '';
+      img.style.display = artist.image ? 'block' : 'none';
+      document.getElementById('widget-selected-name').textContent = artist.name;
+      document.getElementById('widget-selected-meta').textContent =
+        (artist.popularity ? `Popularity ${artist.popularity}/100` : '') +
+        (artist.genres?.[0] ? ' · ' + artist.genres[0] : '');
+      card.classList.add('show');
+      document.getElementById('widget-score-btn').classList.add('show');
+    }
+
+    function widgetClearArtist() {
+      _widgetSelectedArtist = null;
+      document.getElementById('widget-selected-artist').classList.remove('show');
+      document.getElementById('widget-score-btn').classList.remove('show');
+    }
+
+    function widgetGoToScore() {
+      if (!_widgetSelectedArtist) return;
+      const spotifyUrl = _widgetSelectedArtist.url ||
+        `https://open.spotify.com/artist/${_widgetSelectedArtist.id}`;
+      window.location.href = `/score.html?spotifyUrl=${encodeURIComponent(spotifyUrl)}`;
+    }
+
+    // ── Close dropdowns on outside click ─────────────────────────────────────
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.hero-search-wrap') && !e.target.closest('#score-widget-search-wrap')) {
+        const dd1 = document.getElementById('hero-search-dropdown');
+        const dd2 = document.getElementById('widget-search-dropdown');
+        if (dd1) dd1.classList.remove('open');
+        if (dd2) dd2.classList.remove('open');
+      } else if (!e.target.closest('.hero-search-wrap')) {
+        const dd = document.getElementById('hero-search-dropdown');
+        if (dd) dd.classList.remove('open');
+      } else if (!e.target.closest('#score-widget-search-wrap')) {
+        const dd = document.getElementById('widget-search-dropdown');
+        if (dd) dd.classList.remove('open');
+      }
+    });
+  </script>
 </body>
 </html>

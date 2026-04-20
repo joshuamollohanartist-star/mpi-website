@@ -1469,9 +1469,9 @@
       const wasCallback = await checkCallback();
 
       if (!wasCallback) {
-        // Check for ?url= param from homepage
+        // Check for ?url= or ?spotifyUrl= param from homepage
         const params = new URLSearchParams(window.location.search);
-        const urlParam = params.get('url');
+        const urlParam = params.get('url') || params.get('spotifyUrl');
         if (urlParam) {
           document.getElementById('spotify-url-input').value = urlParam;
           analyzeByUrl();
