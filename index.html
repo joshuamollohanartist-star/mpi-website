@@ -453,43 +453,6 @@
     </section>
 
 
-    <!-- ═══════════════════════════════ SCORE WIDGET ═══════════════════════════════ -->
-    <section class="score-widget-section" id="score-widget" aria-labelledby="score-widget-heading">
-      <div class="score-widget-inner">
-        <p class="label text-gold" style="margin-bottom: var(--space-3);">Free Artist Score</p>
-        <h2 class="score-widget-headline" id="score-widget-heading">See where you stand. Free.</h2>
-        <p class="score-widget-sub">Type your artist name, get your MPI Artist Score in seconds.</p>
-
-        <div class="search-wrap" id="score-widget-search-wrap">
-          <input
-            type="text"
-            id="widget-artist-search"
-            class="search-input"
-            placeholder="Search your artist name…"
-            autocomplete="off"
-            oninput="widgetDebounceSearch(this)"
-            aria-label="Search artist name"
-          />
-          <div class="search-dropdown" id="widget-search-dropdown"></div>
-        </div>
-
-        <div class="selected-artist-card" id="widget-selected-artist">
-          <img src="" alt="" id="widget-selected-img" />
-          <div class="selected-artist-card-info">
-            <div class="selected-artist-card-name" id="widget-selected-name"></div>
-            <div class="selected-artist-card-meta" id="widget-selected-meta"></div>
-          </div>
-          <button class="selected-artist-card-remove" onclick="widgetClearArtist()" type="button" aria-label="Remove selection">&times;</button>
-        </div>
-
-        <div style="display:flex;justify-content:center;">
-          <button class="score-widget-analyze-btn" id="widget-score-btn" onclick="widgetGoToScore()" type="button">Get My Free Score &rarr;</button>
-        </div>
-
-        <p class="score-widget-trust">Free forever &middot; No login required &middot; Results in seconds</p>
-      </div>
-    </section>
-
 
     <!-- ═══════════════════════════════ WHAT MPI DOES ═══════════════════════════════ -->
     <section class="section" id="what-mpi-does" aria-labelledby="what-heading">
@@ -503,7 +466,7 @@
             <em style="color: var(--gold); font-style: italic;">None of the strings.</em>
           </h2>
           <p class="text-muted" style="margin-top: var(--space-6); font-size: var(--text-lg);">
-            MPI is built from real release volume, not theory. Every tool, every system, every metric was forged inside an active catalog — 165+ songs, 52 albums, one release every Friday without fail.
+            MPI is built from real release volume, not theory. Every tool, every system, every metric was forged inside an active catalog — 165+ releases and growing, one every Friday without fail.
           </p>
         </div>
 
@@ -1250,7 +1213,7 @@
 
     // ── Close dropdowns on outside click ─────────────────────────────────────
     document.addEventListener('click', function(e) {
-      if (!e.target.closest('.hero-search-wrap') && !e.target.closest('#score-widget-search-wrap')) {
+      if (!e.target.closest('.hero-search-wrap')) {
         const dd1 = document.getElementById('hero-search-dropdown');
         const dd2 = document.getElementById('widget-search-dropdown');
         if (dd1) dd1.classList.remove('open');
@@ -1258,7 +1221,7 @@
       } else if (!e.target.closest('.hero-search-wrap')) {
         const dd = document.getElementById('hero-search-dropdown');
         if (dd) dd.classList.remove('open');
-      } else if (!e.target.closest('#score-widget-search-wrap')) {
+      } else {
         const dd = document.getElementById('widget-search-dropdown');
         if (dd) dd.classList.remove('open');
       }
