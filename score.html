@@ -1358,9 +1358,10 @@
       }
 
       // Show success then redirect
-      document.getElementById('email-gate').style.display = 'none';
-      document.getElementById('email-success').style.display = 'block';
+      try { document.getElementById('email-gate').style.display = 'none'; } catch(e) {}
+      try { document.getElementById('email-success').style.display = 'block'; } catch(e) {}
 
+      // Always redirect after 900ms — even if _reportData is null
       setTimeout(() => {
         window.location.href = '/score-report.html';
       }, 900);
