@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /score-report.html
+Disallow: /apply.html
+
+Sitemap: https://mpiartist.com/sitemap.xml
