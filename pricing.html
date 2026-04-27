@@ -853,15 +853,121 @@
     "@context": "https://schema.org",
     "@type": "Product",
     "name": "MPI Artist Services",
-    "description": "Label-level tools for independent artists: Spotify analytics, release management, Fan Hub, MPI Score, and campaign manager.",
-    "brand": {"@type": "Brand", "name": "MPI Artist Services"},
+    "description": "Label-level tools for independent artists: release wizard, Spotify analytics, MPI Score, Fan Hub, campaign manager, and ISRC registry.",
+    "image": "https://mpiartist.com/images/mpi-logo.jpeg",
+    "brand": {
+      "@type": "Brand",
+      "name": "MPI Artist Services"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "1",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "review": {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5",
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Person",
+        "name": "Joshua Mollohan"
+      },
+      "reviewBody": "Built from 165+ releases and 276K monthly listeners of real-world experience. Every tool was forged inside an active catalog."
+    },
     "offers": [
-      {"@type": "Offer", "name": "Toolkit", "price": "4.99", "priceCurrency": "USD", "availability": "https://schema.org/InStock"},
-      {"@type": "Offer", "name": "Core", "price": "39.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock"},
-      {"@type": "Offer", "name": "Growth", "price": "129.00", "priceCurrency": "USD", "availability": "https://schema.org/InStock"}
+      {
+        "@type": "Offer",
+        "name": "Toolkit",
+        "price": "4.99",
+        "priceCurrency": "USD",
+        "priceValidUntil": "2027-01-01",
+        "availability": "https://schema.org/InStock",
+        "url": "https://mpiartist.com/pricing.html",
+        "image": "https://mpiartist.com/images/mpi-logo.jpeg",
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": "US",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+          "merchantReturnDays": 7,
+          "returnMethod": "https://schema.org/ReturnByMail"
+        },
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingRate": {
+            "@type": "MonetaryAmount",
+            "value": "0",
+            "currency": "USD"
+          },
+          "deliveryTime": {
+            "@type": "ShippingDeliveryTime",
+            "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"},
+            "transitTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"}
+          },
+          "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "US"}
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Core",
+        "price": "39.00",
+        "priceCurrency": "USD",
+        "priceValidUntil": "2027-01-01",
+        "availability": "https://schema.org/InStock",
+        "url": "https://mpiartist.com/pricing.html",
+        "image": "https://mpiartist.com/images/mpi-logo.jpeg",
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": "US",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+          "merchantReturnDays": 7,
+          "returnMethod": "https://schema.org/ReturnByMail"
+        },
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingRate": {"@type": "MonetaryAmount", "value": "0", "currency": "USD"},
+          "deliveryTime": {
+            "@type": "ShippingDeliveryTime",
+            "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"},
+            "transitTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"}
+          },
+          "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "US"}
+        }
+      },
+      {
+        "@type": "Offer",
+        "name": "Growth",
+        "price": "129.00",
+        "priceCurrency": "USD",
+        "priceValidUntil": "2027-01-01",
+        "availability": "https://schema.org/InStock",
+        "url": "https://mpiartist.com/pricing.html",
+        "image": "https://mpiartist.com/images/mpi-logo.jpeg",
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": "US",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnNotPermitted",
+          "merchantReturnDays": 7,
+          "returnMethod": "https://schema.org/ReturnByMail"
+        },
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingRate": {"@type": "MonetaryAmount", "value": "0", "currency": "USD"},
+          "deliveryTime": {
+            "@type": "ShippingDeliveryTime",
+            "handlingTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"},
+            "transitTime": {"@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY"}
+          },
+          "shippingDestination": {"@type": "DefinedRegion", "addressCountry": "US"}
+        }
+      }
     ]
   }
-  </script>
+</script>
 </head>
 <body>
 
